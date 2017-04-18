@@ -1,7 +1,7 @@
 #!/bin/sh
 
 VERSION=1.2.3
-yum install zlib-devel openssl-devel
+yum install -y -q zlib-devel openssl-devel
 
 curl -L https://github.com/grpc/grpc/archive/v${VERSION}.tar.gz | tar -xJ -C ~
 cd grpc-${VERSION}/third_party

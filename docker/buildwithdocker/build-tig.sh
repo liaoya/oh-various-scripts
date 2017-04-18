@@ -1,6 +1,6 @@
 #!/bin/sh
 
-export VERSION=tig-2.2.1
+export VERSION=2.2.1
 yum install -y -q ncurses-devel
 curl -L https://github.com/jonas/tig/releases/download/tig-${VERSION}/tig-${VERSIONI}.tar.gz  | tar -xz -C ~
 cd ~/tig-${VERSION}

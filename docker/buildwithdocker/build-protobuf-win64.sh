@@ -1,6 +1,8 @@
 #!/bin/sh
 
-export VERSION=3.2.0
+# The installation has problem
+
+VERSION=3.2.0
 yum install -y -q gcc-c++ unzip autoconf libtool mingw64-gcc-c++
 curl -L https://github.com/google/protobuf/archive/v${VERSION}.tar.gz | tar -xJ -C ~
 cd ~/protobuf-${VERSION}

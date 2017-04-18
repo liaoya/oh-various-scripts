@@ -1,6 +1,6 @@
 #!/bin/sh
 
-export VERSION=4.7.6
+VERSION=4.7.6
 yum install -y -q ncurses-devel readline-devel gnutls-devel zlib-devel libidn-devel
 curl -L http://lftp.yar.ru/ftp/lftp-${VERSION}.tar.xz | tar -xJ -C ~
 cd ~/lftp-${VERSION}
