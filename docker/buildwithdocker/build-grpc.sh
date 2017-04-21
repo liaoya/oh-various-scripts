@@ -1,8 +1,10 @@
 #!/bin/sh
 
-VERSION=1.2.3
+# Need Improve
+
 yum install -y -q zlib-devel openssl-devel gnutls-devel
 
+VERSION=1.2.3
 curl -L https://github.com/grpc/grpc/archive/v${VERSION}.tar.gz | tar -xz -C ~
 cd grpc-${VERSION}/third_party
 rm -fr protobuf
@@ -12,4 +14,4 @@ mv protobuf-${PROTOBUF_VERSION} protobuf
 cd ..
 make -j $(nproc)
 make install
-for item in $(ls -1 /usr/local/bin/*); do [ -x $item ] && strip $item; done
+for item in $(ls -1 /usr/local/bin/grpc*plugin); do [ -x $item ] && strip $item; done
