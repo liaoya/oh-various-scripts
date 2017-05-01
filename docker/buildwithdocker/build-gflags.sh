@@ -1,7 +1,8 @@
 #!/bin/sh
 
 VERSION=2.2.0
-yum install cmake3
+
+yum install -y -q cmake3
 
 curl -L https://github.com/gflags/gflags/archive/v${VERSION}.tar.gz | tar -xz -C ~
 cd gflags-v${VERSION}

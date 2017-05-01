@@ -9,5 +9,3 @@ cd ~/tig-${VERSION}
 make -j $(nproc) all
 make strip
 make install
-tar -Jcf ~/tig-${VERSION}.txz -C /usr/local .
-rm -fr /usr/local/*
