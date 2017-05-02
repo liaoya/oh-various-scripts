@@ -5,7 +5,7 @@ yum install -y -q zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-deve
 VERSION=3.6.1
 curl -L https://www.python.org/ftp/python/${VERSION}/Python-${VERSION}.tgz | tar -xz -C ~/
 
-cd Python-${VERSION}
+cd ~/Python-${VERSION}
 ./configure -q --enable-optimizations --enable-shared --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
 make
 make altinstall
