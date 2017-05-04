@@ -14,11 +14,11 @@ make -j $(nproc)
 make install-strip
 make distclean
 ./configure --host=x86_64-w64-mingw32 --build=x86_64-redhat-linux-gnu \
---prefix=/usr/local/mingw --exec-prefix=/usr/local/mingw --bindir=/usr/local/mingw/bin --sbindir=/usr/local/mingw/sbin \
---sysconfdir=/usr/local/mingw/etc --datadir=/usr/local/mingw/share --includedir=/usr/local/mingw/include --libdir=/usr/local/mingw/lib \
---libexecdir=/usr/local/mingw/libexec --localstatedir=/usr/local/mingw/var --sharedstatedir=/usr/local/mingw/com \
---mandir=/usr/local/mingw/share/man --infodir=/usr/local/mingw/share/info --with-protoc=/usr/local/bin/protoc
+--prefix=/usr/local/mingw64 --exec-prefix=/usr/local/mingw64 --bindir=/usr/local/mingw64/bin --sbindir=/usr/local/mingw64/sbin \
+--sysconfdir=/usr/local/mingw64/etc --datadir=/usr/local/mingw64/share --includedir=/usr/local/mingw64/include --libdir=/usr/local/mingw64/lib \
+--libexecdir=/usr/local/mingw64/libexec --localstatedir=/usr/local/mingw64/var --sharedstatedir=/usr/local/mingw64/com \
+--mandir=/usr/local/mingw64/share/man --infodir=/usr/local/mingw64/share/info --with-protoc=/usr/local/bin/protoc
 #grep -RIl sys-root * | grep -v config.log | xargs sed -i "s/\/usr\/x86_64-w64-mingw32\/sys-root/\usr\/local/g"
 make -j $(nproc)
 make install-strip
-cp -pr /usr/x86_64-w64-mingw32/sys-root/mingw/bin/{libatomic-1.dll,libgcc_s_seh-1.dll,libssp-0.dll,libstdc++-6.dll,libwinpthread-1.dll} /usr/local/mingw/bin
+cp -pr /usr/x86_64-w64-mingw32/sys-root/mingw/bin/{libatomic-1.dll,libgcc_s_seh-1.dll,libssp-0.dll,libstdc++-6.dll,libwinpthread-1.dll} /usr/local/mingw64/bin

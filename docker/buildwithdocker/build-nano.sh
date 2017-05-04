@@ -13,3 +13,4 @@ cat <<EOF >>/usr/local/bin/install-nano
 [ -f ~/.nanorc ] && sed -i "/\/usr\/local\/share\/nano/d" ~/.nanorc
 for item in \$(ls -1 /usr/local/share/nano/*.nanorc); do echo "include \$item" >> ~/.nanorc; done
 EOF
+chmod a+x /usr/local/bin/install-nano
