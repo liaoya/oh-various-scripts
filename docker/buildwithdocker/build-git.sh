@@ -9,5 +9,5 @@ cd ~/git-${VERSION}
 make configure
 ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
 make -j $(nproc) all info
-make strip
-make install
+make -j $(nproc) strip
+make -j $(nproc) install install-man

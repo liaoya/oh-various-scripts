@@ -11,4 +11,4 @@ curl -L http://mirrors.ustc.edu.cn/gnu/emacs/emacs-${VERSION}.tar.xz | tar -Jx -
 cd ~/emacs-${VERSION}
 ./configure -q --with-x-toolkit=no --without-x --without-all --build=x86_64-redhat-linux --host=x86_64-redhat-linux --target=x86_64-redhat-linux
 make -j $(nprocs) all
-make install-strip
+make -j $(nprocs) install-strip

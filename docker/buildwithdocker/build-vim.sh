@@ -10,7 +10,7 @@ yum install -y -q ncurses-devel \
   gtk2-devel gtk3-devel \
   libacl-devel cscope
 
-VERSION=8.0.0566
+VERSION=8.0.0596
 curl -L https://github.com/vim/vim/archive/v${VERSION}.tar.gz | tar -xz -C ~
 
 cd ~/vim-${VERSION}

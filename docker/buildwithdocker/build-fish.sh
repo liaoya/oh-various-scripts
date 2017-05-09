@@ -8,7 +8,7 @@ cd ~/fish-${VERSION}
 ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
 make -j $(nproc) all
 make install
-for item in $(ls -1 /usr/local/bin/*); do strip $item; done
+for item in $(ls -1 /usr/local/bin/fish*); do file $item | grep -q -s "not stripped" && strip $item; done
 
 cat <<'EOF' >> /usr/local/bin/installfish.sh 
 echo /usr/local/bin/fish | tee -a /etc/shells
