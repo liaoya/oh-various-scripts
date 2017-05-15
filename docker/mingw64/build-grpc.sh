@@ -1,8 +1,6 @@
 #!/bin/sh
 
-# Need Improve
-
-yum install -y -q zlib-devel openssl-devel gnutls-devel c-ares-devel 
+dnf install -y -q mingw64-zlib.noarch mingw64-openssl.noarch mingw64-gnutls.noarch mingw64-c-ares.noarch
 
 VERSION=1.3.0
 curl -L https://github.com/grpc/grpc/archive/v${VERSION}.tar.gz | tar -xz -C ~
@@ -15,9 +13,6 @@ CARES_VERSION=1.12.0
 curl -L https://c-ares.haxx.se/download/c-ares-${CARES_VERSION}.tar.gz | tar -xz
 [ -d c-ares-${CARES_VERSION} ] && mv c-ares-${CARES_VERSION}/* cares/
 cd ~/grpc-${VERSION}/
+export PKG_CONFIG_PATH=/usr/x86_64-w64-mingw32/sys-root/mingw/lib/pkgconfig:$PKG_CONFIG_PATH
 make -j $(nproc)
 make strip install
-for item in $(ls -1 /usr/local/bin/grpc*plugin); do file $item | grep -q -s "not stripped" && strip $item; done
-
-# git submodule update --recursive --remotecd
-# make run_dep_checks

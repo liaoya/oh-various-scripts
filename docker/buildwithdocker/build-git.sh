@@ -3,7 +3,7 @@
 yum install -y -q curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel asciidoc xmlto docbook2X
 ln -s /usr/bin/db2x_docbook2texi /usr/bin/docbook2x-texi
 
-VERSION=2.12.2
+VERSION=2.13.0
 curl -L https://www.kernel.org/pub/software/scm/git/git-${VERSION}.tar.xz | tar -xJ -C ~
 cd ~/git-${VERSION}
 make configure
