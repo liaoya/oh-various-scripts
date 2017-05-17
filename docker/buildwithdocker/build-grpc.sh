@@ -14,10 +14,16 @@ cd ~/grpc-${VERSION}/third_party/cares
 CARES_VERSION=1.12.0
 curl -L https://c-ares.haxx.se/download/c-ares-${CARES_VERSION}.tar.gz | tar -xz
 [ -d c-ares-${CARES_VERSION} ] && mv c-ares-${CARES_VERSION}/* cares/
+mkdir build
+cd build
 cd ~/grpc-${VERSION}/
 make -j $(nproc)
 make -j $(nproc) strip install
 for item in $(ls -1 /usr/local/bin/grpc*plugin); do file $item | grep -q -s "not stripped" && strip $item; done
 
+JAVA_VERSION=1.3.0
+curl -L https://github.com/grpc/grpc-java/archive/v${JAVA_VERSION}.tar.gz | tar -xz -C ~
+cd ~/grpc-java-1.3.0/compiler/src/java_plugin/cpp
+g++ -std=c++11 -I/usr/local/include -pthread -L/usr/local/lib -lprotoc -lprotobuf -lpthread -ldl -s -o /usr/local/bin/grpc_java_plugin *.cpp
 # git submodule update --recursive --remotecd
 # make run_dep_checks

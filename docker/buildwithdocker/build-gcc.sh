@@ -8,5 +8,6 @@ export VERSION=7.1.0
 curl -L http://ftpmirror.gnu.org/gcc/gcc-${VERSION}/gcc-${VERSION}.tar.bz2 | tar -jx -C ~/
 mkdir ~/build
 cd ~/build
-sh ../gcc-${VERSION}/configure --disable-multilib --enable-languages=c,c++,go --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
-make -j $(nproc)
+sh ../gcc-${VERSION}/configure --disable-multilib --enable-languages=c,c++,go,fortran --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
+make -j $(nproc) 
+make -j $(nproc) install-strip
