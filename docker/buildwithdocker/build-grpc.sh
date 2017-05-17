@@ -4,7 +4,7 @@
 
 yum install -y -q zlib-devel openssl-devel gnutls-devel c-ares-devel 
 
-VERSION=1.3.0
+VERSION=1.3.2
 curl -L https://github.com/grpc/grpc/archive/v${VERSION}.tar.gz | tar -xz -C ~
 cd ~/grpc-${VERSION}/third_party
 PROTOBUF_VERSION=3.3.0
@@ -16,7 +16,7 @@ curl -L https://c-ares.haxx.se/download/c-ares-${CARES_VERSION}.tar.gz | tar -xz
 [ -d c-ares-${CARES_VERSION} ] && mv c-ares-${CARES_VERSION}/* cares/
 cd ~/grpc-${VERSION}/
 make -j $(nproc)
-make strip install
+make -j $(nproc) strip install
 for item in $(ls -1 /usr/local/bin/grpc*plugin); do file $item | grep -q -s "not stripped" && strip $item; done
 
 # git submodule update --recursive --remotecd
