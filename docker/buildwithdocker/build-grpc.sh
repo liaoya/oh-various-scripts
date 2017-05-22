@@ -14,8 +14,6 @@ cd ~/grpc-${VERSION}/third_party/cares
 CARES_VERSION=1.12.0
 curl -L https://c-ares.haxx.se/download/c-ares-${CARES_VERSION}.tar.gz | tar -xz
 [ -d c-ares-${CARES_VERSION} ] && mv c-ares-${CARES_VERSION}/* cares/
-mkdir build
-cd build
 cd ~/grpc-${VERSION}/
 make -j $(nproc)
 make -j $(nproc) strip install
