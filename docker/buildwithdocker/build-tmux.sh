@@ -1,8 +1,9 @@
 #!/bin/sh
 
-VERSION=2.4
 releasever=$(python -c 'import yum; yb = yum.YumBase(); print yb.conf.yumvar["releasever"]' | tail -n 1)
 yum install -y -q ncurses-devel
+
+VERSION=2.5
 curl -L https://github.com/tmux/tmux/releases/download/${VERSION}/tmux-${VERSION}.tar.gz | tar -xz -C ~
 if [ $releasever = "7" ]; then
     yum install -q -y libevent-devel
