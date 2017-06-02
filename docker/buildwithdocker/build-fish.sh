@@ -1,8 +1,13 @@
 #!/bin/bash
 
 yum install -y -q ncurses-devel pcre2-devel
+releasever=$(python -c 'import yum; yb = yum.YumBase(); print yb.conf.yumvar["releasever"]' | tail -n 1)
 
-VERSION=2.5.0
+if [ $releasever = "7" ]; then
+    VERSION=2.5.0
+else
+    VERSION=2.4.0
+fi
 curl -L https://github.com/fish-shell/fish-shell/releases/download/${VERSION}/fish-${VERSION}.tar.gz | tar -xz -C ~/
 cd ~/fish-${VERSION}
 ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
