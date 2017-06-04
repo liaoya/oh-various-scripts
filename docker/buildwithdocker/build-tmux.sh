@@ -7,9 +7,7 @@ VERSION=2.5
 curl -L https://github.com/tmux/tmux/releases/download/${VERSION}/tmux-${VERSION}.tar.gz | tar -xz -C ~
 if [ $releasever = "7" ]; then
     yum install -q -y libevent-devel
-    cd ~/tmux-${VERSION}
-    ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
-    make -j $(nproc) install-strip
+
 else
     LIBEVENT_VERSION=2.0.22
     curl -L https://github.com/libevent/libevent/releases/download/release-${LIBEVENT_VERSION}-stable/libevent-${LIBEVENT_VERSION}-stable.tar.gz | tar -xz -C ~
@@ -17,11 +15,19 @@ else
     ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
     make -j $(nproc) all
     make install-strip
-    cd ~/tmux-${VERSION}
-    ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
-    make -j $(nproc) install-strip
-    echo "/usr/local/lib" > /etc/ld.so.conf.d/usr-local.conf
-    echo "/usr/local/lib64" >> /etc/ld.so.conf.d/usr-local.conf
-    tar -Jcf ~/lftp-${VERSION}.txz -C / usr/local/. etc/ld.so.conf.d/usr-local.conf
 fi
 
+cd ~/tmux-${VERSION}
+./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
+make -j $(nproc) install-strip
+
+cat <<EOF >>/usr/local/bin/install-tmux
+#!/bin/sh
+if [ $UID -eq 0 ]; then
+    echo "/usr/local/lib" > /etc/ld.so.conf.d/usr-local.conf
+    echo "/usr/local/lib64" >> /etc/ld.so.conf.d/usr-local.conf
+    ldconfig
+fi
+[ -f ~/.tmux.conf ] || touch ~/.tmux.conf
+grep -s -q "set-option -g allow-rename off" ~/.tmux.conf || echo "set-option -g allow-rename off" >> ~/.tmux.conf
+EOF

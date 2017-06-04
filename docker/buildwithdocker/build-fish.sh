@@ -15,7 +15,9 @@ make -j $(nproc) all
 make install
 for item in $(ls -1 /usr/local/bin/fish*); do file $item | grep -q -s "not stripped" && strip $item; done
 
-cat <<'EOF' >> /usr/local/bin/installfish.sh 
-echo /usr/local/bin/fish | tee -a /etc/shells
-chcon -t shell_exec_t /usr/local/bin/fish
+cat <<'EOF' >> /usr/local/bin/installfish.sh
+if [ $UID -eq 0 ]; then
+    echo /usr/local/bin/fish | tee -a /etc/shells
+    chcon -t shell_exec_t /usr/local/bin/fish
+fi
 EOF
