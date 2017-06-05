@@ -7,7 +7,6 @@ VERSION=2.5
 curl -L https://github.com/tmux/tmux/releases/download/${VERSION}/tmux-${VERSION}.tar.gz | tar -xz -C ~
 if [ $releasever = "7" ]; then
     yum install -q -y libevent-devel
-
 else
     LIBEVENT_VERSION=2.0.22
     curl -L https://github.com/libevent/libevent/releases/download/release-${LIBEVENT_VERSION}-stable/libevent-${LIBEVENT_VERSION}-stable.tar.gz | tar -xz -C ~
@@ -32,3 +31,5 @@ fi
 [ -f ~/.tmux.conf ] || touch ~/.tmux.conf
 grep -s -q "set-option -g allow-rename off" ~/.tmux.conf || echo "set-option -g allow-rename off" >> ~/.tmux.conf
 EOF
+
+chmod a+x /usr/local/bin/install-tmux
