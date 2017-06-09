@@ -2,7 +2,7 @@
 
 # Need Improve
 
-yum install -y -q zlib-devel openssl-devel gnutls-devel c-ares-devel 
+yum install -y -q zlib-devel openssl-devel gnutls-devel c-ares-devel
 
 PROTOBUF_VERSION=3.3.0
 curl -L https://github.com/google/protobuf/archive/v${PROTOBUF_VERSION}.tar.gz | tar -xz -C ~
@@ -24,7 +24,7 @@ for item in $(ls -1 /usr/local/bin/grpc*plugin); do file $item | grep -q -s "not
 
 JAVA_VERSION=1.3.0
 curl -L https://github.com/grpc/grpc-java/archive/v${JAVA_VERSION}.tar.gz | tar -xz -C ~
-cd ~/grpc-java-1.3.0/compiler/src/java_plugin/cpp
+cd ~/grpc-java-${JAVA_VERSION}/compiler/src/java_plugin/cpp
 g++ -std=c++11 -I/usr/local/include -pthread -L/usr/local/lib -lprotoc -lprotobuf -lpthread -ldl -s -o /usr/local/bin/grpc_java_plugin *.cpp
 # git submodule update --recursive --remotecd
 # make run_dep_checks

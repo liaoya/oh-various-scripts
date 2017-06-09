@@ -1,8 +1,8 @@
 #!/bin/sh
 
-yum install -y -q pcre2-devel pcre-devel xz-devel zlib-devel
+yum install -y -q pcre-devel xz-devel zlib-devel
 
-VERSION=1.0.3
+VERSION=2.0.0
 curl -L https://github.com/ggreer/the_silver_searcher/archive/${VERSION}.tar.gz | tar -xz -C ~/
 cd ~/the_silver_searcher-${VERSION}
 ./autogen.sh

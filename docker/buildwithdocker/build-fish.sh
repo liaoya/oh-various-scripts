@@ -17,6 +17,10 @@ if [ $UID -eq 0 ]; then
     echo /usr/local/bin/fish | tee -a /etc/shells
     chcon -t shell_exec_t /usr/local/bin/fish
 fi
+mkdir -p ~/.config/fish
+[ -f ~/.config/fish/config.fish ] || touch ~/.config/fish/config.fish
+grep -s -q -w 'set PATH \$PATH /usr/sbin' ~/.config/fish/config.fish || echo 'set PATH $PATH /usr/sbin' >> ~/.config/fish/config.fish
+grep -s -q -w 'set PATH \$PATH /usr/local/sbin' ~/.config/fish/config.fish || echo 'set PATH $PATH /usr/local/sbin' >> ~/.config/fish/config.fish
 EOF
 
 chmod a+x /usr/local/bin/installfish.sh
