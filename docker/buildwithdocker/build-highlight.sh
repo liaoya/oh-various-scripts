@@ -1,6 +1,6 @@
 #!/bin/sh
 
-yum install -y -q lua-devel
+yum install -y -q lua-devel boost-devel
 
 VERSION=3.36
 curl -L -O http://www.andre-simon.de/zip/highlight-${VERSION}.tar.bz2
