@@ -2,7 +2,7 @@
 
 yum install -y -q ncurses-devel libacl-devel
 
-VERSION=8.0.0596
+VERSION=8.0.0642
 curl -L https://github.com/vim/vim/archive/v${VERSION}.tar.gz | tar -xz -C ~
 
 cd ~/vim-${VERSION}

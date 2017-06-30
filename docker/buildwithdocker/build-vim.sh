@@ -10,11 +10,11 @@ yum install -y -q ncurses-devel \
   gtk2-devel gtk3-devel \
   libacl-devel cscope
 
-VERSION=8.0.0596
+VERSION=8.0.0642
 curl -L https://github.com/vim/vim/archive/v${VERSION}.tar.gz | tar -xz -C ~
 
 cd ~/vim-${VERSION}
-./configure --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux --with-features=huge --enable-pythoninterp --enable-cscope
+./configure --with-features=huge --enable-pythoninterp --enable-cscope --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
 make -j $(nproc) install
 
 # ./configure --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux --with-features=huge --enable-multibyte --enable-rubyinterp --enable-pythoninterp --enable-python3interp --enable-perlinterp --enable-luainterp --enable-cscope --enable-gui=gtk3
