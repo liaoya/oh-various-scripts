@@ -1,7 +1,7 @@
 #!/bin/sh
 
 yum install -y -q curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel asciidoc xmlto docbook2X
-ln -s /usr/bin/db2x_docbook2texi /usr/bin/docbook2x-texi
+[ -x /usr/bin/db2x_docbook2texi ] && ln -s /usr/bin/db2x_docbook2texi /usr/bin/docbook2x-texi
 
 VERSION=2.13.2
 curl -L https://www.kernel.org/pub/software/scm/git/git-${VERSION}.tar.xz | tar -xJ -C ~
