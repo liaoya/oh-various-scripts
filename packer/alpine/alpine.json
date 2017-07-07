@@ -1,0 +1,82 @@
+{
+  "builders": [
+    {
+      "accelerator": "kvm",
+      "boot_wait": "10s",
+      "boot_command": [
+        "root<enter><wait>",
+        "ifconfig eth0 up && udhcpc -i eth0<enter><wait10>",
+        "echo -e '{{user `ssh_password`}}\\n{{user `ssh_password`}}\\n' | passwd<enter>",
+        "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/answers<enter><wait>",
+        "dos2unix answers<enter>",
+        "setup-proxy -q '{{ user `http_proxy` }}'<enter>",
+        ". /etc/profile.d/proxy.sh<enter>",
+        "echo -e '\\ny\\n' | setup-alpine -e -f answers<enter><wait5>",
+        "rc-service sshd stop<enter>",
+        "mount /dev/vg0/lv_root /mnt<enter>",
+        "sed -i 's/^#PermitRootLogin.*/PermitRootLogin yes/g' /mnt/etc/ssh/sshd_config<enter>",
+        "sed -i 's/\\bdefault_kernel_opts=\"quiet\\b/& console=ttyS0,115200 console=tty0/' /mnt/etc/update-extlinux.conf<enter>",
+        "sed -i 's/^serial_port=.*/serial_port=0/' /mnt/etc/update-extlinux.conf<enter>",
+        "umount /mnt<enter>",
+        "{{user `shutdown_command`}}<enter>"
+      ],
+      "communicator": "none",
+      "disk_interface": "virtio",
+      "disk_size": "{{ user `disk_size` }}",
+      "format": "qcow2",
+      "headless": "{{ user `headless` }}",
+      "http_directory": "http",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_urls": [
+        "{{ user `iso_path` }}/{{ user `iso_name` }}",
+        "{{ user `iso_url` }}"
+      ],    
+      "net_device": "virtio-net",
+
+      "output_directory": "qemu-{{ user `vm_name` }}",
+      "qemuargs": [
+        ["-m", "{{ user `memory` }}"],
+        ["-smp", "cpus={{ user `cpus` }}"]
+      ],
+      "shutdown_command": "{{user `shutdown_command`}}",
+      "ssh_password": "{{user `ssh_password`}}",
+      "ssh_port": 22,
+      "ssh_username": "{{user `ssh_username`}}",
+      "ssh_wait_timeout": "{{user `ssh_wait_timeout`}}",
+      "type": "qemu",
+
+      "vm_name": "{{ user `vm_name` }}.qcow2"
+    }
+  ],
+
+  "post-processors": [
+    {
+      "environment_vars": ["IMAGENAME={{user `vm_name`}}", "OUTPUT=qemu-{{ user `vm_name` }}"],
+      "type": "shell-local",
+      "only": ["qemu"],
+      "inline": ["qemu-img amend -f qcow2 -o compat=0.10 $OUTPUT/$IMAGENAME.qcow2"]
+    }
+  ],
+
+  "variables": {
+    "cpus": "1",
+    "disk_size": "8192",
+    "http_proxy": "{{env `http_proxy`}}",
+    "https_proxy": "{{env `https_proxy`}}",
+    "headless": "true",
+    "iso_name": "",
+    "iso_path": "",
+    "iso_url": "",
+    "iso_checksum": "",
+    "iso_checksum_type": "md5",
+    "memory": "1024",
+    "no_proxy": "{{env `no_proxy`}}",
+
+    "shutdown_command": "/sbin/poweroff",
+    "ssh_username": "root",
+    "ssh_password": "NextGen",
+    "ssh_wait_timeout": "1200s",
+    "vm_name": "alpine"    
+  }
+}
