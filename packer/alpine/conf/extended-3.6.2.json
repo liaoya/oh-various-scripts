@@ -1,8 +1,0 @@
-{
-  "iso_name": "alpine-extended-3.6.2-x86_64.iso",
-  "iso_path": "/var/mirror/isos/alpine/3.6.2",
-  "iso_url": "",
-  "iso_checksum": "90e579d8032e888bc266659cb1f039d8",
-  "iso_checksum_type": "md5",
-  "vm_name": "alpine-extended-3.6.2"
-}

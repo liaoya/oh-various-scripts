@@ -1,8 +1,0 @@
-{
-  "iso_name": "alpine-standard-3.6.2-x86_64.iso",
-  "iso_path": "/var/mirror/isos/alpine/3.6.2",
-  "iso_url": "",
-  "iso_checksum": "32cab709d29cc68803ed2ac41cd711ee",
-  "iso_checksum_type": "md5",
-  "vm_name": "alpine-standard-3.6.2"
-}
