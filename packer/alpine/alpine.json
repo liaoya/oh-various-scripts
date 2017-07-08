@@ -93,7 +93,7 @@
   "variables": {
     "cpus": "1",
     "disk_size": "8192",
-    "domain": "",
+    "domain": "local",
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
     "headless": "true",
@@ -112,7 +112,7 @@
     "ssh_password": "NextGen",
     "ssh_wait_timeout": "1200s",
     "timezone": "Asia/Shanghai",
-    "vm_name": "alpine-virt",
-    "wait4complete": "<wait10>" 
+    "vagrant": "false",
+    "vm_name": "alpine-virt"
   }
 }

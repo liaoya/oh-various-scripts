@@ -37,12 +37,6 @@ grep -s -q -w "UseDNS yes" $SSHD_CONFIG && sed -i "/UseDNS/d" $SSHD_CONFIG && se
 grep -s -q -w "GSSAPIAuthentication yes" $SSHD_CONFIG && sed -i "/GSSAPIAuthentication/d" $SSHD_CONFIG && sed -i "/^# no default banner path/i GSSAPIAuthentication no" $SSHD_CONFIG
 grep -s -q -w "GSSAPICleanupCredentials yes" $SSHD_CONFIG && sed -i "/GSSAPICleanupCredentials/d" $SSHD_CONFIG && sed -i "/^# no default banner path/i GSSAPICleanupCredentials no" $SSHD_CONFIG
 
-SUDOERS_CONFIG=/mnt/etc/sudoers
-sed -i "s/^.*requiretty/#Defaults requiretty/" $SUDOERS_CONFIG
-sed -i '/XAUTHORITY"$/a Defaults    env_keep += "HTTP_PROXY HTTPS_PROXY FTP_PROXY RSYNC_PROXY NO_PROXY"' $SUDOERS_CONFIG
-sed -i '/XAUTHORITY"$/a Defaults    env_keep += "http_proxy https_proxy ftp_proxy rsync_proxy no_proxy"' $SUDOERS_CONFIG
-sed -i '/^Defaults    secure_path/ s/$/:\/usr\/local\/sbin/:\/usr\/local\/bin/' $SUDOERS_CONFIG
-
 umount /mnt
 
 reboot
