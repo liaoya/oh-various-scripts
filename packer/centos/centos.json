@@ -11,10 +11,10 @@
       ],
       "vm_name": "{{ user `vm_name` }}.qcow2",
       
-      "boot_wait": "6s",
       "boot_command": [
         "<up><wait><tab><wait> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{ user `kickstart` }}<enter><wait>"
       ],
+      "boot_wait": "6s",
       "disk_size": "{{ user `disk_size` }}",
       "headless": "{{ user `headless` }}",
       "http_directory": "http",
@@ -28,6 +28,45 @@
       "ssh_password": "{{user `ssh_password`}}",
       "ssh_username": "{{user `ssh_username`}}",
       "ssh_wait_timeout": "{{user `ssh_wait_timeout`}}"
+    },
+
+    {
+      "type": "virtualbox-iso",
+      "export_opts": [
+        "--vsys", "0"
+      ],
+      "format": "ova",
+      "guest_additions_mode": "disable",
+      "guest_os_type": "RedHat_64",
+      "hard_drive_interface": "sata",
+      "output_directory": "virtualbox-iso-{{ user `vm_name` }}",
+      "post_shutdown_delay": "10s",
+      "vboxmanage": [
+        ["modifyvm", "{{.Name}}", "--audio", "none"],
+        ["modifyvm", "{{.Name}}", "--cpus", "{{user `cpus`}}"],
+        ["modifyvm", "{{.Name}}", "--memory", "{{user `memory`}}"],
+        ["modifyvm", "{{.Name}}", "--nictype1", "virtio"],
+        ["modifyvm", "{{.Name}}", "--usb", "on", "--usbxhci", "on"]
+      ],
+      "vm_name": "{{ user `vm_name` }}",
+
+      "boot_command": [
+        "<up><wait><tab><wait> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{ user `kickstart` }}<enter><wait>"
+      ],
+      "boot_wait": "6s",
+      "disk_size": "{{ user `disk_size` }}",
+      "headless": "{{ user `headless` }}",
+      "http_directory": "http",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_urls": [
+        "{{ user `iso_path` }}/{{ user `iso_name` }}",
+        "{{ user `iso_url` }}"
+      ],    
+      "shutdown_command": "{{user `shutdown_command`}}",
+      "ssh_password": "{{user `ssh_password`}}",
+      "ssh_username": "{{user `ssh_username`}}",
+      "ssh_wait_timeout": "{{user `ssh_wait_timeout`}}"        
     }
   ],
 
@@ -35,7 +74,8 @@
     {
       "type": "shell",
       "scripts": [
-        "scripts/cleanup.sh"
+        "scripts/cleanup.sh",
+        "scripts/minimize.sh"
       ]
     }
   ],

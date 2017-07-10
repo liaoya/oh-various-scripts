@@ -2,6 +2,7 @@
   "builders": [
     {
       "type": "qemu",
+      "boot_wait": "10s",
       "accelerator": "kvm",
       "format": "qcow2",
       "output_directory": "qemu-{{ user `vm_name` }}",
@@ -16,10 +17,8 @@
         "ifconfig eth0 up && udhcpc -i eth0<enter><wait10>",
         "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/install.sh<enter><wait>",
         "dos2unix install.sh<enter>",
-        "sh install.sh<enter>"
+        "sh install.sh -d {{user `domain`}} -n {{user `nameserver`}} -p {{user `ssh_password`}} -P {{user `http_proxy`}} -r {{user `repository`}} -z {{user `timezone`}}<enter>"
       ],
-      "boot_wait": "10s",
-      "communicator": "none",
       "disk_size": "{{ user `disk_size` }}",      
       "headless": "{{ user `headless` }}",
       "http_directory": "http",
@@ -37,9 +36,15 @@
 
     {
       "type": "virtualbox-iso",
-      "guest_os_type": "Linux26_64",
+      "boot_wait": "30s",
+      "export_opts": [
+        "--vsys", "0"
+      ],
+      "format": "ova",
+      "guest_additions_mode": "disable",
+      "guest_os_type": "Linux_64",
       "hard_drive_interface": "sata",
-      "output_directory": "virtualbox-{{ user `vm_name` }}",
+      "output_directory": "virtualbox-iso-{{ user `vm_name` }}",
       "vboxmanage": [
         ["modifyvm", "{{.Name}}", "--audio", "none"],
         ["modifyvm", "{{.Name}}", "--cpus", "{{user `cpus`}}"],
@@ -54,10 +59,8 @@
         "ifconfig eth0 up && udhcpc -i eth0<enter><wait10>",
         "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/install.sh<enter><wait>",
         "dos2unix install.sh<enter>",
-        "sh install.sh<enter>"
+        "sh install.sh -d {{user `domain`}} -n {{user `nameserver`}} -p {{user `ssh_password`}} -P {{user `http_proxy`}} -r {{user `repository`}} -z {{user `timezone`}}<enter>"
       ],
-      "boot_wait": "10s",
-      "communicator": "none",
       "disk_size": "{{ user `disk_size` }}",    
       "headless": "{{ user `headless` }}",
       "http_directory": "http",
@@ -66,7 +69,7 @@
       "iso_urls": [
         "{{ user `iso_path` }}/{{ user `iso_name` }}",
         "{{ user `iso_url` }}"
-      ],    
+      ],
       "shutdown_command": "{{user `shutdown_command`}}",
       "ssh_password": "{{user `ssh_password`}}",
       "ssh_username": "{{user `ssh_username`}}",
@@ -80,13 +83,6 @@
       "type": "shell-local",
       "only": ["qemu"],
       "inline": ["qemu-img amend -f qcow2 -o compat=0.10 $OUTPUT/$IMAGENAME.qcow2"]
-    },
-
-    {
-      "environment_vars": ["NAME={{user `vm_name`}}", "OUTPUT=virtualbox-{{ user `vm_name` }}"],
-      "type": "shell-local",
-      "only": "virtualbox-iso",
-      "inline": ["vboxmanage export $NAME --output $OUTPUT/$NAME.ova"]
     }
   ],
 
@@ -112,7 +108,6 @@
     "ssh_password": "NextGen",
     "ssh_wait_timeout": "1200s",
     "timezone": "Asia/Shanghai",
-    "vagrant": "false",
-    "vm_name": "alpine-virt"
+    "vm_name": "alpine"
   }
 }

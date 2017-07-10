@@ -1,9 +1,5 @@
 set -exu
 
-if [ ! -z $VAGRANT ]; then
-    return 0
-fi
-
 date > /etc/vagrant_box_build_time
 
 #

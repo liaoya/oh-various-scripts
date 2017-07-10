@@ -4,6 +4,6 @@
   "iso_name": "CentOS-6.9-x86_64-minimal.iso",
   "iso_path": "/var/mirror/isos/CentOS/6.9/x86_64",
   "iso_url": "",
-  "kickstart": "c6-kvm-ks.cfg",
+  "kickstart": "",
   "vm_name": "centos69-minimal"
 }
