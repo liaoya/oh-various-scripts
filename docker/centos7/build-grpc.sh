@@ -12,7 +12,7 @@ cd ~/protobuf-${PROTOBUF_VERSION}
 ./configure -q
 make -j $(nproc) install-strip
 
-GRPC_VERSION=1.4.0
+GRPC_VERSION=1.4.1
 curl -L https://github.com/grpc/grpc/archive/v${GRPC_VERSION}.tar.gz | tar -xz -C ~
 cd ~/grpc-${GRPC_VERSION}/third_party/cares
 CARES_VERSION=1.12.0

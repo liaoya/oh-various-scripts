@@ -5,7 +5,7 @@
 
 yum install -y -q cmake3
 
-VERSION="4.0.0"
+VERSION="4.0.1"
 
 [ -d ~/llvm ] && rm -fr ~/llvm
 cd ~
