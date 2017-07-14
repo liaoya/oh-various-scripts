@@ -1,3 +1,3 @@
 # oh-various-scripts
 
-Various scripts for my dialy life
+Various scripts for my daily life
