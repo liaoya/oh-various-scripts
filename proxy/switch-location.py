@@ -44,6 +44,8 @@ def getProxy():
     proxy = os.getenv("http_proxy")
     if proxy is None:
         proxy = os.getenv("HTTP_PROXY")
+    if proxy is not None:
+        proxy = proxy.replace('"', '')
     return proxy
 
 
@@ -51,6 +53,8 @@ def getNoProxy():
     noproxy = os.getenv("no_proxy")
     if noproxy is None:
         noproxy = os.getenv("NO_PROXY")
+    if noproxy is not None:
+        noproxy = noproxy.replace('"', '')
     return noproxy
 
 
@@ -58,17 +62,19 @@ def parseProxy():
     proxy = getProxy()
     if proxy is not None:
         idx1 = proxy.find(":") + 3
-        idx2 = proxy.find(":", idx1)
+        idx2 = proxy.find(":", idx1) + 1
         return (proxy[idx1:idx2], proxy[idx2:])
 
 
 def parseNoProxy():
     noproxy = getNoProxy()
     if noproxy is not None:
-        return noproxy.split(",")
+        noproxy = [item if item[0] != '.' else "*"+item for item in getNoProxy().split(",")]
+        noproxy.append("10.*")
+        return noproxy
 
 
-def goGit(location):
+def doGit(location):
     proxy = getProxy()
     if proxy is None:
         for cmd in ["git config --local --unset http.proxy",
@@ -76,7 +82,7 @@ def goGit(location):
             subprocess.call(shlex.split(cmd))
     else:
         for cmd in ["git config --local http.proxy " + proxy,
-                    "git config --local credential.github.com.httpProxy" + proxy]:
+                    "git config --local credential.github.com.httpProxy " + proxy]:
             subprocess.call(shlex.split(cmd))
 
 
@@ -95,10 +101,8 @@ def doGradle(location):
         props["systemProp.http.proxyPort"] = port
         props["systemProp.https.proxyHost"] = server
         props["systemProp.https.proxyPort"] = port
-        noproxy = [item if item[0] != '.' else "*"+item for item in getNoProxy().split(",")]
-        noproxy.push("10.*")
-        props["systemProp.http.nonProxyHosts"] = "|".join(noproxy)
-        props["systemProp.https.nonProxyHosts"] = "|".join(noproxy)
+        props["systemProp.http.nonProxyHosts"] = "|".join(parseNoProxy())
+        props["systemProp.https.nonProxyHosts"] = "|".join(parseNoProxy())
     if props:
         with open(prop_file, "w") as fp:
             for key in sorted(list(props.keys())):
@@ -110,24 +114,26 @@ def doMaven(location):
     makeParent(settings)
     if getProxy() is not None:
         server, port = parseProxy()
-        noproxy = [item if item[0] != '.' else "*"+item for item in getNoProxy().split(",")]
-        noproxy.push("10.*")
         src = os.path.join(getAbsoluteDir(), "maven-proxy.xml")
         with open(src) as fp:
             contents = fp.readlines()
-        mm = {"server":server, "port":port, "noproxy":"|".join(noproxy)}
+        mm = {"server":server, "port":port, "noproxy":"|".join(parseNoProxy())}
         with open(settings, "w") as fp:
-            print(contents % mm, file=fp)
+            print("".join(contents) % mm, file=fp)
     else:
         src = os.path.join(getAbsoluteDir(), "maven-ali.xml")
         shutil.copyfile(src, settings)
 
 
 def doNpm(location):
-    if location == "cn":
-        cmd = "npm config set registry https://registry.npm.taobao.org"
+    if isWindows():
+        cmd = "npm.cmd "
     else:
-        cmd = "npm config set registry https://registry.npmjs.org/"
+        cmd = "npm "
+    if location == "cn":
+        cmd += "config set registry https://registry.npm.taobao.org"
+    else:
+        cmd += "config set registry https://registry.npmjs.org/"
     subprocess.call(shlex.split(cmd))
 
 
@@ -153,8 +159,8 @@ def doPython(location):
         config.write(fp)
     
 
-def main(locaiton):
-    doGit(location)
+def main(location):
+#    doGit(location)
     doGradle(location)
     doMaven(location)
     doNpm(location)
@@ -164,6 +170,6 @@ def main(locaiton):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="This program will setup correct mirror for China")
     parser.add_argument("-l", "--location", dest="location", choices=["cn", "jp"], default="jp")
-    args = parser.parse_args(sys.argv)
+    args = parser.parse_args()
 
     main(args.location)
