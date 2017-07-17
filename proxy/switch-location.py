@@ -9,7 +9,6 @@ import platform
 import shlex
 import shutil
 import subprocess
-import sys
 
 # Steal from https://stackoverflow.com/questions/3595363/properties-file-in-python-similar-to-java-properties
 def load_properties(filepath, sep='=', comment_char='#'):

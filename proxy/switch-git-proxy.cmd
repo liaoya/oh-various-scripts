@@ -1,3 +1,4 @@
+@rem this script must be run in local git folder
 @echo off
 IF DEFINED http_proxy (
    @echo Set local credential.github.com.httpProxy to %http_proxy%
