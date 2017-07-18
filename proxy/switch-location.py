@@ -61,8 +61,8 @@ def parseProxy():
     proxy = getProxy()
     if proxy is not None:
         idx1 = proxy.find(":") + 3
-        idx2 = proxy.find(":", idx1) + 1
-        return (proxy[idx1:idx2], proxy[idx2:])
+        idx2 = proxy.find(":", idx1)
+        return (proxy[idx1:idx2], proxy[idx2+1:])
 
 
 def parseNoProxy():
