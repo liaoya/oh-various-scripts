@@ -73,15 +73,19 @@ def parseNoProxy():
         return noproxy
 
 
+def doDocker(location):
+    pass
+
+
 def doGit(location):
     proxy = getProxy()
     if proxy is None:
-        for cmd in ["git config --local --unset http.proxy",
-                    "git config --local --unset credential.github.com.httpProxy"]:
+        for cmd in ["git config --global --unset http.proxy",
+                    "git config --global --unset credential.github.com.httpProxy"]:
             subprocess.call(shlex.split(cmd))
     else:
-        for cmd in ["git config --local http.proxy " + proxy,
-                    "git config --local credential.github.com.httpProxy " + proxy]:
+        for cmd in ["git config --global http.proxy " + proxy,
+                    "git config --global credential.github.com.httpProxy " + proxy]:
             subprocess.call(shlex.split(cmd))
 
 
@@ -106,6 +110,8 @@ def doGradle(location):
         with open(prop_file, "w") as fp:
             for key in sorted(list(props.keys())):
                 print("%s=%s" % (key, props[key]), file=fp)
+    elif os.path.exists(prop_file):
+        os.remove(prop_file)
 
 
 def doMaven(location):
