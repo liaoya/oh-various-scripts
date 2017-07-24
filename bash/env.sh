@@ -1,5 +1,9 @@
 source $(dirname ${BASH_SOURCE[0]})/func.sh
 
+addpath "/usr/sbin"
+addpath "/usr/local/bin"
+addvariablepath "ACCUREV_BINARY" "/public/accurev" -a
+
 # Go Configuration
 [ -d /opt/go ] &&  addvariablepath "GOROOT" "/opt/go"
 [ -d /opt/gox ] && [ -d /opt/gopath ] &&  addvariable "GOPATH" "/opt/gox:/opt/gopath"
@@ -16,5 +20,14 @@ addvariable "JAVALIB" "/opt/javalib"
 # Packer Configuration
 export PACKER_KEY_INTERVAL=10ms
 export PACKER_CACHE=~/.cache/packer
+
+# OCPM build environments
+export ACCUREV_WORKSPACE_BASE=/work/accurevws
+export ACCUREV_USER=tom.shen
+export ACCUREV_PASSWORD=tshen
+export WORK_DIR_BASE=/work/build
+export SHARED_REPO_URL=http://10.182.172.49
+export IS_BUILD_SERVER=1
+export OCPM_BUILD_VERBOSE=1
 
 unset -f addpath addvariable addvariablepath
