@@ -4,6 +4,7 @@
 
 import argparse
 import configparser
+import json
 import os
 import platform
 import shlex
@@ -74,6 +75,14 @@ def parseNoProxy():
 
 
 def doDocker(location):
+    if not isWindows():
+        with open("/etc/docker/daemon.json") as fp:
+            data = json.load(fp)
+            if location = "cn":
+                mirror = ["472pok68.mirror.aliyuncs.com", "aad0405c.m.daocloud.io"]
+            if mirror:
+                data["registry-mirrors"] = mirror
+
     pass
 
 
