@@ -2,7 +2,7 @@
 
 yum install -y -q zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel expat-devel
 
-VERSION=3.6.1
+VERSION=3.6.2
 curl -L https://www.python.org/ftp/python/${VERSION}/Python-${VERSION}.tgz | tar -xz -C ~/
 
 cd ~/Python-${VERSION}

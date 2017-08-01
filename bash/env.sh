@@ -4,6 +4,8 @@ addpath "/usr/sbin"
 addpath "/usr/local/bin"
 addvariablepath "ACCUREV_BINARY" "/public/accurev" -a
 
+addpath "/opt/node/bin"
+
 # Go Configuration
 [[ -d /opt/gox && -d /opt/gopath ]] && export GOPATH="/opt/gox:/opt/gopath"
 addvariablepath "GOROOT" "/opt/go"

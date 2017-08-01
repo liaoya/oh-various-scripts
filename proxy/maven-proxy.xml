@@ -10,4 +10,12 @@
       <nonProxyHosts>%(noproxy)s</nonProxyHosts>
    </proxy>
   </proxies>
+  <mirrors>
+    <mirror>
+      <id>cnnan-nexus</id>
+      <name>cnnan-nexus</name>
+      <url>http://cnnan-nexus.cn.oracle.com/nexus/content/repositories/central</url>
+      <mirrorOf>central</mirrorOf>
+    </mirror>
+  </mirrors>  
 </settings>
