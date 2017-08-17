@@ -1,2 +1,5 @@
-# [ -x /usr/bin/dnf ] && alias dnflocal='sudo dnf --disablerepo=\* --enablerepo=\*-local'
-# [ -x /usr/bin/yum ] && alias yumlocal='sudo yum --disablerepo=\* --enablerepo=\*-local'
+if [ $(id -u) -eq 0 ]; then
+    alias remove-old-kernel='rpm -e $(rpm -qa | grep -E "^kernel" | grep -v $(uname -r))'
+else
+    alias remove-old-kernel='sudo rpm -e $(rpm -qa | grep -E "^kernel" | grep -v $(uname -r))'
+fi

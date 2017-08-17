@@ -157,7 +157,6 @@ def doPython(location):
         pip_path = os.path.expandvars("%APPDATA%/pip/pip.ini")
     else:
         pip_path = os.path.expandvars("$HOME/.config/pip/pip.conf")
-
     makeParent(pip_path)
     config = configparser.ConfigParser()
     if os.path.exists(pip_path):
@@ -172,6 +171,15 @@ def doPython(location):
     with open(pip_path, "w") as fp:
         config.write(fp)
     
+
+def doVSCode(location):
+    """Change per user VSCode configuration"""
+    if isWindows():
+        conf_file = os.path.join(os.path.expandvars("%APPDATA%"), "Code", "User", "settings.json")
+    else:
+        conf_file = os.path.expandvars("$HOME/.config/Code/User/settings.json")
+    makeParent(conf_file)
+
 
 def main(location):
 #    doGit(location)

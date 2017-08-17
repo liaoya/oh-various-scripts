@@ -1,9 +1,10 @@
 #!/bin/sh
 
-yum install -y -q curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel asciidoc xmlto docbook2X
-[ -x /usr/bin/db2x_docbook2texi ] && ln -s /usr/bin/db2x_docbook2texi /usr/bin/docbook2x-texi
+rm -fr /usr/local/*
 
-VERSION=2.13.3
+apt-get -qq -y install dh-autoreconf libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev docbook2x asciidoc-base
+
+VERSION=2.14.1
 curl -L https://www.kernel.org/pub/software/scm/git/git-${VERSION}.tar.xz | tar -xJ -C ~
 cd ~/git-${VERSION}
 make configure
@@ -11,3 +12,5 @@ make configure
 make -j $(nproc) all info
 make -j $(nproc) strip
 make -j $(nproc) install install-man
+
+tar -C /usr/local -cf ~/output/git-$VERSION.txz .

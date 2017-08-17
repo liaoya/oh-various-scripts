@@ -30,6 +30,7 @@ if [ $UID -eq 0 ]; then
 fi
 [ -f ~/.tmux.conf ] || touch ~/.tmux.conf
 grep -s -q "set-option -g allow-rename off" ~/.tmux.conf || echo "set-option -g allow-rename off" >> ~/.tmux.conf
+grep -s -q "set-option -g history-limit 10000" ~/.tmux.conf || echo "set-option -g history-limit 10000" >> ~/.tmux.conf
 EOF
 
 chmod a+x /usr/local/bin/install-tmux
