@@ -32,6 +32,16 @@ setup_proxy_us() {
   echo -e "Set Proxy for USA"
 }
 
+setup_proxy_office() {
+  setup_proxy 10.182.172.49 3128 "localhost,127.0.0.1,cn.oracle.com,jp.oracle.com,us.oracle.com,.oraclecorp.com"
+  echo -e "Set Proxy for Office"
+}
+
+setup_proxy_lab() {
+  setup_proxy 10.113.69.79 3128 "localhost,127.0.0.1,cn.oracle.com,jp.oracle.com,us.oracle.com,.oraclecorp.com"
+  echo -e "Set Proxy for Lab"
+}
+
 proxy_off(){
     unset http_proxy HTTP_PROXY https_proxy HTTPS_PROXY ftp_proxy FTP_PROXY RSYNC_PROXY RSYNC_PROXY no_proxy NO_PROXY
     echo -e "Proxy environment variable removed."

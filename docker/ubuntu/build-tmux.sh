@@ -13,6 +13,8 @@ make -j $(nproc) install-strip
 cat <<EOF >>/usr/local/bin/install-tmux
 #!/bin/sh
 if [ $UID -eq 0 ]; then
+    apt-get update -qq
+    apt-get install -qq -y libpcre2-32-0
     [ -f /etc/ld.so.conf.d/usr-local.conf ] || touch /etc/ld.so.conf.d/usr-local.conf
     grep -s -q -w "/usr/local/lib" /etc/ld.so.conf.d/usr-local.conf || echo "/usr/local/lib" >> /etc/ld.so.conf.d/usr-local.conf
     grep -s -q -w "/usr/local/lib64" /etc/ld.so.conf.d/usr-local.conf || echo "/usr/local/lib64" >> /etc/ld.so.conf.d/usr-local.conf

@@ -8,6 +8,6 @@ apt install -y build-essential fakeroot git graphviz autoconf automake bzip2 \
 cd ~
 URL=http://openvswitch.org/releases/openvswitch-2.7.2.tar.gz
 curl -L $URL | tar -xz -C ~/
-cd ~/$(basename $URL)
+cd ~/$(basename $URL .tar.gz)
 dpkg-checkbuilddeps
 DEB_BUILD_OPTIONS="parallel=${NUM_CPUS} nocheck" fakeroot debian/rules binary
