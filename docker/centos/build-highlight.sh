@@ -2,7 +2,7 @@
 
 yum install -y -q lua-devel boost-devel
 
-VERSION=3.38
+VERSION=3.39
 curl -L -O http://www.andre-simon.de/zip/highlight-${VERSION}.tar.bz2
 tar -C ~/ -xf highlight-${VERSION}.tar.bz2
 cd ~/highlight-${VERSION}

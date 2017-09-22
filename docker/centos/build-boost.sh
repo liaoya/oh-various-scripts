@@ -2,10 +2,11 @@
 
 yum install -y -q zlib-devel bzip2-devel p7zip libicu-devel python-devel openmpi-devel
 
-VERSION=1_64_0
-curl -L https://sourceforge.net/projects/boost/files/boost/$(echo $VERSION| sed 's/_/\./g')/boost_${VERSION}.7z/download -o boost_${VERSION}.7z
-7za x boost_${VERSION}.7z
-cd boost_${VERSION}
+VERSION=1.65.1
+FILENAME=boost_$(echo $VERSION | sed -e 's%\.%_%g').7z
+curl -L https://dl.bintray.com/boostorg/release/${VERSION}/source/${FILENAME}
+7za x ${FILENAME}
+cd $(basename -s .7z ${FILENAME})
 ./bootstrap.sh
 ./b2 -j $(nproc) toolset=gcc cxxflags="-std=c++11"" stage
 

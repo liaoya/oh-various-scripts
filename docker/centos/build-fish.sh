@@ -16,6 +16,7 @@ cat <<'EOF' >> /usr/local/bin/installfish.sh
 if [ $UID -eq 0 ]; then
     grep -s -w "/usr/local/bin/fish" /etc/shells || echo /usr/local/bin/fish | tee -a /etc/shells
     sestatus | grep "SELinux status" | grep -s -q "enabled" && chcon -t shell_exec_t /usr/local/bin/fish
+    [ -f /etc/redhat-release ] && yum install -y -q pcre2-utf32 pcre2-utf16 pcre2
 fi
 mkdir -p ~/.config/fish
 [ -f ~/.config/fish/config.fish ] || touch ~/.config/fish/config.fish

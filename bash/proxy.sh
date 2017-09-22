@@ -43,6 +43,6 @@ setup_proxy_lab() {
 }
 
 proxy_off(){
-    unset http_proxy HTTP_PROXY https_proxy HTTPS_PROXY ftp_proxy FTP_PROXY RSYNC_PROXY RSYNC_PROXY no_proxy NO_PROXY
-    echo -e "Proxy environment variable removed."
+  unset http_proxy HTTP_PROXY https_proxy HTTPS_PROXY ftp_proxy FTP_PROXY RSYNC_PROXY RSYNC_PROXY no_proxy NO_PROXY
+  echo -e "Proxy environment variable removed."
 }

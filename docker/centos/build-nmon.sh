@@ -2,7 +2,8 @@
 
 yum install -y -q ncurses-devel
 
-FILENAME=lmon16g.c
+VERSION=16g
+FILENAME=lmon${VERSION}.c
 
 curl -L https://sourceforge.net/projects/nmon/files/${FILENAME}/download -o lmon.c
 curl -L https://sourceforge.net/projects/nmon/files/makefile/download -o Makefile

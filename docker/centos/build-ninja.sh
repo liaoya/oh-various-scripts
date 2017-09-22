@@ -4,7 +4,7 @@
 
 yum install -y -q re2c
 
-VERSION=1.7.2
+VERSION=1.8.2
 curl -L https://github.com/ninja-build/ninja/archive/v${VERSION}.tar.gz | tar -xz -C ~
 cd ~/ninja-${VERSION}
 ./configure.py --bootstrap
