@@ -29,10 +29,12 @@ docker run -it --rm -h $CODENAME --name $CODENAME -v $OUTPUT:/root/output -e "ht
 ## Configure APT
 
 ```shell
-cat <<EOF >> /etc/apt/apt.conf
-Acquire::http::proxy "http://10.113.69.79:3128";
-Acquire::https::proxy "http://10.113.69.79:3128";
-Acquire::ftp::proxy "http://10.113.69.79:3128";
+[ -f /etc/apt/apt.conf ] && sed -i "/::proxy/Id" /etc/apt/apt.conf
+[ -f /etc/apt/apt.conf.d/01proxy ] && rm -f /etc/apt/apt.conf.d/01proxy
+cat <<EOF >> /etc/apt/apt.conf.d/01proxy
+Acquire::http::proxy "http://10.113.69.101:3128";
+Acquire::https::proxy "http://10.113.69.101:3128";
+Acquire::ftp::proxy "http://10.113.69.101:3128";
 EOF
 
 [ -f /etc/apt/sources.list.origin ] || cp -pr /etc/apt/sources.list /etc/apt/sources.list.origin

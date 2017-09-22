@@ -5,7 +5,7 @@ superssh() {
     superssh_usage() { echo "superssh: [-s <server>] [-p <port>] [-u <user>] [-P <password>] [-d] [-o <login|copykey>]"; }
 
     local OPTIND server="localhost" port=22 user="root" password debug=0 action="login" noop=0
-    while getopts "o:s:p:P:u:d" o; do
+    while getopts "o:s:p:P:u:dh" o; do
         case "${o}" in
             o)
                 action="${OPTARG}"
@@ -24,6 +24,10 @@ superssh() {
                 ;;
             d):
                 debug=1
+                noop=1
+                ;;
+            h):
+                superssh_usage
                 noop=1
                 ;;
             *)

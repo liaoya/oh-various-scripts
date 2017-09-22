@@ -4,7 +4,7 @@
 # lack mpc and fail to build
 
 yum install -y -q mingw64-gmp.noarch mingw64-mpfr.noarch wget
-export VERSION=7.1.0
+VERSION=7.1.0
 curl -L http://ftpmirror.gnu.org/gcc/gcc-${VERSION}/gcc-${VERSION}.tar.bz2 | tar -jx -C ~/
 cd ../gcc-${VERSION} && sh contrib/download_prerequisites
 mkdir ~/build

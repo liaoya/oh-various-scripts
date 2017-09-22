@@ -11,19 +11,19 @@ setup_proxy() {
   export FTP_PROXY=$http_proxy
   export rsync_proxy=$1:$2
   export RSYNC_PROXY=$1:$2
-  export no_proxy="$3"
-  export NO_PROXY="$3"
+  export no_proxy="localhost,127.0.0.1,cn.oracle.com,jp.oracle.com,us.oracle.com,.oraclecorp.com,$3"
+  export NO_PROXY="localhost,127.0.0.1,cn.oracle.com,jp.oracle.com,us.oracle.com,.oraclecorp.com,$3"
 
   export JAVA_OPTS="-Dhttp.proxyHost=$1 -Dhttp.proxyPort=$2 -Dhttps.proxyHost=$1 -Dhttps.proxyPort=$2"
 }
 
 setup_proxy_cn() {
-  setup_proxy cn-proxy.jp.oracle.com 80 "localhost,127.0.0.1,cn.oracle.com,jp.oracle.com,us.oracle.com,.oraclecorp.com"
+  setup_proxy cn-proxy.jp.oracle.com 80 "10.113.69.79,10.113.69.101"
   echo -e "Set Proxy for China"
 }
 
 setup_proxy_jp() {
-  setup_proxy jp-proxy.jp.oracle.com 80 "localhost,127.0.0.1,cn.oracle.com,jp.oracle.com,us.oracle.com,.oraclecorp.com"
+  setup_proxy jp-proxy.jp.oracle.com 80 ""
   echo -e "Set Proxy for Japan"
 }
 
@@ -33,12 +33,12 @@ setup_proxy_us() {
 }
 
 setup_proxy_office() {
-  setup_proxy 10.182.172.49 3128 "localhost,127.0.0.1,cn.oracle.com,jp.oracle.com,us.oracle.com,.oraclecorp.com"
+  setup_proxy 10.182.172.49 3128 "10.113.69.79,10.113.69.101"
   echo -e "Set Proxy for Office"
 }
 
 setup_proxy_lab() {
-  setup_proxy 10.113.69.79 3128 "localhost,127.0.0.1,cn.oracle.com,jp.oracle.com,us.oracle.com,.oraclecorp.com"
+  setup_proxy 10.113.69.101 3128 "10.113.69.79,10.113.69.101"
   echo -e "Set Proxy for Lab"
 }
 

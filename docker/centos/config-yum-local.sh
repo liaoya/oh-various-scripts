@@ -12,6 +12,8 @@ yum install -y -q epel-release deltarpm
 [ -f /etc/yum.repos.d/epel.repo.origin ] || cp /etc/yum.repos.d/epel.repo /etc/yum.repos.d/epel.repo.origin
 sed -i -e "s/^metalink/#&/g" -e "s/^mirrorlist/#&/g" -e "s%^#baseurl=http://download.fedoraproject.org/pub%baseurl=http://ftp.jaist.ac.jp/pub/Linux/Fedora%g" /etc/yum.repos.d/epel.repo
 
+(cd /etc/yum.repos.d/; curl -s -L -O http://download.opensuse.org/repositories/shells:fish:release:2/CentOS_7/shells:fish:release:2.repo)
+
 # if [ -n $http_proxy ]; then yum-config-manager --disable extras ; fi
 yum install -y -q autoconf automake libtool gcc gcc-c++ make file which pxz pigz lbzip2 unzip bzip2 xz lzip openssh-clients
 
