@@ -6,10 +6,10 @@ sudo apt-get install -qy build-essential fakeroot git graphviz autoconf automake
     debhelper dh-autoreconf libssl-dev libtool openssl procps \
     python-all python-qt4 python-twisted-conch python-zopeinterface python-six libcap-ng-dev
 
-URL=http://openvswitch.org/releases/openvswitch-2.8.0.tar.gz
-[ -d ~/$(basename $URL .tar.gz) ] && rm -fr ~/$(basename $URL .tar.gz)
-curl -s -L $URL | tar -xz -C ~/
-cd ~/$(basename $URL .tar.gz)
+OVS_URL=http://openvswitch.org/releases/openvswitch-2.8.0.tar.gz
+[ -d ~/$(basename $OVS_URL .tar.gz) ] && rm -fr ~/$(basename $OVS_URL .tar.gz)
+cOVS_URL -s -L $OVS_URL | tar -xz -C ~/
+cd ~/$(basename $OVS_URL .tar.gz)
 dpkg-checkbuilddeps
 DEB_BUILD_OPTIONS="parallel=${NUM_CPUS} nocheck" fakeroot debian/rules binary
 cp -pr ../*.deb /vagrant
