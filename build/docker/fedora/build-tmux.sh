@@ -2,7 +2,7 @@
 
 dnf install -y -q ncurses-devel libevent-devel
 
-VERSION=2.5
+VERSION=2.6
 curl -L https://github.com/tmux/tmux/releases/download/${VERSION}/tmux-${VERSION}.tar.gz | tar -xz -C ~
 
 cd ~/tmux-${VERSION}
