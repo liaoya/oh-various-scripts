@@ -27,8 +27,6 @@ sed -i -e "s/^metalink/#&/g" -e "s/^mirrorlist/#&/g" -e "s%^#baseurl=http://down
 
 ### Fedora
 
-### Ubuntu
-
 ```shell
 sed -i "/^installonly_limit/i proxy=http://10.113.69.79:3128" /etc/dnf/dnf.conf
 sed -i "/^installonly_limit/i deltarpm=0" /etc/dnf/dnf.conf
@@ -38,4 +36,23 @@ sed -i "s/^metalink.*repo=fedora-\$.*/#&/g" /etc/yum.repos.d/fedora.repo
 sed -i "s/^#baseurl=http.*basearch\/os\//&\nbaseurl=http:\/\/ftp\.jaist\.ac\.jp\/pub\/Linux\/Fedora\/releases\/\$releasever\/Everything\/\$basearch\/os\//g" /etc/yum.repos.d/fedora.repo
 sed -i "s/^metalink.*repo=updates-released-f\$.*/#&/g" /etc/yum.repos.d/fedora-updates.repo
 sed -i "s/^#baseurl=http.*\$basearch\//&\nbaseurl=http:\/\/ftp\.jaist\.ac\.jp\/pub\/Linux\/Fedora\/updates\/\$releasever\/\$basearch\//g" /etc/yum.repos.d/fedora-updates.repo
+```
+
+### Ubuntu
+
+```shell
+[ -f /etc/apt/apt.conf ] && sed -i "/::proxy/Id" /etc/apt/apt.conf
+[ -f /etc/apt/apt.conf.d/01proxy ] && rm -f /etc/apt/apt.conf.d/01proxy
+cat <<EOF >> /etc/apt/apt.conf.d/01proxy
+Acquire::http::proxy "http://10.113.69.101:3128";
+Acquire::https::proxy "http://10.113.69.101:3128";
+Acquire::ftp::proxy "http://10.113.69.101:3128";
+EOF
+
+[ -f /etc/apt/sources.list.origin ] || cp -pr /etc/apt/sources.list /etc/apt/sources.list.origin
+sed -i -e 's%archive.ubuntu.com%ftp.jaist.ac.jp/pub/Linux%' /etc/apt/sources.list
+sed -i -e 's%security.ubuntu.com%ftp.jaist.ac.jp/pub/Linux%' /etc/apt/sources.list
+sed -i -e 's/^deb-src/#deb-src/' /etc/apt/sources.list
+
+apt-get update -qq
 ```
