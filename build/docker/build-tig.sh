@@ -7,7 +7,7 @@ else
     exit 1
 fi
 
-if [[ -n $TIG_VERSION && $TIG_URL && $TIG_SRCDIR ]]; then
+if [[ -n $TIG_VERSION && -n $TIG_URL && -n $TIG_SRCDIR ]]; then
     prepare_build "TIG"
 
     if [ -d ~/$TIG_SRCDIR ]; then

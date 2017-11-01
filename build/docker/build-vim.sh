@@ -7,7 +7,7 @@ else
     exit 1
 fi
 
-if [[ -n $VIM_VERSION && $VIM_URL && $VIM_SRCDIR ]]; then
+if [[ -n $VIM_VERSION && -n $VIM_URL && -n $VIM_SRCDIR ]]; then
     prepare_build "VIM"
 
     if [ -d ~/$VIM_SRCDIR ]; then

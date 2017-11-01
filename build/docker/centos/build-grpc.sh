@@ -12,7 +12,7 @@ cd ~/protobuf-${PROTOBUF_VERSION}
 ./configure -q
 make -j $(nproc) install-strip
 
-VERSION=1.6.1
+VERSION=1.6.7
 curl -L https://github.com/grpc/grpc/archive/v${VERSION}.tar.gz | tar -xz -C ~
 cd ~/grpc-${VERSION}/third_party/cares
 CARES_VERSION=1.12.0
@@ -23,7 +23,7 @@ make -j $(nproc)
 make -j $(nproc) strip install
 for item in $(ls -1 /usr/local/bin/grpc*plugin); do file $item | grep -q -s "not stripped" && strip -S $item; done
 
-GRPC_JAVA_VERSION=1.6.1
+GRPC_JAVA_VERSION=1.7.0
 curl -L https://github.com/grpc/grpc-java/archive/v${GRPC_JAVA_VERSION}.tar.gz | tar -xz -C ~
 cd ~/grpc-java-${GRPC_JAVA_VERSION}/compiler/src/java_plugin/cpp
 g++ -std=c++11 -I/usr/local/include -pthread -L/usr/local/lib -lprotoc -lprotobuf -lpthread -ldl -s -o /usr/local/bin/grpc_java_plugin *.cpp

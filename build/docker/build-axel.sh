@@ -7,7 +7,7 @@ else
     exit 1
 fi
 
-if [[ -n $AXEL_VERSION && $AXEL_URL && $AXEL_SRCDIR ]]; then
+if [[ -n $AXEL_VERSION && -n $AXEL_URL && -n $AXEL_SRCDIR ]]; then
     prepare_build "AXEL"
 
     if [ -d ~/$AXEL_SRCDIR ]; then

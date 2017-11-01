@@ -3,7 +3,7 @@
 export SILENCE=1
 
 export CENTOS_DEPS="autoconf automake libtool gcc gcc-c++ make file which pxz pigz lbzip2 unzip bzip2 xz lzip openssh-clients"
-export UBUNTU_DEPS="curl less openssh-client sshpass build-essential fakeroot pkg-config"
+export UBUNTU_DEPS="lsb-release curl less openssh-client sshpass build-essential fakeroot pkg-config autoconf libtool"
 
 export AG_VERSION=2.1.0
 export AG_URL=https://github.com/ggreer/the_silver_searcher/archive/${AG_VERSION}.tar.gz
@@ -13,8 +13,8 @@ export AG_UBUNTU_DEPS="libpcre3-dev liblzma-dev zlib1g-dev"
 
 export AXEL_VERSION=2.15
 export AXEL_URL=https://github.com/eribertomota/axel/archive/v${AXEL_VERSION}.tar.gz
-export AXEL_SRCDIR=axel-${AXEL_VERSION}
 export AXEL_ARCHIVE_NAME=axel-${AXEL_VERSION}.tar.gz
+export AXEL_SRCDIR=axel-${AXEL_VERSION}
 export AXEL_CENTOS_DEPS="openssl-devel gettext-devel"
 export AXEL_UBUNTU_DEPS="libssl-dev gettext"
 
@@ -30,8 +30,39 @@ export GIT_SRCDIR=git-${GIT_VERSION}
 export GIT_CENTOS_DEPS="curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel asciidoc xmlto docbook2X"
 export GIT_UBUNTU_DEPS="dh-autoreconf libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev docbook2x asciidoc"
 
+# grpc can't be build
+export GRPC_VERSION=1.6.7
+export GRPC_URL=https://github.com/grpc/grpc/archive/v${GRPC_VERSION}.tar.gz
+export GRPC_ARCHIVE_NAME=grpc-${GRPC_VERSION}.tar.gz
+export GRPC_SRCDIR=grpc-${GRPC_VERSION}
+export GRPC_PROTOBUF_VERSION=3.4.0
+export GRPC_PROTOBUF_URL=https://github.com/google/protobuf/archive/v${GRPC_PROTOBUF_VERSION}.tar.gz
+export GRPC_PROTOBUF_ARCHIVE_NAME=protobuf-${GRPC_PROTOBUF_VERSION}.tar.gz
+export GRPC_PROTOBUF_SRCDIR=protobuf-${GRPC_PROTOBUF_VERSION}
+export GRPC_CARES_VERSION=1.12.0
+export GRPC_CARES_URL=https://c-ares.haxx.se/download/c-ares-${GRPC_CARES_VERSION}.tar.gz
+export GRPC_CARES_SRCDIR=c-ares-${GRPC_CARES_VERSION}
+export GRPC_JAVA_VERSION=1.7.0
+export GRPC_JAVA_URL=https://github.com/grpc/grpc-java/archive/v${GRPC_JAVA_VERSION}.tar.gz
+export GRPC_JAVA_ARCHIVE_NAME=grpc-java-${GRPC_JAVA_VERSION}.tar.gz
+export GRPC_JAVA_SRCDIR=grpc-java-${GRPC_JAVA_VERSION}
+export GRPC_CENTOS_DEPS="zlib-devel openssl-devel gnutls-devel"
+export GRPC_UBUNTU_DEPS="libncurses-dev libevent-dev"
+
 export OVS_VERSION=2.8.1
 export OVS_URL=http://openvswitch.org/releases/openvswitch-${OVS_VERSION}.tar.gz
+
+export SOURCE_HIGHLIGHT_VERSION=3.1.8
+export SOURCE_HIGHLIGHT_URL=http://ftpmirror.gnu.org/gnu/src-highlite/source-highlight-${SOURCE_HIGHLIGHT_VERSION}.tar.gz
+export SOURCE_HIGHLIGHT_SRCDIR=source-highlight-${SOURCE_HIGHLIGHT_VERSION}
+export SOURCE_HIGHLIGHT_CENTOS_DEPS="ctags doxygen help2man boost-devel"
+export SOURCE_HIGHLIGHT_UBUNTU_DEPS="exuberant-ctags doxygen help2man libboost-regex-dev"
+
+export SWIG_VERSION=3.0.12
+export SWIG_URL=https://sourceforge.net/projects/swig/files/swig/swig-${SWIG_VERSION}/swig-${SWIG_VERSION}.tar.gz
+export SWIG_SRCDIR=swig-${SWIG_VERSION}
+export SWIG_CENTOS_DEPS="pcre2-devel pcre-devel bison byacc zlib-devel"
+export SWIG_UBUNTU_DEPS="libpcre2-dev libpcre3-dev bison byacc zlib1g-dev"
 
 export TIG_VERSION=2.3.0
 export TIG_URL=https://github.com/jonas/tig/archive/tig-${TIG_VERSION}.tar.gz
@@ -47,15 +78,22 @@ export TMUX_UBUNTU_DEPS="libncurses-dev libevent-dev"
 
 export VIM_VERSION=8.0.1240
 export VIM_URL=https://github.com/vim/vim/archive/v${VIM_VERSION}.tar.gz
-export VIM_SRCDIR=vim-${VIM_VERSION}
 export VIM_ARCHIVE_NAME=vim-${VIM_VERSION}.tar.gz
+export VIM_SRCDIR=vim-${VIM_VERSION}
 export VIM_CENTOS_DEPS="ncurses-devel ctags git libacl-devel cscope \
   ruby ruby-devel lua lua-devel luajit luajit-devel python python-devel python3 python3-devel tcl-devel perl perl-devel \
   perl-ExtUtils-ParseXS perl-ExtUtils-XSpp perl-ExtUtils-CBuilder perl-ExtUtils-Embed \
   gtk2-devel gtk3-devel"
-export VIM_UBUNTU_DEPS="libncurses-dev git libacl1-dev cscope \
+export VIM_UBUNTU_DEPS="libncurses-dev exuberant-ctags git libacl1-dev cscope \
   ruby ruby-dev lua lua-dev python python-dev python3 python3-dev tcl-dev perl perl-dev \
   libgtk2.0-dev"
+
+# Fail to build on Ubuntu 17.04 with gcc 7.2
+export UCG_VERSION=0.3.3
+export UCG_URL=https://github.com/gvansickle/ucg/releases/download/${UCG_VERSION}/universalcodegrep-${UCG_VERSION}.tar.gz
+export UCG_SRCDIR=universalcodegrep-${UCG_VERSION}
+export UCG_CENTOS_DEPS="pcre2-devel pcre-devel jemalloc-devel"
+export UCG_UBUNTU_DEPS="libpcre2-dev libpcre3-dev libjemalloc-dev"
 
 clear_usrlocal() {
     rm -fr /usr/local/*

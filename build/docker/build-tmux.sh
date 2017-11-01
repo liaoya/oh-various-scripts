@@ -7,7 +7,7 @@ else
     exit 1
 fi
 
-if [[ -n $TMUX_VERSION && $TMUX_URL && $TMUX_SRCDIR ]]; then
+if [[ -n $TMUX_VERSION && -n $TMUX_URL && -n $TMUX_SRCDIR ]]; then
     prepare_build "TMUX"
 
     if [ -d ~/$TMUX_SRCDIR ]; then

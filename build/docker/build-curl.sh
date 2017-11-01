@@ -7,7 +7,7 @@ else
     exit 1
 fi
 
-if [[ -n $CURL_VERSION && $CURL_URL && $CURL_SRCDIR ]]; then
+if [[ -n $CURL_VERSION && -n $CURL_URL && -n $CURL_SRCDIR ]]; then
     prepare_build "CURL"
 
     if [ -d ~/$CURL_SRCDIR ]; then
