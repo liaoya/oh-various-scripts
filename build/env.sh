@@ -45,6 +45,16 @@ export GIT_SRCDIR=git-${GIT_VERSION}
 export GIT_CENTOS_DEPS="curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel asciidoc xmlto docbook2X"
 export GIT_UBUNTU_DEPS="dh-autoreconf libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev docbook2x asciidoc"
 
+export GNUPLOT_VERSION=5.2.0
+export GNUPLOT_URL=https://sourceforge.net/projects/gnuplot/files/gnuplot/${GNUPLOT_VERSION}/gnuplot-${GNUPLOT_VERSION}.tar.gz
+export GNUPLOT_SRCDIR=gnuplot-${GNUPLOT_VERSION}
+export GNUPLOT_CENTOS_DEPS="atk-devel cairo-devel expat-devel gtk2-devel \
+  libacl-devel libjpeg-turbo-devel libpng-devel libtiff-devel \
+  pcre-devel pango-devel wxGTK-devel zlib-devel"
+export GNUPLOT_UBUNTU_DEPS="libatk1.0-dev libcairo2-dev libexpat1-dev libgtk2.0-dev \
+  libacl1-dev libjpeg-dev libjpeg-turbo8-dev libpng-dev libtiff5-dev \
+  libcerf-dev libpcre2-dev libpcre3-dev zlib1g-dev libcerf-dev libgd-dev"
+
 # grpc can't be build
 export GRPC_VERSION=1.6.7
 export GRPC_URL=https://github.com/grpc/grpc/archive/v${GRPC_VERSION}.tar.gz
@@ -70,8 +80,19 @@ export LFTP_SRCDIR=lftp-${LFTP_VERSION}
 export LFTP_CENTOS_DEPS="ncurses-devel readline-devel gnutls-devel zlib-devel libidn2-devel"
 export LFTP_UBUNTU_DEPS="libncurses-dev libreadline-dev libgnutls28-dev zlib1g-dev libidn2-dev"
 
+export MC_VERSION=4.8.19
+export MC_URL=http://ftp.midnight-commander.org/mc-${MC_VERSION}.tar.xz
+export MC_SRCDIR=mc-${MC_VERSION}
+export MC_CENTOS_DEPS="ncurses-devel glib2-devel slang-devel gpm-devel libssh2-devel openssl-libs-devel zlib-devel krb5-libs-devel libcom_err-devel keyutils-libs-devel pcre-devel libselinux-devel doxygen"
+export MC_UBUNTU_DEPS="libncurses-dev"
+
 export OVS_VERSION=2.8.1
 export OVS_URL=http://openvswitch.org/releases/openvswitch-${OVS_VERSION}.tar.gz
+
+export SSHPASS_VERSION=1.06
+export SSHPASS_URL=https://sourceforge.net/projects/sshpass/files/sshpass/${SSHPASS_VERSION}/sshpass-${SSHPASS_VERSION}.tar.gz
+#export SSHPASS_ARCHIVE_NAME=sshpass-${SSHPASS_VERSION}.tar.gz
+export SSHPASS_SRCDIR=sshpass-${SSHPASS_VERSION}
 
 export SOURCE_HIGHLIGHT_VERSION=3.1.8
 export SOURCE_HIGHLIGHT_URL=http://ftpmirror.gnu.org/gnu/src-highlite/source-highlight-${SOURCE_HIGHLIGHT_VERSION}.tar.gz
