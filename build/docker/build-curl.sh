@@ -16,6 +16,7 @@ if [[ -n $CURL_VERSION && $CURL_URL && $CURL_SRCDIR ]]; then
         ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
         make -s -j $(nproc) install-strip
         compress_binary curl-${CURL_VERSION}.txz
+        clear_usrlocal
     else
         echo "Fail to download curl"
     fi

@@ -39,6 +39,12 @@ export TIG_SRCDIR=tig-tig-${TIG_VERSION}
 export TIG_CENTOS_DEPS="ncurses-devel"
 export TIG_UBUNTU_DEPS="libncurses-dev"
 
+export TMUX_VERSION=2.6
+export TMUX_URL=https://github.com/tmux/tmux/releases/download/2.6/tmux-${TMUX_VERSION}.tar.gz
+export TMUX_SRCDIR=tmux-${TMUX_VERSION}
+export TMUX_CENTOS_DEPS="ncurses-devel libevent-devel"
+export TMUX_UBUNTU_DEPS="libncurses-dev libevent-dev"
+
 export VIM_VERSION=8.0.1240
 export VIM_URL=https://github.com/vim/vim/archive/v${VIM_VERSION}.tar.gz
 export VIM_SRCDIR=vim-${VIM_VERSION}
