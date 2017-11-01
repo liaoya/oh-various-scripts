@@ -18,11 +18,26 @@ export AXEL_SRCDIR=axel-${AXEL_VERSION}
 export AXEL_CENTOS_DEPS="openssl-devel gettext-devel"
 export AXEL_UBUNTU_DEPS="libssl-dev gettext"
 
+export BASH_VERSION=4.4.12
+export BASH_URL=http://ftpmirror.gnu.org/gnu/bash/bash-${BASH_VERSION}.tar.gz
+export BASH_SRCDIR=bash-${BASH_VERSION}
+export BASH_CENTOS_DEPS="ncurses-devel"
+export BASH_UBUNTU_DEPS="libncurses-dev"
+
 export CURL_VERSION=7.56.1
 export CURL_URL=https://curl.haxx.se/download/curl-${CURL_VERSION}.tar.bz2
 export CURL_SRCDIR=curl-${CURL_VERSION}
 export CURL_CENTOS_DEPS="openssl-devel gnutls-devel nss-devel libssh2-devel zlib-devel c-ares-devel libidn2-devel libnghttp2-devel libpsl-devel libmetalink-devel openldap-devel"
 export CURL_UBUNTU_DEPS="libssl-dev libgnutls28-dev libssh2-1-dev libz-dev libc-ares-dev libidn2-dev libnghttp2-dev libpsl-dev libldap2-dev"
+
+export EMACS_VERSION=25.3
+export EMACS_URL=http://ftpmirror.gnu.org/gnu/emacs/emacs-${EMACS_VERSION}.tar.xz
+export EMACS_SRCDIR=emacs-${EMACS_VERSION}
+export EMACS_CENTOS_DEPS="GConf2-devel dbus-devel giflib-devel gnutls-devel gtk3-devel gpm-devel \
+  libX11-devel libXpm-devel libacl-devel libjpeg-turbo-devel libotf-devel librsvg2-devel libtiff-devel \
+  libselinux-devel libxml2-devel m17n-lib-devel ncurses-devel \
+  openjpeg-devel openjpeg2-devel turbojpeg-devel wxGTK-devel wxGTK3-devel"
+export EMACS_UBUNTU_DEPS="libncurses-dev libevent-dev"
 
 export GIT_VERSION=2.15.0
 export GIT_URL=https://www.kernel.org/pub/software/scm/git/git-${GIT_VERSION}.tar.xz
@@ -48,6 +63,12 @@ export GRPC_JAVA_ARCHIVE_NAME=grpc-java-${GRPC_JAVA_VERSION}.tar.gz
 export GRPC_JAVA_SRCDIR=grpc-java-${GRPC_JAVA_VERSION}
 export GRPC_CENTOS_DEPS="zlib-devel openssl-devel gnutls-devel"
 export GRPC_UBUNTU_DEPS="libncurses-dev libevent-dev"
+
+export LFTP_VERSION=4.8.3
+export LFTP_URL=http://lftp.yar.ru/ftp/lftp-${LFTP_VERSION}.tar.xz
+export LFTP_SRCDIR=lftp-${LFTP_VERSION}
+export LFTP_CENTOS_DEPS="ncurses-devel readline-devel gnutls-devel zlib-devel libidn2-devel"
+export LFTP_UBUNTU_DEPS="libncurses-dev libreadline-dev libgnutls28-dev zlib1g-dev libidn2-dev"
 
 export OVS_VERSION=2.8.1
 export OVS_URL=http://openvswitch.org/releases/openvswitch-${OVS_VERSION}.tar.gz
