@@ -10,7 +10,7 @@ curl -L https://github.com/google/protobuf/archive/v${PROTOBUF_VERSION}.tar.gz |
 cd ~/protobuf-${PROTOBUF_VERSION}
 ./autogen.sh
 ./configure -q
-make -j $(nproc) install-strip
+make -s -j $(nproc) install-strip
 
 VERSION=1.6.7
 curl -L https://github.com/grpc/grpc/archive/v${VERSION}.tar.gz | tar -xz -C ~
@@ -19,8 +19,8 @@ CARES_VERSION=1.12.0
 curl -L https://c-ares.haxx.se/download/c-ares-${CARES_VERSION}.tar.gz | tar -xz
 [ -d c-ares-${CARES_VERSION} ] && mv c-ares-${CARES_VERSION}/* cares/
 cd ~/grpc-${VERSION}/
-make -j $(nproc)
-make -j $(nproc) strip install
+make -s -j $(nproc)
+make -s -j $(nproc) strip install
 for item in $(ls -1 /usr/local/bin/grpc*plugin); do file $item | grep -q -s "not stripped" && strip -S $item; done
 
 GRPC_JAVA_VERSION=1.7.0

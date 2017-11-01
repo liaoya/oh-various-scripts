@@ -12,6 +12,6 @@ VERSION=25.3
 curl -L http://ftpmirror.gnu.org/gnu/emacs/emacs-${VERSION}.tar.xz | tar -Jx -C ~/
 cd ~/emacs-${VERSION}
 ./configure -q --with-x-toolkit=gtk3 --build=x86_64-redhat-linux --host=x86_64-redhat-linux --target=x86_64-redhat-linux
-make -j $(nprocs) all
+make -s -j $(nprocs) all
 make install-strip
 

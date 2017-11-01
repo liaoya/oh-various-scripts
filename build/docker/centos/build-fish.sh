@@ -8,7 +8,7 @@ if [ $releasever = "7" ]; then VERSION=2.6.0; else VERSION=2.4.0; fi
 curl -L https://github.com/fish-shell/fish-shell/releases/download/${VERSION}/fish-${VERSION}.tar.gz | tar -xz -C ~/
 cd ~/fish-${VERSION}
 ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
-make -j $(nproc) all
+make -s -j $(nproc) all
 make install
 for item in $(ls -1 /usr/local/bin/fish*); do file $item | grep -q -s "not stripped" && strip $item; done
 

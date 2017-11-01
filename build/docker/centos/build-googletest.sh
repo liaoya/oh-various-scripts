@@ -9,5 +9,5 @@ cd ~/googletest-${VERSION}
 mkdir build
 cd build
 cmake3 -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr/local ..
-make -j $(nproc)
+make -s -j $(nproc)
 make install/strip

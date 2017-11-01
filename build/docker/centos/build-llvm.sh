@@ -39,6 +39,6 @@ mv libcxxabi-${VERSION}.src libcxxabi
 mkdir ~/build
 cd ~/build
 cmake3 -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local ~/llvm
-make -j $(nproc)
+make -s -j $(nproc)
 make install/strip
 

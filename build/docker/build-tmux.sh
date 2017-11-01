@@ -20,7 +20,7 @@ if [[ -n $TMUX_VERSION && -n $TMUX_URL && -n $TMUX_SRCDIR ]]; then
                 curl -L https://github.com/libevent/libevent/releases/download/release-${LIBEVENT_VERSION}-stable/libevent-${LIBEVENT_VERSION}-stable.tar.gz | tar -xz -C ~
                 cd ~/libevent-${LIBEVENT_VERSION}-stable
                 ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
-                make -j $(nproc) all
+                make -s -j $(nproc) all
                 make install-strip
             fi
         fi

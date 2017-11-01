@@ -14,7 +14,7 @@ if [[ -n ${HIGHLIGHT_VERSION} && -n ${HIGHLIGHT_URL} && -n ${HIGHLIGHT_SRCDIR} ]
         clear_usrlocal
         cd ~/${HIGHLIGHT_SRCDIR}
         sed -i "s/PREFIX = \/usr/PREFIX = \/usr\/local/g" makefile
-        make -j $(nproc)
+        make -s -j $(nproc)
         strip src/highlight
         make install
 

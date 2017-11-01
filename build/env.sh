@@ -104,6 +104,14 @@ export MC_SRCDIR=mc-${MC_VERSION}
 export MC_CENTOS_DEPS="ncurses-devel glib2-devel slang-devel gpm-devel libssh2-devel openssl-libs-devel zlib-devel krb5-libs-devel libcom_err-devel keyutils-libs-devel pcre-devel libselinux-devel doxygen"
 export MC_UBUNTU_DEPS="libncurses-dev"
 
+export NANO_MAJOR_VERSION=2.8
+export NANO_MINOR_VERSION=7
+export NANO_VERSION=${NANO_MAJOR_VERSION}.${NANO_MINOR_VERSION}
+export NANO_URL=https://www.nano-editor.org/dist/v${NANO_MAJOR_VERSION}/nano-${NANO_VERSION}.tar.xz
+export NANO_SRCDIR=nano-${NANO_VERSION}
+export NANO_CENTOS_DEPS="ncurses-devel zlib-devel"
+export NANO_UBUNTU_DEPS="libncurses-dev zlib1g-dev"
+
 export OVS_VERSION=2.8.1
 export OVS_URL=http://openvswitch.org/releases/openvswitch-${OVS_VERSION}.tar.gz
 
