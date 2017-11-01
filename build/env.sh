@@ -2,8 +2,8 @@
 
 export SILENCE=1
 
-export CENTOS_DEPS="autoconf automake libtool gcc gcc-c++ make file which pxz pigz lbzip2 unzip bzip2 xz lzip openssh-clients"
-export UBUNTU_DEPS="lsb-release curl less openssh-client sshpass build-essential fakeroot pkg-config autoconf libtool"
+export CENTOS_DEPS="wget autoconf automake libtool gcc gcc-c++ make file which pxz pigz lbzip2 unzip bzip2 xz p7zip openssh-clients"
+export UBUNTU_DEPS="lsb-release curl wget less file which pxz pigz lbzip2 unzip bzip2 xz p7zip-full openssh-client sshpass build-essential fakeroot pkg-config autoconf libtool"
 
 export AG_VERSION=2.1.0
 export AG_URL=https://github.com/ggreer/the_silver_searcher/archive/${AG_VERSION}.tar.gz
@@ -23,6 +23,12 @@ export BASH_URL=http://ftpmirror.gnu.org/gnu/bash/bash-${BASH_VERSION}.tar.gz
 export BASH_SRCDIR=bash-${BASH_VERSION}
 export BASH_CENTOS_DEPS="ncurses-devel"
 export BASH_UBUNTU_DEPS="libncurses-dev"
+
+export BOOST_VERSION=1.65.1
+export BOOST_URL=https://dl.bintray.com/boostorg/release/${BOOST_VERSION}/source/boost_$(echo $BOOST_VERSION | sed -e 's%\.%_%g').7z
+export BOOST_SRCDIR=boost_$(echo $BOOST_VERSION | sed -e 's%\.%_%g')
+export BOOST_CENTOS_DEPS="zlib-devel bzip2-devel libicu-devel python-devel openmpi-devel xz-devel"
+export BOOST_UBUNTU_DEPS="libz-dev libbz2-dev libicu-dev python3-dev python-dev"
 
 export CURL_VERSION=7.56.1
 export CURL_URL=https://curl.haxx.se/download/curl-${CURL_VERSION}.tar.bz2
@@ -74,6 +80,18 @@ export GRPC_JAVA_SRCDIR=grpc-java-${GRPC_JAVA_VERSION}
 export GRPC_CENTOS_DEPS="zlib-devel openssl-devel gnutls-devel"
 export GRPC_UBUNTU_DEPS="libncurses-dev libevent-dev"
 
+export HIGHLIGHT_VERSION=3.40
+export HIGHLIGHT_URL=http://www.andre-simon.de/zip/highlight-${HIGHLIGHT_VERSION}.tar.bz2
+export HIGHLIGHT_SRCDIR=highlight-${HIGHLIGHT_VERSION}
+export HIGHLIGHT_CENTOS_DEPS="lua-devel boost-devel"
+export HIGHLIGHT_UBUNTU_DEPS=""
+
+export IPERF3_VERSION=3.2
+export IPERF3_URL=https://github.com/esnet/iperf/archive/${IPERF3_VERSION}.tar.gz
+export IPERF3_SRCDIR=iperf-${IPERF3_VERSION}
+export IPERF3_CENTOS_DEPS="openssl-devel file"
+export IPERF3_UBUNTU_DEPS="libssl-dev file"
+
 export LFTP_VERSION=4.8.3
 export LFTP_URL=http://lftp.yar.ru/ftp/lftp-${LFTP_VERSION}.tar.xz
 export LFTP_SRCDIR=lftp-${LFTP_VERSION}
@@ -88,6 +106,11 @@ export MC_UBUNTU_DEPS="libncurses-dev"
 
 export OVS_VERSION=2.8.1
 export OVS_URL=http://openvswitch.org/releases/openvswitch-${OVS_VERSION}.tar.gz
+
+export PROTOBUF_VERSION=3.4.1
+export PROTOBUF_URL=https://github.com/google/protobuf/archive/v${PROTOBUF_VERSION}.tar.gz
+export PROTOBUF_ARCHIVE_NAME=protobuf-${PROTOBUF_VERSION}.tar.gz
+export PROTOBUF_SRCDIR=protobuf-${PROTOBUF_VERSION}
 
 export SSHPASS_VERSION=1.06
 export SSHPASS_URL=https://sourceforge.net/projects/sshpass/files/sshpass/${SSHPASS_VERSION}/sshpass-${SSHPASS_VERSION}.tar.gz
@@ -136,6 +159,12 @@ export UCG_URL=https://github.com/gvansickle/ucg/releases/download/${UCG_VERSION
 export UCG_SRCDIR=universalcodegrep-${UCG_VERSION}
 export UCG_CENTOS_DEPS="pcre2-devel pcre-devel jemalloc-devel"
 export UCG_UBUNTU_DEPS="libpcre2-dev libpcre3-dev libjemalloc-dev"
+
+export ZSH_VERSION=5.4.2
+export ZSH_URL=https://sourceforge.net/projects/zsh/files/zsh/${ZSH_VERSION}/zsh-${ZSH_VERSION}.tar.xz
+export ZSH_SRCDIR=zsh-${ZSH_VERSION}
+export ZSH_CENTOS_DEPS="ncurses-devel bison"
+export ZSH_UBUNTU_DEPS="libncurses-dev bison"
 
 clear_usrlocal() {
     rm -fr /usr/local/*
@@ -212,5 +241,12 @@ prepare_build() {
     local download="$1_ARCHIVE_NAME"
     if [[ -n ${!download} ]]; then download=${!download}; else download=$(basename ${!url}); fi
 
-    (cd ~; [ -d ${!srcdir} ] && rm -fr ${!srcdir}; [ -f $download ] || { echo Download ${!url}; curl -L -o $download ${!url}; }; [ -f $download ] && tar -C ~ -xf $download)
+    [ -d ~/${!srcdir} ] && { echo "Remove ~/${!srcdir}"; rm -fr ~/${!srcdir}; }
+    [ -f ~/${download} ] || { echo Download ${!url}; curl -L -o ~/${download} ${!url}; }
+
+    if [ -f ~/${download} ]; then
+        file ~/${download} | grep -s -w -q "7-zip archive data" && (cd ~; 7za x -aoa -bd -y ${download})
+        file ~/${download} |  grep -q -w -s -e "XZ compressed data" -e "gzip compressed data" -e "bzip2 compressed data" && tar -C ~ -xf ~/${download}
+    fi
+    # (cd ~; [ -d ${!srcdir} ] && rm -fr ${!srcdir}; [ -f $download ] || { echo Download ${!url}; curl -L -o $download ${!url}; }; [ -f $download ] && tar -C ~ -xf $download)
 }
