@@ -45,6 +45,24 @@ export EMACS_CENTOS_DEPS="GConf2-devel dbus-devel giflib-devel gnutls-devel gtk3
   openjpeg-devel openjpeg2-devel turbojpeg-devel wxGTK-devel wxGTK3-devel"
 export EMACS_UBUNTU_DEPS="libncurses-dev libevent-dev"
 
+export FISH_VERSION=3.0.12
+export FISH_URL=https://github.com/fish-shell/fish-shell/releases/download/${FISH_VERSION}/fish-${FISH_VERSION}.tar.gz
+export FISH_SRCDIR=fish-${FISH_VERSION}
+export FISH_CENTOS_DEPS="ncurses-devel pcre2-devel"
+export FISH_UBUNTU_DEPS="libncurses-dev libpcre2-dev"
+
+export GCC_VERSION=7.2.0
+export GCC_URL=http://ftpmirror.gnu.org/gnu/gcc/gcc-${VERSION}/gcc-${GCC_VERSION}.tar.xz
+export GCC_SRCDIR=gcc-${GCC_VERSION}
+export GCC_CENTOS_DEPS="gmp-devel libmpc-devel"
+export GCC_UBUNTU_DEPS=""
+
+export GDB_VERSION=8.0.1
+export GDB_URL=http://ftpmirror.gnu.org/gdb/gdb-${GDB_VERSION}.tar.xz
+export GDB_SRCDIR=gdb-${GDB_VERSION}
+export GDB_CENTOS_DEPS="bison flex expect texinfo"
+export GDB_UBUNTU_DEPS=""
+
 export GIT_VERSION=2.15.0
 export GIT_URL=https://www.kernel.org/pub/software/scm/git/git-${GIT_VERSION}.tar.xz
 export GIT_SRCDIR=git-${GIT_VERSION}
@@ -60,6 +78,12 @@ export GNUPLOT_CENTOS_DEPS="atk-devel cairo-devel expat-devel gtk2-devel \
 export GNUPLOT_UBUNTU_DEPS="libatk1.0-dev libcairo2-dev libexpat1-dev libgtk2.0-dev \
   libacl1-dev libjpeg-dev libjpeg-turbo8-dev libpng-dev libtiff5-dev \
   libcerf-dev libpcre2-dev libpcre3-dev zlib1g-dev libcerf-dev libgd-dev"
+
+export GLOBAL_VERSION=6.5.7
+export GLOBAL_URL=http://ftpmirror.gnu.org/gnu/global/global-${GLOBAL_VERSION}.tar.gz
+export GLOBAL_SRCDIR=global-${GLOBAL_VERSION}
+export GLOBAL_CENTOS_DEPS="ncurses-devel"
+export GLOBAL_UBUNTU_DEPS="libncurses-dev"
 
 # grpc can't be build
 export GRPC_VERSION=1.6.7
@@ -120,9 +144,20 @@ export PROTOBUF_URL=https://github.com/google/protobuf/archive/v${PROTOBUF_VERSI
 export PROTOBUF_ARCHIVE_NAME=protobuf-${PROTOBUF_VERSION}.tar.gz
 export PROTOBUF_SRCDIR=protobuf-${PROTOBUF_VERSION}
 
+export PYTHON3_VERSION=3.6.3
+export PYTHON3_URL=https://www.python.org/ftp/python/${PYTHON3_VERSION}/Python-${PYTHON3_VERSION}.tgz
+export PYTHON3_SRCDIR=Python-${PYTHON3_VERSION}
+export PYTHON3_CENTOS_DEPS="zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel expat-devel"
+export PYTHON3_UBUNTU_DEPS=""
+
+export RIPGREP_VERSION=0.7.1
+export RIPGREP_URL=https://github.com/BurntSushi/ripgrep/archive/${RIPGREP_VERSION}.tar.gz
+export RIPGREP_SRCDIR=ripgrep-${RIPGREP_VERSION}
+export RIPGREP_CENTOS_DEPS="rust cargo"
+export RIPGREP_UBUNTU_DEPS="rustc cargo"
+
 export SSHPASS_VERSION=1.06
 export SSHPASS_URL=https://sourceforge.net/projects/sshpass/files/sshpass/${SSHPASS_VERSION}/sshpass-${SSHPASS_VERSION}.tar.gz
-#export SSHPASS_ARCHIVE_NAME=sshpass-${SSHPASS_VERSION}.tar.gz
 export SSHPASS_SRCDIR=sshpass-${SSHPASS_VERSION}
 
 export SOURCE_HIGHLIGHT_VERSION=3.1.8
@@ -180,9 +215,8 @@ clear_usrlocal() {
 
 compress_binary() {
     local output=~/$1
-    if [[ -n $OUTPUT ]]; then output=$OUTPUT/$1; fi
-    echo "Generate $output"
-    tar -C /usr/local -Jcf $output .
+    [[ -n $OUTPUT ]] && output=$OUTPUT/$1
+    [[ -f $2 ]] && { echo "Generate $output"; tar -C /usr/local -Jcf $output .; }
 }
 
 # We must support two CentOS version at the same time

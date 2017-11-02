@@ -18,10 +18,10 @@ if [[ -n ${HIGHLIGHT_VERSION} && -n ${HIGHLIGHT_URL} && -n ${HIGHLIGHT_SRCDIR} ]
         strip src/highlight
         make install
 
-        compress_binary highligt-${HIGHLIGHT_VERSION}.txz
+        compress_binary highlight-${HIGHLIGHT_VERSION}.txz
     else
-        echo "Fail to download highligt"
+        echo "Fail to download highlight"
     fi
 else
-    echo "Don't define variable highligt"
+    echo "Don't define variable highlight"
 fi
