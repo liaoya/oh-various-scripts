@@ -12,16 +12,16 @@ if [[ -n $GIT_VERSION && -n $GIT_URL && -n $GIT_SRCDIR ]]; then
 
     [[ -f /etc/redhat-release && -x /usr/bin/db2x_docbook2texi && ! -h /usr/bin/docbook2x-texi ]] && ln -s /usr/bin/db2x_docbook2texi /usr/bin/docbook2x-texi
 
-    if [ -d ~/$GIT_SRCDIR ]; then
+    if [ -d $HOME/$GIT_SRCDIR ]; then
         clear_usrlocal
-        cd ~/$GIT_SRCDIR
+        cd $HOME/$GIT_SRCDIR
         make configure
         ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
         make -s -j $(nproc) all info
         make -s -j $(nproc) strip
         make -s -j $(nproc) install install-man
 
-        compress_binary git-${GIT_VERSION}.txz
+        compress_binary git-${GIT_VERSION}.txz /usr/local/bin/git
     else
         echo "Fail to download GIT"
     fi

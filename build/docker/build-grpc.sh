@@ -15,19 +15,19 @@ if [[ -n $GRPC_VERSION && -n $GRPC_URL && -n $GRPC_SRCDIR ]]; then
 
     clear_usrlocal
 
-    if [ -d ~/$GRPC_PROTOBUF_SRCDIR ]; then
-        cd ~/$GRPC_PROTOBUF_SRCDIR
+    if [ -d $HOME/$GRPC_PROTOBUF_SRCDIR ]; then
+        cd $HOME/$GRPC_PROTOBUF_SRCDIR
         ./autogen.sh
         ./configure -q
         make -s -j $(nproc) install-strip
 
-        [ -d ~/${GRPC_CARES_SRCDIR} ] && cp -fpr ~/${GRPC_CARES_SRCDIR}/* ~/${GRPC_SRCDIR}/third_party/cares/cares/
-        cd ~/${GRPC_SRCDIR}
+        [ -d $HOME/${GRPC_CARES_SRCDIR} ] && cp -fpr ~/${GRPC_CARES_SRCDIR}/* ~/${GRPC_SRCDIR}/third_party/cares/cares/
+        cd $HOME/${GRPC_SRCDIR}
         make -s -j $(nproc)
         make -s -j $(nproc) strip install
         for item in $(ls -1 /usr/local/bin/grpc*plugin); do file $item | grep -q -s "not stripped" && strip -S $item; done
 
-        cd ~/${GRPC_JAVA_SRCDIR}
+        cd $HOME/${GRPC_JAVA_SRCDIR}
         g++ -std=c++11 -I/usr/local/include -pthread -L/usr/local/lib -lprotoc -lprotobuf -lpthread -ldl -s -o /usr/local/bin/grpc_java_plugin *.cpp
 
     else

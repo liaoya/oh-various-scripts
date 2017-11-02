@@ -10,14 +10,14 @@ fi
 if [[ -n ${BOOST_VERSION} && -n ${BOOST_URL} && -n ${BOOST_SRCDIR} ]]; then
     prepare_build "BOOST"
 
-    if [ -d ~/${BOOST_SRCDIR} ]; then
+    if [ -d $HOME/${BOOST_SRCDIR} ]; then
         clear_usrlocal
-        cd ~/${BOOST_SRCDIR}
+        cd $HOME/${BOOST_SRCDIR}
         ./bootstrap.sh
         ./b2 -j $(nproc) toolset=gcc cxxflags="-std=c++11" stage
         ./b2 -j $(nproc) toolset=gcc cxxflags="-std=c++11" install
 
-        compress_binary boost-${BOOST_VERSION}.txz
+        compress_binary boost-${BOOST_VERSION}.txz /usr/local/include/boost/version.hpp
     else
         echo "Fail to download boost"
     fi

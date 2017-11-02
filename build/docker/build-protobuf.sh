@@ -10,14 +10,14 @@ fi
 if [[ -n ${PROTOBUF_VERSION} && -n ${PROTOBUF_URL} && -n ${PROTOBUF_SRCDIR} ]]; then
     prepare_build "PROTOBUF"
 
-    if [ -d ~/${PROTOBUF_SRCDIR} ]; then
+    if [ -d $HOME/${PROTOBUF_SRCDIR} ]; then
         clear_usrlocal
-        cd ~/${PROTOBUF_SRCDIR}
+        cd $HOME/${PROTOBUF_SRCDIR}
         ./autogen.sh
         ./configure -q
         make -s -j $(nproc) install-strip
 
-        compress_binary protobuf-${PROTOBUF_VERSION}.txz
+        compress_binary protobuf-${PROTOBUF_VERSION}.txz /usr/local/bin/protoc
     else
         echo "Fail to download protobuf"
     fi

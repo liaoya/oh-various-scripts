@@ -10,14 +10,14 @@ fi
 if [[ -n ${GLOBAL_VERSION} && -n ${GLOBAL_URL} && -n ${GLOBAL_SRCDIR} ]]; then
     prepare_build "GLOBAL"
 
-    if [ -d ~/${GLOBAL_SRCDIR} ]; then
+    if [ -d $HOME/${GLOBAL_SRCDIR} ]; then
         clear_usrlocal
-        cd ~/${GLOBAL_SRCDIR}
+        cd $HOME/${GLOBAL_SRCDIR}
         ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
         make -s -j $(nproc) all
         make -s install-strip
 
-        compress_binary global-${GLOBAL_VERSION}.txz
+        compress_binary global-${GLOBAL_VERSION}.txz /usr/local/bin/global
     else
         echo "Fail to download global"
     fi

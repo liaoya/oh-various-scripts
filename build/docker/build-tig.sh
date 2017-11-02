@@ -10,15 +10,15 @@ fi
 if [[ -n $TIG_VERSION && -n $TIG_URL && -n $TIG_SRCDIR ]]; then
     prepare_build "TIG"
 
-    if [ -d ~/$TIG_SRCDIR ]; then
+    if [ -d $HOME/$TIG_SRCDIR ]; then
         clear_usrlocal
-        cd ~/$TIG_SRCDIR
+        cd $HOME/$TIG_SRCDIR
         ./autogen.sh
         ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
         make -s -j $(nproc) all
         make -s -j $(nproc) strip
         make -s -j $(nproc) install
-        compress_binary tig-${TIG_VERSION}.txz
+        compress_binary tig-${TIG_VERSION}.txz /usr/local/bin/tig
     else
         echo "Fail to download tig"
     fi

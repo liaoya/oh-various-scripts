@@ -214,7 +214,8 @@ clear_usrlocal() {
 }
 
 compress_binary() {
-    local output=~/$1
+    [[ $# -lt 2 ]] && { echo "compress_binary <compress file name> <check file>"; exit 1; }
+    local output=$HOME/$1
     [[ -n $OUTPUT ]] && output=$OUTPUT/$1
     [[ -f $2 ]] && { echo "Generate $output"; tar -C /usr/local -Jcf $output .; }
 }
@@ -283,12 +284,12 @@ prepare_build() {
     local download="$1_ARCHIVE_NAME"
     if [[ -n ${!download} ]]; then download=${!download}; else download=$(basename ${!url}); fi
 
-    [ -d ~/${!srcdir} ] && { echo "Remove ~/${!srcdir}"; rm -fr ~/${!srcdir}; }
-    [ -f ~/${download} ] || { echo Download ${!url}; curl -L -o ~/${download} ${!url}; }
+    [ -d $HOME/${!srcdir} ] && { echo "Remove $HOME/${!srcdir}"; rm -fr $HOME/${!srcdir}; }
+    [ -f $HOME/${download} ] || { echo Download ${!url}; curl -L -o $HOME/${download} ${!url}; }
 
-    if [ -f ~/${download} ]; then
-        file ~/${download} | grep -s -w -q "7-zip archive data" && (cd ~; 7za x -aoa -bd -y ${download})
-        file ~/${download} |  grep -q -w -s -e "XZ compressed data" -e "gzip compressed data" -e "bzip2 compressed data" && tar -C ~ -xf ~/${download}
+    if [ -f $HOME/${download} ]; then
+        file $HOME/${download} | grep -s -w -q "7-zip archive data" && (cd $HOME; 7za x -aoa -bd -y ${download})
+        file $HOME/${download} |  grep -q -w -s -e "XZ compressed data" -e "gzip compressed data" -e "bzip2 compressed data" && tar -C $HOME -xf $HOME/${download}
     fi
-    # (cd ~; [ -d ${!srcdir} ] && rm -fr ${!srcdir}; [ -f $download ] || { echo Download ${!url}; curl -L -o $download ${!url}; }; [ -f $download ] && tar -C ~ -xf $download)
+    # (cd $HOME; [ -d ${!srcdir} ] && rm -fr ${!srcdir}; [ -f $download ] || { echo Download ${!url}; curl -L -o $download ${!url}; }; [ -f $download ] && tar -C $HOME -xf $download)
 }

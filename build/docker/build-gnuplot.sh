@@ -10,13 +10,13 @@ fi
 if [[ -n ${GNUPLOT_VERSION} && -n ${GNUPLOT_URL} && -n ${GNUPLOT_SRCDIR} ]]; then
     prepare_build "GNUPLOT"
 
-    if [ -d ~/${GNUPLOT_SRCDIR} ]; then
+    if [ -d $HOME/${GNUPLOT_SRCDIR} ]; then
         clear_usrlocal
-        cd ~/${GNUPLOT_SRCDIR}
+        cd $HOME/${GNUPLOT_SRCDIR}
         ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
         make -s -j $(nproc) install-strip
 
-        compress_binary gnuplot-${GNUPLOT_VERSION}.txz
+        compress_binary gnuplot-${GNUPLOT_VERSION}.txz /usr/local/bin/gnuplot
     else
         echo "Fail to download gnuplot"
     fi

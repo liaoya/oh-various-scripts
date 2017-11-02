@@ -10,12 +10,12 @@ fi
 if [[ -n $CURL_VERSION && -n $CURL_URL && -n $CURL_SRCDIR ]]; then
     prepare_build "CURL"
 
-    if [ -d ~/$CURL_SRCDIR ]; then
+    if [ -d $HOME/$CURL_SRCDIR ]; then
         clear_usrlocal
-        cd ~/$CURL_SRCDIR
+        cd $HOME/$CURL_SRCDIR
         ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
         make -s -j $(nproc) install-strip
-        compress_binary curl-${CURL_VERSION}.txz
+        compress_binary curl-${CURL_VERSION}.txz /usr/local/bin/curl
         clear_usrlocal
     else
         echo "Fail to download curl"

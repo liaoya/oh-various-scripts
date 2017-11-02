@@ -12,9 +12,9 @@ fi
 if [[ -n ${RIPGREP_VERSION} && -n ${RIPGREP_URL} && -n ${RIPGREP_SRCDIR} ]]; then
     prepare_build "RIPGREP"
 
-    if [ -d ~/${RIPGREP_SRCDIR} ]; then
+    if [ -d $HOME/${RIPGREP_SRCDIR} ]; then
         clear_usrlocal
-        cd ~/${RIPGREP_SRCDIR}
+        cd $HOME/${RIPGREP_SRCDIR}
         cargo build --release
         if [ -x target/release/rg ]; then
             strip target/release/rg

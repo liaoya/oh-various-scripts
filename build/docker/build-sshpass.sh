@@ -10,13 +10,13 @@ fi
 if [[ -n ${SSHPASS_VERSION} && -n ${SSHPASS_URL} && -n ${SSHPASS_SRCDIR} ]]; then
     prepare_build "SSHPASS"
 
-    if [ -d ~/${SSHPASS_SRCDIR} ]; then
+    if [ -d $HOME/${SSHPASS_SRCDIR} ]; then
         clear_usrlocal
-        cd ~/${SSHPASS_SRCDIR}
+        cd $HOME/${SSHPASS_SRCDIR}
         ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
         make -s -j $(nproc) install-strip
 
-        compress_binary sshpass-${SSHPASS_VERSION}.txz
+        compress_binary sshpass-${SSHPASS_VERSION}.txz /usr/local/bin/sshpass
     else
         echo "Fail to download sshpass"
     fi
