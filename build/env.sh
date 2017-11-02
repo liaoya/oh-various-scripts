@@ -60,7 +60,7 @@ export FISH_CENTOS_DEPS="ncurses-devel pcre2-devel"
 export FISH_UBUNTU_DEPS="libncurses-dev libpcre2-dev"
 
 export GCC_VERSION=7.2.0
-export GCC_URL=http://ftpmirror.gnu.org/gnu/gcc/gcc-${VERSION}/gcc-${GCC_VERSION}.tar.xz
+export GCC_URL=http://ftpmirror.gnu.org/gnu/gcc/gcc-${GCC_VERSION}/gcc-${GCC_VERSION}.tar.xz
 export GCC_SRCDIR=gcc-${GCC_VERSION}
 export GCC_CENTOS_DEPS="gmp-devel libmpc-devel"
 export GCC_UBUNTU_DEPS=""
