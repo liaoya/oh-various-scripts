@@ -3,10 +3,11 @@
 export SILENCE=1
 
 export CENTOS_DEPS="wget autoconf automake libtool gcc gcc-c++ make file which pxz pigz lbzip2 unzip bzip2 xz p7zip openssh-clients"
-export UBUNTU_DEPS="lsb-release curl wget less file which pxz pigz lbzip2 unzip bzip2 xz p7zip-full openssh-client sshpass build-essential fakeroot pkg-config autoconf libtool"
+export UBUNTU_DEPS="lsb-release curl wget less file pxz pigz lbzip2 unzip bzip2 xz-utils p7zip-full openssh-client sshpass build-essential fakeroot pkg-config autoconf libtool"
 
 export AG_VERSION=2.1.0
 export AG_URL=https://github.com/ggreer/the_silver_searcher/archive/${AG_VERSION}.tar.gz
+export AG_ARCHIVE_NAME=ag-${AG_VERSION}.tar.gz
 export AG_SRCDIR=the_silver_searcher-${AG_VERSION}
 export AG_CENTOS_DEPS="pcre-devel xz-devel zlib-devel"
 export AG_UBUNTU_DEPS="libpcre3-dev liblzma-dev zlib1g-dev"
@@ -30,6 +31,13 @@ export BOOST_SRCDIR=boost_$(echo $BOOST_VERSION | sed -e 's%\.%_%g')
 export BOOST_CENTOS_DEPS="zlib-devel bzip2-devel libicu-devel python-devel openmpi-devel xz-devel"
 export BOOST_UBUNTU_DEPS="libz-dev libbz2-dev libicu-dev python3-dev python-dev"
 
+export CODELITE_VERSION=11.0
+export CODELITE_URL=https://github.com/eranif/codelite/archive/${CODELITE_VERSION}.tar.gz
+export CODELITE_ARCHIVE_NAME=codelite-${CODELITE_VERSION}.tar.gz
+export CODELITE_SRCDIR=codelite-${CODELITE_VERSION}
+export CODELITE_CENTOS_DEPS="wxGTK3-devel cmake sqlite-devel libssh-devel clang-devel hunspell-devel lldb-devel flex-devel"
+export CODELITE_UBUNTU_DEPS=""
+
 export CURL_VERSION=7.56.1
 export CURL_URL=https://curl.haxx.se/download/curl-${CURL_VERSION}.tar.bz2
 export CURL_SRCDIR=curl-${CURL_VERSION}
@@ -45,7 +53,7 @@ export EMACS_CENTOS_DEPS="GConf2-devel dbus-devel giflib-devel gnutls-devel gtk3
   openjpeg-devel openjpeg2-devel turbojpeg-devel wxGTK-devel wxGTK3-devel"
 export EMACS_UBUNTU_DEPS="libncurses-dev libevent-dev"
 
-export FISH_VERSION=3.0.12
+export FISH_VERSION=2.6.0
 export FISH_URL=https://github.com/fish-shell/fish-shell/releases/download/${FISH_VERSION}/fish-${FISH_VERSION}.tar.gz
 export FISH_SRCDIR=fish-${FISH_VERSION}
 export FISH_CENTOS_DEPS="ncurses-devel pcre2-devel"
@@ -69,6 +77,19 @@ export GIT_SRCDIR=git-${GIT_VERSION}
 export GIT_CENTOS_DEPS="curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel asciidoc xmlto docbook2X"
 export GIT_UBUNTU_DEPS="dh-autoreconf libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev docbook2x asciidoc"
 
+export GFLAGS_VERSION=2.2.1
+export GFLAGS_URL=https://github.com/gflags/gflags/archive/v${GFLAGS_VERSION}.tar.gz
+export GFLAGS_ARCHIVE_NAME=gflags-${GFLAGS_VERSION}.tar.gz
+export GFLAGS_SRCDIR=gflags-${GFLAGS_VERSION}
+export GFLAGS_CENTOS_DEPS="cmake3"
+export GFLAGS_UBUNTU_DEPS=""
+
+export GLOBAL_VERSION=6.5.7
+export GLOBAL_URL=http://ftpmirror.gnu.org/gnu/global/global-${GLOBAL_VERSION}.tar.gz
+export GLOBAL_SRCDIR=global-${GLOBAL_VERSION}
+export GLOBAL_CENTOS_DEPS="ncurses-devel"
+export GLOBAL_UBUNTU_DEPS="libncurses-dev"
+
 export GNUPLOT_VERSION=5.2.0
 export GNUPLOT_URL=https://sourceforge.net/projects/gnuplot/files/gnuplot/${GNUPLOT_VERSION}/gnuplot-${GNUPLOT_VERSION}.tar.gz
 export GNUPLOT_SRCDIR=gnuplot-${GNUPLOT_VERSION}
@@ -79,11 +100,12 @@ export GNUPLOT_UBUNTU_DEPS="libatk1.0-dev libcairo2-dev libexpat1-dev libgtk2.0-
   libacl1-dev libjpeg-dev libjpeg-turbo8-dev libpng-dev libtiff5-dev \
   libcerf-dev libpcre2-dev libpcre3-dev zlib1g-dev libcerf-dev libgd-dev"
 
-export GLOBAL_VERSION=6.5.7
-export GLOBAL_URL=http://ftpmirror.gnu.org/gnu/global/global-${GLOBAL_VERSION}.tar.gz
-export GLOBAL_SRCDIR=global-${GLOBAL_VERSION}
-export GLOBAL_CENTOS_DEPS="ncurses-devel"
-export GLOBAL_UBUNTU_DEPS="libncurses-dev"
+export GOOGLETEST_VERSION=2.2.1
+export GOOGLETEST_URL=https://github.com/google/googletest/archive/${GOOGLETEST_VERSION}.tar.gz
+export GOOGLETEST_ARCHIVE_NAME=googletest-${GOOGLETEST_VERSION}.tar.gz
+export GOOGLETEST_SRCDIR=googletest-v${GOOGLETEST_VERSION}
+export GOOGLETEST_CENTOS_DEPS="cmake3"
+export GOOGLETEST_UBUNTU_DEPS=""
 
 # grpc can't be build
 export GRPC_VERSION=1.6.7
@@ -112,6 +134,7 @@ export HIGHLIGHT_UBUNTU_DEPS=""
 
 export IPERF3_VERSION=3.2
 export IPERF3_URL=https://github.com/esnet/iperf/archive/${IPERF3_VERSION}.tar.gz
+export IPERF3_ARCHIVE_NAME=iperf-${IPERF3_VERSION}.tar.gz
 export IPERF3_SRCDIR=iperf-${IPERF3_VERSION}
 export IPERF3_CENTOS_DEPS="openssl-devel file"
 export IPERF3_UBUNTU_DEPS="libssl-dev file"
@@ -121,6 +144,8 @@ export LFTP_URL=http://lftp.yar.ru/ftp/lftp-${LFTP_VERSION}.tar.xz
 export LFTP_SRCDIR=lftp-${LFTP_VERSION}
 export LFTP_CENTOS_DEPS="ncurses-devel readline-devel gnutls-devel zlib-devel libidn2-devel"
 export LFTP_UBUNTU_DEPS="libncurses-dev libreadline-dev libgnutls28-dev zlib1g-dev libidn2-dev"
+
+export LLVM_VERSION=5.0.0
 
 export MC_VERSION=4.8.19
 export MC_URL=http://ftp.midnight-commander.org/mc-${MC_VERSION}.tar.xz
@@ -135,6 +160,19 @@ export NANO_URL=https://www.nano-editor.org/dist/v${NANO_MAJOR_VERSION}/nano-${N
 export NANO_SRCDIR=nano-${NANO_VERSION}
 export NANO_CENTOS_DEPS="ncurses-devel zlib-devel"
 export NANO_UBUNTU_DEPS="libncurses-dev zlib1g-dev"
+
+export NINJA_VERSION=0.7.1
+export NINJA_URL=https://github.com/ninja-build/ninja/archive/v${NINJA_VERSION}.tar.gz
+export NINJA_ARCHIVE_NAME=ninja-${NINJA_VERSION}.tar.gz
+export NINJA_SRCDIR=ninja-${NINJA_VERSION}
+export NINJA_CENTOS_DEPS="re2c"
+export NINJA_UBUNTU_DEPS="python"
+
+export NMON_VERSION=16g
+export NMON_SOURCE=https://sourceforge.net/projects/nmon/files/lmon${NMON_VERSION}.c
+export NMON_MAKEFILE=https://sourceforge.net/projects/nmon/files/makefile
+export NMON_CENTOS_DEPS="ncurses-devel"
+export NMON_UBUNTU_DEPS="libncurses-dev"
 
 export OVS_VERSION=2.8.1
 export OVS_URL=http://openvswitch.org/releases/openvswitch-${OVS_VERSION}.tar.gz
@@ -152,6 +190,7 @@ export PYTHON3_UBUNTU_DEPS=""
 
 export RIPGREP_VERSION=0.7.1
 export RIPGREP_URL=https://github.com/BurntSushi/ripgrep/archive/${RIPGREP_VERSION}.tar.gz
+export RIPGREP_ARCHIVE_NAME=ripgrep-${RIPGREP_VERSION}.tar.gz
 export RIPGREP_SRCDIR=ripgrep-${RIPGREP_VERSION}
 export RIPGREP_CENTOS_DEPS="rust cargo"
 export RIPGREP_UBUNTU_DEPS="rustc cargo"
@@ -220,12 +259,18 @@ compress_binary() {
     [[ -f $2 ]] && { echo "Generate $output"; tar -C /usr/local -Jcf $output .; }
 }
 
+download_source() {
+    local output=$HOME/$(basename $1)
+    [[ $# -eq 2 ]] && output=$2
+    [[ ! -f $output ]] && echo "Download $1 as $output " && curl -L -o $output $1
+}
+
 # We must support two CentOS version at the same time
 # http://wiki.bash-hackers.org/syntax/pe
 install_centos_deps() {
     releasever=$(python -c 'import yum; yb = yum.YumBase(); print yb.conf.yumvar["releasever"]' | tail -n 1)
 
-    if [[ -n $CENTOS_DEPS ]]; then yum install -y -q $CENTOS_DEPS >/dev/null 2>&1; fi
+    if [[ -n $CENTOS_DEPS ]]; then echo "Install CENTOS_DEPS \"$CENTOS_DEPS\""; yum install -y -q $CENTOS_DEPS >/dev/null 2>&1; fi
 
     deps=$1_CENTOS${releasever}_DEPS
     if [[ -n ${!deps} ]]; then
@@ -252,7 +297,7 @@ install_oraclelinux_deps() {
 }
 
 install_ubuntu_deps() {
-    if [[ -n $UBUNTU_DEPS ]]; then apt-get update -qq && apt-get install -y -qq -o "Dpkg::Use-Pty=0" $UBUNTU_DEPS >/dev/null 2>&1; fi
+    if [[ -n $UBUNTU_DEPS ]]; then echo "Install UBUNTU_DEPS \"$UBUNTU_DEPS\""; apt-get update -qq && apt-get install -y -qq -o "Dpkg::Use-Pty=0" $UBUNTU_DEPS >/dev/null 2>&1; fi
 
     deps=$1_UBUNTU_$(lsb_release -sc | awk '{print toupper($0)}')_DEPS
     if [[ -n ${!deps} ]]; then
@@ -284,8 +329,8 @@ prepare_build() {
     local download="$1_ARCHIVE_NAME"
     if [[ -n ${!download} ]]; then download=${!download}; else download=$(basename ${!url}); fi
 
-    [ -d $HOME/${!srcdir} ] && { echo "Remove $HOME/${!srcdir}"; rm -fr $HOME/${!srcdir}; }
-    [ -f $HOME/${download} ] || { echo Download ${!url}; curl -L -o $HOME/${download} ${!url}; }
+    download_source ${!url} $HOME/${download}
+    [[ -n ${!srcdir} && -d $HOME/${!srcdir} ]] && { echo "Remove $HOME/${!srcdir}"; rm -fr $HOME/${!srcdir}; }
 
     if [ -f $HOME/${download} ]; then
         file $HOME/${download} | grep -s -w -q "7-zip archive data" && (cd $HOME; 7za x -aoa -bd -y ${download})
