@@ -21,7 +21,7 @@ if [[ -n $GIT_VERSION && -n $GIT_URL && -n $GIT_SRCDIR ]]; then
         make -s -j $(nproc) strip
         make -s -j $(nproc) install install-man
 
-        compress_binary git-${GIT_VERSION}.txz /usr/local/bin/git
+        compress_binary git-${GIT_VERSION} /usr/local/bin/git
     else
         echo "Fail to download GIT"
     fi

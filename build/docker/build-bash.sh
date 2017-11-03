@@ -16,7 +16,7 @@ if [[ -n ${BASH_VERSION} && -n ${BASH_URL} && -n ${BASH_SRCDIR} ]]; then
         ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
         make -s -j $(nproc) install-strip
 
-        compress_binary bash-${BASH_VERSION}.txz /usr/local/bin/bash
+        compress_binary bash-${BASH_VERSION} /usr/local/bin/bash
         clear_usrlocal
     else
         echo "Fail to download bash"

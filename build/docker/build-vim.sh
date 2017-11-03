@@ -16,7 +16,7 @@ if [[ -n $VIM_VERSION && -n $VIM_URL && -n $VIM_SRCDIR ]]; then
         ./configure -q --with-features=huge --enable-pythoninterp --enable-cscope --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
         make -s -j $(nproc) install
 
-        compress_binary vim-huge-${VIM_VERSION}.txz /usr/local/bin/vim
+        compress_binary vim-huge-${VIM_VERSION} /usr/local/bin/vim
     else
         echo "Fail to download vim-huge"
     fi

@@ -18,7 +18,7 @@ if [[ -n $SOURCE_HIGHLIGHT_VERSION && -n $SOURCE_HIGHLIGHT_URL && -n $SOURCE_HIG
         ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
         make -s -j $(nproc) install-strip
 
-        compress_binary source-highlight-${SOURCE_HIGHLIGHT_VERSION}.txz /usr/local/bin/source-highlight
+        compress_binary source-highlight-${SOURCE_HIGHLIGHT_VERSION} /usr/local/bin/source-highlight
     else
         echo "Fail to download source hightlight"
     fi

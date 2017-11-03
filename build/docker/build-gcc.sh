@@ -20,7 +20,7 @@ if [[ -n ${GCC_VERSION} && -n ${GCC_URL} && -n ${GCC_SRCDIR} ]]; then
         make -s -j $(nproc) 
         make -s -j $(nproc) install-strip
 
-        compress_binary gcc-${GCC_VERSION}.txz /usr/local/bin/gcc
+        compress_binary gcc-${GCC_VERSION} /usr/local/bin/gcc
     else
         echo "Fail to download gcc"
     fi

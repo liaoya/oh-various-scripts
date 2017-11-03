@@ -16,7 +16,7 @@ if [[ -n ${GNUPLOT_VERSION} && -n ${GNUPLOT_URL} && -n ${GNUPLOT_SRCDIR} ]]; the
         ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
         make -s -j $(nproc) install-strip
 
-        compress_binary gnuplot-${GNUPLOT_VERSION}.txz /usr/local/bin/gnuplot
+        compress_binary gnuplot-${GNUPLOT_VERSION} /usr/local/bin/gnuplot
     else
         echo "Fail to download gnuplot"
     fi

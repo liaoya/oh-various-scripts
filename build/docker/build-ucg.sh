@@ -17,7 +17,7 @@ if [[ -n $UCG_VERSION && -n $UCG_URL && -n $UCG_SRCDIR ]]; then
         ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
         make -s -j $(nproc) install-strip
 
-        compress_binary ucg-${UCG_VERSION}.txz /usr/local/bin/ucg
+        compress_binary ucg-${UCG_VERSION} /usr/local/bin/ucg
     else
         echo "Fail to download UniversalCodeGrep"
     fi

@@ -17,7 +17,7 @@ if [[ -n ${BOOST_VERSION} && -n ${BOOST_URL} && -n ${BOOST_SRCDIR} ]]; then
         ./b2 -j $(nproc) toolset=gcc cxxflags="-std=c++11" stage
         ./b2 -j $(nproc) toolset=gcc cxxflags="-std=c++11" install
 
-        compress_binary boost-${BOOST_VERSION}.txz /usr/local/include/boost/version.hpp
+        compress_binary boost-${BOOST_VERSION} /usr/local/include/boost/version.hpp
     else
         echo "Fail to download boost"
     fi

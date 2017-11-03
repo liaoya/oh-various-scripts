@@ -3,16 +3,14 @@
 # https://www.hiroom2.com/2016/05/28/centos-7-build-llvm-clang-from-svn-repository/
 # https://clang.llvm.org/get_started.html
 
-[[ -f /etc/centos-release || -f /etc/oracle-release ]] && yum install -y -q cmake3
-[[ -f /etc/fedora-release ]] && dnf install -y -q cmake
-[[ -f /etc/lsb-release ]] && grep -w -s -q Ubuntu /etc/lsb-release && apt-get install -y -qq cmake
-
 if [ -f ../env.sh ]; then
     source ../env.sh
 else
     echo "Can't import common functions and variables"
     exit 1
 fi
+
+install_deps "LLVM"
 
 download_source http://releases.llvm.org/${LLVM_VERSION}/llvm-${LLVM_VERSION}.src.tar.xz
 download_source http://releases.llvm.org/${LLVM_VERSION}/cfe-${LLVM_VERSION}.src.tar.xz
@@ -24,9 +22,9 @@ download_source http://releases.llvm.org/${LLVM_VERSION}/polly-${LLVM_VERSION}.s
 download_source http://releases.llvm.org/${LLVM_VERSION}/libcxx-${LLVM_VERSION}.src.tar.xz
 download_source http://releases.llvm.org/${LLVM_VERSION}/libcxxabi-${LLVM_VERSION}.src.tar.xz
 
-[ -d $HOME/llvm ] && rm -fr ~/llvm
+[ -d ${HOME}/llvm ] && rm -fr ~/llvm
 cd $HOME
-tar -Jxf ${LLVM_VERSION}/llvm-${LLVM_VERSION}.src.tar.xz && mv llvm-${LLVM_VERSION}.src llvm
+tar -Jxf llvm-${LLVM_VERSION}.src.tar.xz && mv llvm-${LLVM_VERSION}.src llvm
 tar -Jxf cfe-${LLVM_VERSION}.src.tar.xz -C $HOME/llvm/tools && mv $HOME/llvm/tools/cfe-${LLVM_VERSION}.src $HOME/llvm/tools/clang
 tar -Jxf clang-tools-extra-${LLVM_VERSION}.src.tar.xz -C $HOME/llvm/tools/clang/tools && mv $HOME/llvm/tools/clang/tools/clang-tools-extra-${LLVM_VERSION}.src $HOME/llvm/tools/clang/tools/extra
 tar -Jxf compiler-rt-${LLVM_VERSION}.src.tar.xz -C $HOME/llvm/projects && mv $HOME/llvm/projects/compiler-rt-${LLVM_VERSION}.src $HOME/llvm/projects/compiler
@@ -44,4 +42,4 @@ make -s -j $(nproc)
 rm -fr /usr/local
 make -s install/strip
 
-compress_binary zsh-${LLVM_VERSION}.txz /usr/local/bin/clang
+compress_binary llvm-${LLVM_VERSION} /usr/local/bin/clang

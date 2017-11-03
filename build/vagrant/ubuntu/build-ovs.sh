@@ -6,7 +6,7 @@ sudo apt-get install -qy build-essential fakeroot git graphviz autoconf automake
     debhelper dh-autoreconf libssl-dev libtool openssl procps \
     python-all python-qt4 python-twisted-conch python-zopeinterface python-six libcap-ng-dev
 
-OVS_URL=http://openvswitch.org/releases/openvswitch-2.8.0.tar.gz
+OVS_URL=http://openvswitch.org/releases/openvswitch-2.8.1.tar.gz
 [ -d ~/$(basename $OVS_URL .tar.gz) ] && rm -fr ~/$(basename $OVS_URL .tar.gz)
 cOVS_URL -s -L $OVS_URL | tar -xz -C ~/
 cd ~/$(basename $OVS_URL .tar.gz)

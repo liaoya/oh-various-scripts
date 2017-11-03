@@ -16,7 +16,7 @@ if [[ -n ${IPERF3_VERSION} && -n ${IPERF3_URL} && -n ${IPERF3_SRCDIR} ]]; then
         ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
         make -s -j $(nproc) install-strip
 
-        compress_binary iperf-${IPERF3_VERSION}.txz /usr/local/bin/iperf3
+        compress_binary iperf-${IPERF3_VERSION} /usr/local/bin/iperf3
     else
         echo "Fail to download iperf"
     fi

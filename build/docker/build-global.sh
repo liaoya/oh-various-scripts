@@ -17,7 +17,7 @@ if [[ -n ${GLOBAL_VERSION} && -n ${GLOBAL_URL} && -n ${GLOBAL_SRCDIR} ]]; then
         make -s -j $(nproc) all
         make -s install-strip
 
-        compress_binary global-${GLOBAL_VERSION}.txz /usr/local/bin/global
+        compress_binary global-${GLOBAL_VERSION} /usr/local/bin/global
     else
         echo "Fail to download global"
     fi

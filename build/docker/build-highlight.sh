@@ -18,7 +18,7 @@ if [[ -n ${HIGHLIGHT_VERSION} && -n ${HIGHLIGHT_URL} && -n ${HIGHLIGHT_SRCDIR} ]
         strip src/highlight
         make install
 
-        compress_binary highlight-${HIGHLIGHT_VERSION}.txz /usr/local/bin/highlight
+        compress_binary highlight-${HIGHLIGHT_VERSION} /usr/local/bin/highlight
     else
         echo "Fail to download highlight"
     fi

@@ -22,7 +22,7 @@ for item in \$(ls -1 /usr/local/share/nano/*.nanorc); do echo "include \$item" >
 EOF
         chmod a+x /usr/local/bin/install-nano
 
-        compress_binary nano-${NANO_VERSION}.txz /usr/local/bin/nano
+        compress_binary nano-${NANO_VERSION} /usr/local/bin/nano
     else
         echo "Fail to download nano"
     fi

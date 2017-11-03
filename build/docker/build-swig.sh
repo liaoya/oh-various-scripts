@@ -14,10 +14,11 @@ if [[ -n ${SWIG_VERSION} && -n ${SWIG_URL} && -n ${SWIG_SRCDIR} ]]; then
         clear_usrlocal
         cd $HOME/${SWIG_SRCDIR}
         ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
-        make -s -j $(nproc) install
+        make -s -j $(nproc)
+        make -s install
         for item in $(ls -1 /usr/local/bin/*swig*); do file $item | grep -q -s "not stripped" && strip -s $item; done
 
-        compress_binary swig-${SWIG_VERSION}.txz /usr/local/bin/swig
+        compress_binary swig-${SWIG_VERSION} /usr/local/bin/swig
     else
         echo "Fail to download swig"
     fi

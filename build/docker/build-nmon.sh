@@ -26,7 +26,7 @@ if [[ -n ${NMON_VERSION} && -n ${NMON_SOURCE} && -n ${NMON_MAKEFILE} ]]; then
 
     [ -f /etc/lsb-release ] && grep -w -s -q Ubuntu /etc/lsb-release && { make nmon_x86_ubuntu1604; mkdir -p /usr/local/bin; cp -pr nmon_x86_ubuntu1604 /usr/local/bin/nmon; }
 
-    compress_binary nmon-${NMON_VERSION}.txz /usr/local/bin/nmon
+    compress_binary nmon-${NMON_VERSION} /usr/local/bin/nmon
 else
     echo "Don't define variable nmon"
 fi

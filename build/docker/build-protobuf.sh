@@ -17,7 +17,7 @@ if [[ -n ${PROTOBUF_VERSION} && -n ${PROTOBUF_URL} && -n ${PROTOBUF_SRCDIR} ]]; 
         ./configure -q
         make -s -j $(nproc) install-strip
 
-        compress_binary protobuf-${PROTOBUF_VERSION}.txz /usr/local/bin/protoc
+        compress_binary protobuf-${PROTOBUF_VERSION} /usr/local/bin/protoc
     else
         echo "Fail to download protobuf"
     fi

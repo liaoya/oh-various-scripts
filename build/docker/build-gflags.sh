@@ -17,7 +17,7 @@ if [[ -n ${GFLAGS_VERSION} && -n ${GFLAGS_URL} && -n ${GFLAGS_SRCDIR} ]]; then
         cmake3 -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr/local ..
         make -s install/strip
 
-        compress_binary gflags-${GFLAGS_VERSION}.txz /usr/local/include/gflags/gflags.h
+        compress_binary gflags-${GFLAGS_VERSION} /usr/local/include/gflags/gflags.h
     else
         echo "Fail to download gflags"
     fi

@@ -18,7 +18,7 @@ if [[ -n ${MC_VERSION} && -n ${MC_URL} && -n ${MC_SRCDIR} ]]; then
         ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
         make -s -j $(nproc) install-strip
 
-        compress_binary mc-${MC_VERSION}.txz /usr/local/bin/mc
+        compress_binary mc-${MC_VERSION} /usr/local/bin/mc
     else
         echo "Fail to download mc"
     fi

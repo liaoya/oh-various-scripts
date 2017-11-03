@@ -19,7 +19,7 @@ if [[ -n ${GDB_VERSION} && -n ${GDB_URL} && -n ${GDB_SRCDIR} ]]; then
         make -s install
         for item in $(ls -1 /usr/local/bin/gdb*); do file $item | grep -q -s "not stripped" && strip -S $item; done
 
-        compress_binary gdb-${GDB_VERSION}.txz /usr/local/bin/gdb
+        compress_binary gdb-${GDB_VERSION} /usr/local/bin/gdb
     else
         echo "Fail to download gdb"
     fi

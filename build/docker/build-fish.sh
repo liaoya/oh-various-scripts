@@ -30,7 +30,7 @@ grep -s -q -w 'set PATH \$PATH /usr/local/sbin' $HOME/.config/fish/config.fish |
 EOF
         chmod a+x /usr/local/bin/installfish.sh
 
-        compress_binary fish-${FISH_VERSION}.txz /usr/local/bin/fish
+        compress_binary fish-${FISH_VERSION} /usr/local/bin/fish
     else
         echo "Fail to download fish"
     fi

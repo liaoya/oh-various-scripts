@@ -18,7 +18,7 @@ if [[ -n $AXEL_VERSION && -n $AXEL_URL && -n $AXEL_SRCDIR ]]; then
         make -s -j $(nproc)
         make -s install-strip
 
-        compress_binary axel-${AXEL_VERSION}.txz /usr/local/bin/axel
+        compress_binary axel-${AXEL_VERSION} /usr/local/bin/axel
     else
         echo "Fail to download silver searcher"
     fi

@@ -17,7 +17,7 @@ if [[ -n ${ZSH_VERSION} && -n ${ZSH_URL} && -n ${ZSH_SRCDIR} ]]; then
         make -s -j $(nproc) all
         make -s install-strip
 
-        compress_binary zsh-${ZSH_VERSION}.txz /usr/local/bin/zsh
+        compress_binary zsh-${ZSH_VERSION} /usr/local/bin/zsh
     else
         echo "Fail to download zsh"
     fi

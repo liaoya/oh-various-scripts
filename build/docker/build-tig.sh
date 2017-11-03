@@ -18,7 +18,7 @@ if [[ -n $TIG_VERSION && -n $TIG_URL && -n $TIG_SRCDIR ]]; then
         make -s -j $(nproc) all
         make -s -j $(nproc) strip
         make -s -j $(nproc) install
-        compress_binary tig-${TIG_VERSION}.txz /usr/local/bin/tig
+        compress_binary tig-${TIG_VERSION} /usr/local/bin/tig
     else
         echo "Fail to download tig"
     fi

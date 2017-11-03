@@ -34,7 +34,7 @@ RG_SHARE=/usr/local/share/ripgrep
 EOF
             chmod a+x /usr/local/bin/install-rg.sh
 
-            compress_binary ripgrep-${RIPGREP_VERSION}.txz /usr/local/bin/rg
+            compress_binary ripgrep-${RIPGREP_VERSION} /usr/local/bin/rg
         fi
 
     else

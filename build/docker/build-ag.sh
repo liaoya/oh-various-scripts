@@ -17,7 +17,7 @@ if [[ -n ${AG_VERSION} && -n ${AG_URL} && -n ${AG_SRCDIR} ]]; then
         ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
         make -s -j $(nproc) install-strip
 
-        compress_binary ag-${AG_VERSION}.txz /usr/local/bin/ag
+        compress_binary ag-${AG_VERSION} /usr/local/bin/ag
     else
         echo "Fail to download silver searcher"
     fi

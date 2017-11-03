@@ -48,9 +48,9 @@ export EMACS_VERSION=25.3
 export EMACS_URL=http://ftpmirror.gnu.org/gnu/emacs/emacs-${EMACS_VERSION}.tar.xz
 export EMACS_SRCDIR=emacs-${EMACS_VERSION}
 export EMACS_CENTOS_DEPS="GConf2-devel dbus-devel giflib-devel gnutls-devel gtk3-devel gpm-devel \
-  libX11-devel libXpm-devel libacl-devel libjpeg-turbo-devel libotf-devel librsvg2-devel libtiff-devel \
-  libselinux-devel libxml2-devel m17n-lib-devel ncurses-devel \
-  openjpeg-devel openjpeg2-devel turbojpeg-devel wxGTK-devel wxGTK3-devel"
+    libX11-devel libXpm-devel libacl-devel libjpeg-turbo-devel libotf-devel librsvg2-devel libtiff-devel \
+    libselinux-devel libxml2-devel m17n-lib-devel ncurses-devel \
+    openjpeg-devel openjpeg2-devel turbojpeg-devel wxGTK-devel wxGTK3-devel"
 export EMACS_UBUNTU_DEPS="libncurses-dev libevent-dev"
 
 export FISH_VERSION=2.6.0
@@ -94,11 +94,11 @@ export GNUPLOT_VERSION=5.2.0
 export GNUPLOT_URL=https://sourceforge.net/projects/gnuplot/files/gnuplot/${GNUPLOT_VERSION}/gnuplot-${GNUPLOT_VERSION}.tar.gz
 export GNUPLOT_SRCDIR=gnuplot-${GNUPLOT_VERSION}
 export GNUPLOT_CENTOS_DEPS="atk-devel cairo-devel expat-devel gtk2-devel \
-  libacl-devel libjpeg-turbo-devel libpng-devel libtiff-devel \
-  pcre-devel pango-devel wxGTK-devel zlib-devel"
+    libacl-devel libjpeg-turbo-devel libpng-devel libtiff-devel \
+    pcre-devel pango-devel wxGTK-devel zlib-devel"
 export GNUPLOT_UBUNTU_DEPS="libatk1.0-dev libcairo2-dev libexpat1-dev libgtk2.0-dev \
-  libacl1-dev libjpeg-dev libjpeg-turbo8-dev libpng-dev libtiff5-dev \
-  libcerf-dev libpcre2-dev libpcre3-dev zlib1g-dev libcerf-dev libgd-dev"
+    libacl1-dev libjpeg-dev libjpeg-turbo8-dev libpng-dev libtiff5-dev \
+    libcerf-dev libpcre2-dev libpcre3-dev zlib1g-dev libcerf-dev libgd-dev"
 
 export GOOGLETEST_VERSION=2.2.1
 export GOOGLETEST_URL=https://github.com/google/googletest/archive/${GOOGLETEST_VERSION}.tar.gz
@@ -146,6 +146,9 @@ export LFTP_CENTOS_DEPS="ncurses-devel readline-devel gnutls-devel zlib-devel li
 export LFTP_UBUNTU_DEPS="libncurses-dev libreadline-dev libgnutls28-dev zlib1g-dev libidn2-dev"
 
 export LLVM_VERSION=5.0.0
+export LLVM_CENTOS_DEPS="cmake3"
+export LLVM_FEDORA_DEPS="cmake"
+export LLVM_UBUNTU_DEPS="cmake"
 
 export MC_VERSION=4.8.19
 export MC_URL=http://ftp.midnight-commander.org/mc-${MC_VERSION}.tar.xz
@@ -176,6 +179,11 @@ export NMON_UBUNTU_DEPS="libncurses-dev"
 
 export OVS_VERSION=2.8.1
 export OVS_URL=http://openvswitch.org/releases/openvswitch-${OVS_VERSION}.tar.gz
+export OVS_SRCDIR=openvswitch-${OVS_VERSION}
+export OVS_CENTOS_DEPS="rpm-build systemd-units openssl openssl-devel \
+    python2-devel python-six groff python-sphinx python-twisted-core python-zope-interface \
+    desktop-file-utils groff graphviz procps-ng checkpolicy selinux-policy-devel \
+    libcap-ng libcap-ng-devel"
 
 export PROTOBUF_VERSION=3.4.1
 export PROTOBUF_URL=https://github.com/google/protobuf/archive/v${PROTOBUF_VERSION}.tar.gz
@@ -228,12 +236,12 @@ export VIM_URL=https://github.com/vim/vim/archive/v${VIM_VERSION}.tar.gz
 export VIM_ARCHIVE_NAME=vim-${VIM_VERSION}.tar.gz
 export VIM_SRCDIR=vim-${VIM_VERSION}
 export VIM_CENTOS_DEPS="ncurses-devel ctags git libacl-devel cscope \
-  ruby ruby-devel lua lua-devel luajit luajit-devel python python-devel python3 python3-devel tcl-devel perl perl-devel \
-  perl-ExtUtils-ParseXS perl-ExtUtils-XSpp perl-ExtUtils-CBuilder perl-ExtUtils-Embed \
-  gtk2-devel gtk3-devel"
+    ruby ruby-devel lua lua-devel luajit luajit-devel python python-devel python3 python3-devel tcl-devel perl perl-devel \
+    perl-ExtUtils-ParseXS perl-ExtUtils-XSpp perl-ExtUtils-CBuilder perl-ExtUtils-Embed \
+    gtk2-devel gtk3-devel"
 export VIM_UBUNTU_DEPS="libncurses-dev exuberant-ctags git libacl1-dev cscope \
-  ruby ruby-dev lua lua-dev python python-dev python3 python3-dev tcl-dev perl perl-dev \
-  libgtk2.0-dev"
+    ruby ruby-dev lua lua-dev python python-dev python3 python3-dev tcl-dev perl perl-dev \
+    libgtk2.0-dev"
 
 # Fail to build on Ubuntu 17.04 with gcc 7.2
 export UCG_VERSION=0.3.3
@@ -256,7 +264,21 @@ compress_binary() {
     [[ $# -lt 2 ]] && { echo "compress_binary <compress file name> <check file>"; exit 1; }
     local output=$HOME/$1
     [[ -n $OUTPUT ]] && output=$OUTPUT/$1
-    [[ -f $2 ]] && { echo "Generate $output"; tar -C /usr/local -Jcf $output .; }
+    if [[ -f $2 ]]; then
+        if [[ $(command -v pxz) ]]; then
+            echo "Generate ${output}.txz"; tar -I pxz -C /usr/local -cf ${output}.txz .
+        elif [[ $(command -v pxz) ]]; then
+            echo "Generate ${output}.txz"; tar -C /usr/local -Jcf ${output}.txz .
+        elif [[ $(command -v lbzip2) ]]; then
+            echo "Generate ${output}.tbz"; tar -I lbzip2 -C /usr/local -cf ${output}.tbz .
+        elif [[ $(command -v bzip2) ]]; then
+            echo "Generate ${output}.tbz"; tar -C /usr/local -jcf ${output}.tbz .
+        elif [[ $(command -v pigz) ]]; then
+            echo "Generate ${output}.tgz"; tar -I pigz -C /usr/local -cf ${output}.tgz .
+        else
+            echo "Generate ${output}.tgz"; tar -C /usr/local -zcf ${output}.tgz .
+        fi
+    fi
 }
 
 download_source() {

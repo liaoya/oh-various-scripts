@@ -20,7 +20,7 @@ if [[ -n ${NINJA_VERSION} && -n ${NINJA_URL} && -n ${NINJA_SRCDIR} ]]; then
         mkdir -p /usr/local/bin
         cp -pr ninja /usr/local/bin
 
-        compress_binary ninja-${NINJA_VERSION}.txz /usr/local/bin/ninja
+        compress_binary ninja-${NINJA_VERSION} /usr/local/bin/ninja
     else
         echo "Fail to download ninja"
     fi

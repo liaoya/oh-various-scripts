@@ -42,7 +42,7 @@ grep -s -q "set-option -g history-limit 10000" $HOME/.tmux.conf || echo "set-opt
 EOF
         chmod a+x /usr/local/bin/install-tmux
 
-        compress_binary tmux-${TMUX_VERSION}.txz /usr/local/bin/tmux
+        compress_binary tmux-${TMUX_VERSION} /usr/local/bin/tmux
     else
         echo "Fail to download tmux"
     fi

@@ -21,7 +21,7 @@ if [[ -n ${CODELITE_VERSION} && -n ${CODELITE_URL} && -n ${CODELITE_SRCDIR} ]]; 
 
         [ -f /usr/bin/wx-config.origin ] && mv -f /usr/bin/wx-config.origin /usr/bin/wx-config
 
-        compress_binary codelite-${CODELITE_VERSION}.txz /usr/local/bin/codelite
+        compress_binary codelite-${CODELITE_VERSION} /usr/local/bin/codelite
     else
         echo "Fail to download codelite"
     fi
