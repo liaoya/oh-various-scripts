@@ -5,7 +5,6 @@ Docker is used to build most of the softwares, but some software need virtual ma
 - Emacs
 - OpenvSwitch
 
-
 ## Proxy
 
 ### CentOS
@@ -28,7 +27,7 @@ sed -i -e "s/^metalink/#&/g" -e "s/^mirrorlist/#&/g" -e "s%^#baseurl=http://down
 ### Fedora
 
 ```shell
-sed -i "/^installonly_limit/i proxy=http://10.113.69.79:3128" /etc/dnf/dnf.conf
+sed -i "/^installonly_limit/i proxy=http://10.113.69.101:3128" /etc/dnf/dnf.conf
 sed -i "/^installonly_limit/i deltarpm=0" /etc/dnf/dnf.conf
 
 for item in $(ls -1 /etc/yum.repos.d/fedora*.repo); do [ -f ${item}.origin ] || cp ${item} ${item}.origin; done

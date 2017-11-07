@@ -1,22 +1,30 @@
 #!/bin/sh
 
-sudo apt-get update -qq
+if [ -f ../env.sh ]; then
+    source ../env.sh
+else
+    echo "Can't import common functions and variables"
+    exit 1
+fi
 
-sudo apt-get install -qy build-essential fakeroot git graphviz autoconf automake bzip2 \
-    debhelper dh-autoreconf libssl-dev libtool openssl procps \
-    python-all python-qt4 python-twisted-conch python-zopeinterface python-six libcap-ng-dev
+if [[ -n ${OVS_VERSION} && -n ${OVS_URL} && -n ${OVS_SRCDIR} ]]; then
+    prepare_build "OVS"
 
-OVS_URL=http://openvswitch.org/releases/openvswitch-2.8.1.tar.gz
-[ -d ~/$(basename $OVS_URL .tar.gz) ] && rm -fr ~/$(basename $OVS_URL .tar.gz)
-cOVS_URL -s -L $OVS_URL | tar -xz -C ~/
-cd ~/$(basename $OVS_URL .tar.gz)
-dpkg-checkbuilddeps
-DEB_BUILD_OPTIONS="parallel=${NUM_CPUS} nocheck" fakeroot debian/rules binary
-cp -pr ../*.deb /vagrant
+    if [ -d $HOME/${OVS_SRCDIR} ]; then
+        clear_usrlocal
+        cd $HOME/${OVS_SRCDIR}
+        dpkg-checkbuilddeps
+        DEB_BUILD_OPTIONS="parallel=${NUM_CPUS} nocheck" fakeroot debian/rules binary
+        (dpkg -i $HOME/openvswitch-datapath-source_2*_all.deb && \
+            m-a --text-mode prepare && \
+            m-a --text-mode build openvswitch-datapath) ||
+            { echo >&2 "Unable to build kernel modules"; exit 1; }
 
-sudo apt-get install -qy module-assistant
-(sudo dpkg -i ~/openvswitch-datapath-source_2*_all.deb && \
-    sudo m-a --text-mode prepare && \
-    sudo m-a --text-mode build openvswitch-datapath) ||
-    { echo >&2 "Unable to build kernel modules"; exit 1; }
-cp -v /usr/src/openvswitch-datapath-module-*.deb /vagrant
+        cp -pr /usr/src/openvswitch-datapath-module-*.deb $HOME/
+        [[ -n $OUTPUT && -d $OUTPUT ]] && mv $HOME/*.deb $OUTPUT/
+    else
+        echo "Fail to download zsh"
+    fi
+else
+    echo "Don't define variable zsh"
+fi

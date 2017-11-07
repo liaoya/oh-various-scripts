@@ -24,10 +24,10 @@ if [[ -n ${OVS_VERSION} && -n ${OVS_URL} && -n ${OVS_SRCDIR} ]]; then
             find rpm/rpmbuild/RPMS -iname "*.rpm" -exec cp "{}" $HOME/ \;
         fi
     else
-        echo "Fail to download zsh"
+        echo "Fail to download ovs"
     fi
 else
-    echo "Don't define variable zsh"
+    echo "Don't define variable ovs"
 fi
 
 

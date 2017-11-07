@@ -16,7 +16,7 @@ if [[ -n ${NMON_VERSION} && -n ${NMON_SOURCE} && -n ${NMON_MAKEFILE} ]]; then
 
     if [ -f /etc/redhat-release ]; then
         if [[ -f /etc/fedora-release ]]; then
-            make nmon_x86_fedora25; mkdir -p /usr/local/bin; cp -pr nmon_x86_fedora25 /usr/local/bin/
+            make nmon_x86_fedora25; mkdir -p /usr/local/bin; cp -pr nmon_x86_fedora25 /usr/local/bin/nmon
         else
             releasever=$(python -c 'import yum; yb = yum.YumBase(); print yb.conf.yumvar["releasever"]' | tail -n 1)
             [[ $releasever == "7" ]] && { make nmon_x86_rhel70; mkdir -p /usr/local/bin; cp -pr nmon_x86_rhel70 /usr/local/bin/nmon; }

@@ -13,7 +13,7 @@ if [[ -n $TMUX_VERSION && -n $TMUX_URL && -n $TMUX_SRCDIR ]]; then
     if [ -d $HOME/$TMUX_SRCDIR ]; then
         clear_usrlocal
 
-        if [ -f /etc/redhat-release ]; then
+        if [[ -f /etc/redhat-release && ! -f /etc/fedora-release ]]; then
             releasever=$(python -c 'import yum; yb = yum.YumBase(); print yb.conf.yumvar["releasever"]' | tail -n 1)
             if [ $releasever == "6" ]; then
                 LIBEVENT_VERSION=2.0.22

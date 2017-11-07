@@ -3,6 +3,7 @@
 export SILENCE=1
 
 export CENTOS_DEPS="wget autoconf automake libtool gcc gcc-c++ make file which pxz pigz lbzip2 unzip bzip2 xz p7zip openssh-clients"
+export FEDORA_DEPS="wget autoconf automake libtool gcc gcc-c++ make file which pxz pigz lbzip2 unzip bzip2 xz p7zip openssh-clients"
 export UBUNTU_DEPS="lsb-release curl wget less file pxz pigz lbzip2 unzip bzip2 xz-utils p7zip-full openssh-client sshpass build-essential fakeroot pkg-config autoconf libtool"
 
 export AG_VERSION=2.1.0
@@ -154,7 +155,8 @@ export MC_VERSION=4.8.19
 export MC_URL=http://ftp.midnight-commander.org/mc-${MC_VERSION}.tar.xz
 export MC_SRCDIR=mc-${MC_VERSION}
 export MC_CENTOS_DEPS="ncurses-devel glib2-devel slang-devel gpm-devel libssh2-devel openssl-libs-devel zlib-devel krb5-libs-devel libcom_err-devel keyutils-libs-devel pcre-devel libselinux-devel doxygen"
-export MC_UBUNTU_DEPS="libncurses-dev"
+export MC_FEDORA_DEPS=""
+export MC_UBUNTU_DEPS="libncurses-dev libglib2.0-dev"
 
 export NANO_MAJOR_VERSION=2.8
 export NANO_MINOR_VERSION=7
@@ -184,6 +186,8 @@ export OVS_CENTOS_DEPS="rpm-build systemd-units openssl openssl-devel \
     python2-devel python-six groff python-sphinx python-twisted-core python-zope-interface \
     desktop-file-utils groff graphviz procps-ng checkpolicy selinux-policy-devel \
     libcap-ng libcap-ng-devel"
+export OVS_UBUNTU_DEPS="module-assistant debhelper dh-autoreconf libssl-dev libtool openssl procps \
+    python-all python-qt4 python-twisted-conch python-zopeinterface python-six libcap-ng-dev"
 
 export PROTOBUF_VERSION=3.4.1
 export PROTOBUF_URL=https://github.com/google/protobuf/archive/v${PROTOBUF_VERSION}.tar.gz
@@ -231,7 +235,7 @@ export TMUX_SRCDIR=tmux-${TMUX_VERSION}
 export TMUX_CENTOS_DEPS="ncurses-devel libevent-devel"
 export TMUX_UBUNTU_DEPS="libncurses-dev libevent-dev"
 
-export VIM_VERSION=8.0.1240
+export VIM_VERSION=8.0.1257
 export VIM_URL=https://github.com/vim/vim/archive/v${VIM_VERSION}.tar.gz
 export VIM_ARCHIVE_NAME=vim-${VIM_VERSION}.tar.gz
 export VIM_SRCDIR=vim-${VIM_VERSION}
@@ -310,8 +314,18 @@ install_centos_deps() {
 install_fedora_deps() {
     releasever=$(python -c 'import dnf; print(dnf.Base().conf.releasever)' | tail -n 1)
 
-    if [[ -n $FEDORA_DEPS ]]; then dnf install -y -q $FEDORA_DEPS; fi
-
+    if [[ -n $FEDORA_DEPS ]]; then echo "Install FEDORA_DEPS \"$FEDORA_DEPS\""; dnf install -y -q $FEDORA_DEPS >/dev/null 2>&1; fi
+    deps=$1_FEDORA_DEPS
+    if [[ -n ${!deps} ]]; then
+        echo Install $deps \"${!deps}\"
+        dnf install -y -q ${!deps} >/dev/null 2>&1
+    else
+        deps=$1_CENTOS_DEPS
+        if [[ -n ${!deps} ]]; then
+            echo Install $deps \"${!deps}\"
+            dnf install -y -q ${!deps} >/dev/null 2>&1
+        fi
+    fi
 }
 
 install_oraclelinux_deps() {
@@ -338,7 +352,7 @@ install_ubuntu_deps() {
 
 install_deps() {
     [ -f /etc/centos-release ] && echo "build $1 for centos" && install_centos_deps $1
-    [ -f /etc/fedora-relase ] && echo "build $1 for fedora" && install_fedora_deps $1
+    [ -f /etc/fedora-release ] && echo "build $1 for fedora" && install_fedora_deps $1
     [ -f /etc/oracle-release ] && echo "build $1 for oracle" && install_oraclelinux_deps $1
     [ -f /etc/lsb-release ] && grep -w -s -q Ubuntu /etc/lsb-release && echo "build $1 for ubuntu" && install_ubuntu_deps $1
 }
