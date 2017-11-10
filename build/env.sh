@@ -3,7 +3,7 @@
 export SILENCE=1
 
 export CENTOS_DEPS="wget autoconf automake libtool gcc gcc-c++ make file which pxz pigz lbzip2 unzip bzip2 xz p7zip openssh-clients"
-export FEDORA_DEPS="wget autoconf automake libtool gcc gcc-c++ make file which pxz pigz lbzip2 unzip bzip2 xz p7zip openssh-clients"
+export FEDORA_DEPS="wget autoconf automake libtool gcc gcc-c++ make file which pxz pigz lbzip2 unzip bzip2 xz p7zip openssh-clients python2-dnf"
 export UBUNTU_DEPS="lsb-release curl wget less file pxz pigz lbzip2 unzip bzip2 xz-utils p7zip-full openssh-client sshpass build-essential fakeroot pkg-config autoconf libtool"
 
 export AG_VERSION=2.1.0
@@ -229,6 +229,13 @@ export TIG_SRCDIR=tig-tig-${TIG_VERSION}
 export TIG_CENTOS_DEPS="ncurses-devel"
 export TIG_UBUNTU_DEPS="libncurses-dev"
 
+export TMATE_VERSION=2.2.1
+export TMATE_URL=https://github.com/tmate-io/tmate/archive/${TMATE_VERSION}.tar.gz
+export TMATE_ARCHIVE_NAME=tmate-${TMATE_VERSION}.tar.gz
+export TMATE_SRCDIR=tmate-${TMATE_VERSION}
+export TMATE_CENTOS_DEPS="ncurses-devel libevent-devel msgpack-devel libssh-devel libssh2-devel"
+export TMATE_UBUNTU_DEPS="libncurses-dev libevent-dev"
+
 export TMUX_VERSION=2.6
 export TMUX_URL=https://github.com/tmux/tmux/releases/download/2.6/tmux-${TMUX_VERSION}.tar.gz
 export TMUX_SRCDIR=tmux-${TMUX_VERSION}
@@ -351,9 +358,12 @@ install_ubuntu_deps() {
 }
 
 install_deps() {
-    [ -f /etc/centos-release ] && echo "build $1 for centos" && install_centos_deps $1
-    [ -f /etc/fedora-release ] && echo "build $1 for fedora" && install_fedora_deps $1
-    [ -f /etc/oracle-release ] && echo "build $1 for oracle" && install_oraclelinux_deps $1
+    if [ -f /etc/redhat-release ]; then
+        distro=$(rpm -qf --queryformat '%{NAME}' /etc/redhat-release | cut -f 1 -d '-')
+        [ $distro == "centos" ] && echo "build $1 for $distro" && install_centos_deps $1
+        [ $distro == "fedora" ] && echo "build $1 for $distro" && install_fedora_deps $1
+        [ $distro == "oraclelinux" ] && echo "build $1 for $distro" && install_oraclelinux_deps $1
+    fi
     [ -f /etc/lsb-release ] && grep -w -s -q Ubuntu /etc/lsb-release && echo "build $1 for ubuntu" && install_ubuntu_deps $1
 }
 

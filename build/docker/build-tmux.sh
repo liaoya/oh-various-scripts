@@ -25,7 +25,7 @@ if [[ -n $TMUX_VERSION && -n $TMUX_URL && -n $TMUX_SRCDIR ]]; then
             fi
         fi
 
-        cd $HOME/tmux-${TMUX_VERSION}
+        cd $HOME/$TMUX_SRCDIR
         ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
         make -s -j $(nproc) install-strip
         cat <<EOF > /usr/local/bin/install-tmux
