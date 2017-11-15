@@ -28,19 +28,25 @@ if [[ -n $TMUX_VERSION && -n $TMUX_URL && -n $TMUX_SRCDIR ]]; then
         cd $HOME/$TMUX_SRCDIR
         ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
         make -s -j $(nproc) install-strip
-        cat <<EOF > /usr/local/bin/install-tmux
+# https://stackoverflow.com/questions/27920806/how-to-avoid-heredoc-expanding-variables
+        cat <<'EOF' > /usr/local/bin/install-tmux.sh
 #!/bin/sh
 if [ $UID -eq 0 ]; then
     [ -f /etc/ld.so.conf.d/usr-local.conf ] || touch /etc/ld.so.conf.d/usr-local.conf
     grep -s -q -w "/usr/local/lib" /etc/ld.so.conf.d/usr-local.conf || echo "/usr/local/lib" >> /etc/ld.so.conf.d/usr-local.conf
     grep -s -q -w "/usr/local/lib64" /etc/ld.so.conf.d/usr-local.conf || echo "/usr/local/lib64" >> /etc/ld.so.conf.d/usr-local.conf
     ldconfig
+    [[ -n $SYSCONFDIR ]] || SYSCONFDIR="/etc"
+    CONF=$SYSCONFDIR/tmux.conf
+else
+    CONF=$HOME/.tmux.conf
 fi
-[ -f $HOME/.tmux.conf ] || touch ~/.tmux.conf
-grep -s -q "set-option -g allow-rename off" $HOME/.tmux.conf || echo "set-option -g allow-rename off" >> ~/.tmux.conf
-grep -s -q "set-option -g history-limit 10000" $HOME/.tmux.conf || echo "set-option -g history-limit 10000" >> ~/.tmux.conf
+
+[ -f $CONF ] || touch $CONF
+grep -s -q "set-option -g allow-rename off" $CONF || echo "set-option -g allow-rename off" >> $CONF
+grep -s -q "set-option -g history-limit 10000" $CONF || echo "set-option -g history-limit 10000" >> $CONF
 EOF
-        chmod a+x /usr/local/bin/install-tmux
+        chmod a+x /usr/local/bin/install-tmux.sh
 
         compress_binary tmux-${TMUX_VERSION} /usr/local/bin/tmux
     else

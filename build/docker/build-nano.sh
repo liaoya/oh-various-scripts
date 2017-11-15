@@ -15,12 +15,20 @@ if [[ -n ${NANO_VERSION} && -n ${NANO_URL} && -n ${NANO_SRCDIR} ]]; then
         cd $HOME/${NANO_SRCDIR}
         ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
         make -s -j $(nproc) install-strip
-        cat <<EOF >>/usr/local/bin/install-nano
+        cat <<'EOF' >/usr/local/bin/install-nano.sh
 #!/bin/sh
-[ -f $HOME/.nanorc ] && sed -i "/\/usr\/local\/share\/nano/d" ~/.nanorc
-for item in \$(ls -1 /usr/local/share/nano/*.nanorc); do echo "include \$item" >> $HOME/.nanorc; done
+if [ $UID -eq 0 ]; then
+    [[ -n $SYSCONFDIR ]] || SYSCONFDIR="/etc"
+    CONF=$SYSCONFDIR/nanorc
+else
+    CONF=$HOME/.nanorc
+fi
+
+[ -f $CONF ] || touch $CONF
+sed -i "/\/usr\/local\/share\/nano/d" $SYSCONFDIR/nanorc || true
+for item in \$(ls -1 /usr/local/share/nano/*.nanorc); do echo "include \$item" >> $SYSCONFDIR/nanorc; done
 EOF
-        chmod a+x /usr/local/bin/install-nano
+        chmod a+x /usr/local/bin/install-nano.sh
 
         compress_binary nano-${NANO_VERSION} /usr/local/bin/nano
     else

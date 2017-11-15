@@ -22,10 +22,10 @@ if [[ -n ${RIPGREP_VERSION} && -n ${RIPGREP_URL} && -n ${RIPGREP_SRCDIR} ]]; the
             cp target/release/rg /usr/local/bin
             mkdir -p /usr/local/share/ripgrep
             for name in "rg.bash-completion" "rg.fish" "_rg"; do find . -name $name -exec cp -pr "{}" /usr/local/share/ripgrep \; ; done
-            cat <<EOF > /usr/local/bin/install-rg.sh
+            cat <<'EOF' > /usr/local/bin/install-rg.sh
 #!/bin/bash
 RG_SHARE=/usr/local/share/ripgrep
-[[ $UID -eq 0 && -f $RG_SHARE/rg.bash-completion  && -d /etc/bash_completion.d ]] && cp -pr $RG_SHARE/rg.bash-completion /etc/bash_completion.d
+[[ $UID -eq 0 && -f $RG_SHARE/rg.bash-completion && -d /etc/bash_completion.d ]] && cp -pr $RG_SHARE/rg.bash-completion /etc/bash_completion.d
 [[ -n $XDG_CONFIG_HOME ]] || export XDG_CONFIG_HOME=$HOME/.config
 [[ ! -f /etc/bash_completion.d/rg.bash-completion ]] && { mkdir -p $XDG_CONFIG_HOME/bash_completion; cp -pr $RG_SHARE/rg.bash-completion $XDG_CONFIG_HOME/bash_completion; }
 [[ -d $HOME/.config/fish/completions ]] || mkdir -p $HOME/.config/fish/completions
