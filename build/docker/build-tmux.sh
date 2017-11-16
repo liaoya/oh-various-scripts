@@ -16,8 +16,10 @@ if [[ -n $TMUX_VERSION && -n $TMUX_URL && -n $TMUX_SRCDIR ]]; then
         if [[ -f /etc/redhat-release && ! -f /etc/fedora-release ]]; then
             releasever=$(python -c 'import yum; yb = yum.YumBase(); print yb.conf.yumvar["releasever"]' | tail -n 1)
             if [ $releasever == "6" ]; then
-                LIBEVENT_VERSION=2.0.22
-                curl -L https://github.com/libevent/libevent/releases/download/release-${LIBEVENT_VERSION}-stable/libevent-${LIBEVENT_VERSION}-stable.tar.gz | tar -xz -C ~
+                LIBEVENT_VERSION=2.1.8
+                download_source https://github.com/libevent/libevent/releases/download/release-${LIBEVENT_VERSION}-stable/libevent-${LIBEVENT_VERSION}-stable.tar.gz
+                [ -d $HOME/libevent-${LIBEVENT_VERSION}-stable ] && rm -fr $HOME/libevent-${LIBEVENT_VERSION}-stable
+                tar -C $HOME -xf $HOME/libevent-${LIBEVENT_VERSION}-stable.tar.gz
                 cd $HOME/libevent-${LIBEVENT_VERSION}-stable
                 ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
                 make -s -j $(nproc) all

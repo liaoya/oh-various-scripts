@@ -240,6 +240,7 @@ export TMUX_VERSION=2.6
 export TMUX_URL=https://github.com/tmux/tmux/releases/download/2.6/tmux-${TMUX_VERSION}.tar.gz
 export TMUX_SRCDIR=tmux-${TMUX_VERSION}
 export TMUX_CENTOS_DEPS="ncurses-devel libevent-devel"
+export TMUX_CENTOS6_DEPS="ncurses-devel libevent2-devel"
 export TMUX_UBUNTU_DEPS="libncurses-dev libevent-dev"
 
 export VIM_VERSION=8.0.1272
