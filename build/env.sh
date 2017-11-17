@@ -320,7 +320,7 @@ install_centos_deps() {
 }
 
 install_fedora_deps() {
-    releasever=$(python -c 'import dnf; print(dnf.Base().conf.releasever)' | tail -n 1)
+    # releasever=$(python -c 'import dnf; print(dnf.Base().conf.releasever)' | tail -n 1)
 
     if [[ -n $FEDORA_DEPS ]]; then echo "Install FEDORA_DEPS \"$FEDORA_DEPS\""; dnf install -y -q $FEDORA_DEPS >/dev/null 2>&1; fi
     deps=$1_FEDORA_DEPS

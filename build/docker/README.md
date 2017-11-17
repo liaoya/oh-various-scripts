@@ -31,6 +31,12 @@ SCRIPT=/work/build
 docker run -it --rm -h fedora26 --name fedora26 -v $OUTPUT:/root/output -v $SCRIPT:/root/script -e "OUTPUT=/root/output" -e "SCRIPT=/root/script" -e "http_proxy=$http_proxy"  -e "https_proxy=$http_proxy" -e "ftp_proxy=$http_proxy" -e "no_proxy=$no_proxy" -e 'PKG_CONFIG_PATH=/usr/local/lib/pkgconfig' -e 'LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib64' fedora:26 /bin/bash
 ```
 
+```shell
+OUTPUT=/var/www/html/saas/binary/fedora27
+SCRIPT=/work/build
+docker run -it --rm -h fedora27 --name fedora27 -v $OUTPUT:/root/output -v $SCRIPT:/root/script -e "OUTPUT=/root/output" -e "SCRIPT=/root/script" -e "http_proxy=$http_proxy"  -e "https_proxy=$http_proxy" -e "ftp_proxy=$http_proxy" -e "no_proxy=$no_proxy" -e 'PKG_CONFIG_PATH=/usr/local/lib/pkgconfig' -e 'LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib64' fedora:27 /bin/bash
+```
+
 ## Ubuntu
 
 ### Xenial (16.04)
