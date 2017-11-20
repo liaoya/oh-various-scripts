@@ -166,7 +166,7 @@ export NANO_SRCDIR=nano-${NANO_VERSION}
 export NANO_CENTOS_DEPS="ncurses-devel zlib-devel"
 export NANO_UBUNTU_DEPS="libncurses-dev zlib1g-dev"
 
-export NINJA_VERSION=0.7.1
+export NINJA_VERSION=1.8.2
 export NINJA_URL=https://github.com/ninja-build/ninja/archive/v${NINJA_VERSION}.tar.gz
 export NINJA_ARCHIVE_NAME=ninja-${NINJA_VERSION}.tar.gz
 export NINJA_SRCDIR=ninja-${NINJA_VERSION}
@@ -243,7 +243,7 @@ export TMUX_CENTOS_DEPS="ncurses-devel libevent-devel"
 export TMUX_CENTOS6_DEPS="ncurses-devel libevent2-devel"
 export TMUX_UBUNTU_DEPS="libncurses-dev libevent-dev"
 
-export VIM_VERSION=8.0.1272
+export VIM_VERSION=8.0.1305
 export VIM_URL=https://github.com/vim/vim/archive/v${VIM_VERSION}.tar.gz
 export VIM_ARCHIVE_NAME=vim-${VIM_VERSION}.tar.gz
 export VIM_SRCDIR=vim-${VIM_VERSION}
