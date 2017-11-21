@@ -155,7 +155,7 @@ export MC_VERSION=4.8.19
 export MC_URL=http://ftp.midnight-commander.org/mc-${MC_VERSION}.tar.xz
 export MC_SRCDIR=mc-${MC_VERSION}
 export MC_CENTOS_DEPS="ncurses-devel glib2-devel slang-devel gpm-devel libssh2-devel openssl-libs-devel zlib-devel krb5-libs-devel libcom_err-devel keyutils-libs-devel pcre-devel libselinux-devel doxygen"
-export MC_FEDORA_DEPS=""
+export MC_FEDORA_DEPS="glib2-devel slang-devel"
 export MC_UBUNTU_DEPS="libncurses-dev libglib2.0-dev"
 
 export NANO_MAJOR_VERSION=2.8
