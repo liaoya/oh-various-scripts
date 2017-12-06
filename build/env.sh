@@ -39,7 +39,7 @@ export CODELITE_SRCDIR=codelite-${CODELITE_VERSION}
 export CODELITE_CENTOS_DEPS="wxGTK3-devel cmake sqlite-devel libssh-devel clang-devel hunspell-devel lldb-devel flex-devel"
 export CODELITE_UBUNTU_DEPS=""
 
-export CURL_VERSION=7.56.1
+export CURL_VERSION=7.57.0
 export CURL_URL=https://curl.haxx.se/download/curl-${CURL_VERSION}.tar.bz2
 export CURL_SRCDIR=curl-${CURL_VERSION}
 export CURL_CENTOS_DEPS="openssl-devel gnutls-devel nss-devel libssh2-devel zlib-devel c-ares-devel libidn2-devel libnghttp2-devel libpsl-devel libmetalink-devel openldap-devel"
@@ -54,7 +54,7 @@ export EMACS_CENTOS_DEPS="GConf2-devel dbus-devel giflib-devel gnutls-devel gtk3
     openjpeg-devel openjpeg2-devel turbojpeg-devel wxGTK-devel wxGTK3-devel"
 export EMACS_UBUNTU_DEPS="libncurses-dev libevent-dev"
 
-export FISH_VERSION=2.6.0
+export FISH_VERSION=2.7.0
 export FISH_URL=https://github.com/fish-shell/fish-shell/releases/download/${FISH_VERSION}/fish-${FISH_VERSION}.tar.gz
 export FISH_SRCDIR=fish-${FISH_VERSION}
 export FISH_CENTOS_DEPS="ncurses-devel pcre2-devel"
@@ -72,7 +72,7 @@ export GDB_SRCDIR=gdb-${GDB_VERSION}
 export GDB_CENTOS_DEPS="bison flex expect texinfo"
 export GDB_UBUNTU_DEPS=""
 
-export GIT_VERSION=2.15.0
+export GIT_VERSION=2.15.1
 export GIT_URL=https://www.kernel.org/pub/software/scm/git/git-${GIT_VERSION}.tar.xz
 export GIT_SRCDIR=git-${GIT_VERSION}
 export GIT_CENTOS_DEPS="curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel asciidoc xmlto docbook2X"
@@ -151,7 +151,7 @@ export LLVM_CENTOS_DEPS="cmake3"
 export LLVM_FEDORA_DEPS="cmake"
 export LLVM_UBUNTU_DEPS="cmake"
 
-export MC_VERSION=4.8.19
+export MC_VERSION=4.8.20
 export MC_URL=http://ftp.midnight-commander.org/mc-${MC_VERSION}.tar.xz
 export MC_SRCDIR=mc-${MC_VERSION}
 export MC_CENTOS_DEPS="ncurses-devel glib2-devel slang-devel gpm-devel libssh2-devel openssl-libs-devel zlib-devel krb5-libs-devel libcom_err-devel keyutils-libs-devel pcre-devel libselinux-devel doxygen"
