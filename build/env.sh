@@ -26,7 +26,7 @@ export BASH_SRCDIR=bash-${BASH_VERSION}
 export BASH_CENTOS_DEPS="ncurses-devel"
 export BASH_UBUNTU_DEPS="libncurses-dev"
 
-export BOOST_VERSION=1.65.1
+export BOOST_VERSION=1.66
 export BOOST_URL=https://dl.bintray.com/boostorg/release/${BOOST_VERSION}/source/boost_$(echo $BOOST_VERSION | sed -e 's%\.%_%g').7z
 export BOOST_SRCDIR=boost_$(echo $BOOST_VERSION | sed -e 's%\.%_%g')
 export BOOST_CENTOS_DEPS="zlib-devel bzip2-devel libicu-devel python-devel openmpi-devel xz-devel"
@@ -39,7 +39,7 @@ export CODELITE_SRCDIR=codelite-${CODELITE_VERSION}
 export CODELITE_CENTOS_DEPS="wxGTK3-devel cmake sqlite-devel libssh-devel clang-devel hunspell-devel lldb-devel flex-devel"
 export CODELITE_UBUNTU_DEPS=""
 
-export CURL_VERSION=7.57.0
+export CURL_VERSION=7.58.0
 export CURL_URL=https://curl.haxx.se/download/curl-${CURL_VERSION}.tar.bz2
 export CURL_SRCDIR=curl-${CURL_VERSION}
 export CURL_CENTOS_DEPS="openssl-devel gnutls-devel nss-devel libssh2-devel zlib-devel c-ares-devel libidn2-devel libnghttp2-devel libpsl-devel libmetalink-devel openldap-devel"
@@ -72,7 +72,7 @@ export GDB_SRCDIR=gdb-${GDB_VERSION}
 export GDB_CENTOS_DEPS="bison flex expect texinfo"
 export GDB_UBUNTU_DEPS=""
 
-export GIT_VERSION=2.15.1
+export GIT_VERSION=2.16.1
 export GIT_URL=https://www.kernel.org/pub/software/scm/git/git-${GIT_VERSION}.tar.xz
 export GIT_SRCDIR=git-${GIT_VERSION}
 export GIT_CENTOS_DEPS="curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel asciidoc xmlto docbook2X"
@@ -127,7 +127,7 @@ export GRPC_JAVA_SRCDIR=grpc-java-${GRPC_JAVA_VERSION}
 export GRPC_CENTOS_DEPS="zlib-devel openssl-devel gnutls-devel"
 export GRPC_UBUNTU_DEPS="libncurses-dev libevent-dev"
 
-export HIGHLIGHT_VERSION=3.40
+export HIGHLIGHT_VERSION=3.42
 export HIGHLIGHT_URL=http://www.andre-simon.de/zip/highlight-${HIGHLIGHT_VERSION}.tar.bz2
 export HIGHLIGHT_SRCDIR=highlight-${HIGHLIGHT_VERSION}
 export HIGHLIGHT_CENTOS_DEPS="lua-devel boost-devel"
@@ -158,8 +158,8 @@ export MC_CENTOS_DEPS="ncurses-devel glib2-devel slang-devel gpm-devel libssh2-d
 export MC_FEDORA_DEPS="glib2-devel slang-devel"
 export MC_UBUNTU_DEPS="libncurses-dev libglib2.0-dev"
 
-export NANO_MAJOR_VERSION=2.8
-export NANO_MINOR_VERSION=7
+export NANO_MAJOR_VERSION=2.9
+export NANO_MINOR_VERSION=2
 export NANO_VERSION=${NANO_MAJOR_VERSION}.${NANO_MINOR_VERSION}
 export NANO_URL=https://www.nano-editor.org/dist/v${NANO_MAJOR_VERSION}/nano-${NANO_VERSION}.tar.xz
 export NANO_SRCDIR=nano-${NANO_VERSION}
@@ -194,7 +194,7 @@ export PROTOBUF_URL=https://github.com/google/protobuf/archive/v${PROTOBUF_VERSI
 export PROTOBUF_ARCHIVE_NAME=protobuf-${PROTOBUF_VERSION}.tar.gz
 export PROTOBUF_SRCDIR=protobuf-${PROTOBUF_VERSION}
 
-export PYTHON3_VERSION=3.6.3
+export PYTHON3_VERSION=3.6.4
 export PYTHON3_URL=https://www.python.org/ftp/python/${PYTHON3_VERSION}/Python-${PYTHON3_VERSION}.tgz
 export PYTHON3_SRCDIR=Python-${PYTHON3_VERSION}
 export PYTHON3_CENTOS_DEPS="zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel expat-devel"
@@ -223,7 +223,7 @@ export SWIG_SRCDIR=swig-${SWIG_VERSION}
 export SWIG_CENTOS_DEPS="pcre2-devel pcre-devel bison byacc zlib-devel"
 export SWIG_UBUNTU_DEPS="libpcre2-dev libpcre3-dev bison byacc zlib1g-dev"
 
-export TIG_VERSION=2.3.0
+export TIG_VERSION=2.3.2
 export TIG_URL=https://github.com/jonas/tig/archive/tig-${TIG_VERSION}.tar.gz
 export TIG_SRCDIR=tig-tig-${TIG_VERSION}
 export TIG_CENTOS_DEPS="ncurses-devel"

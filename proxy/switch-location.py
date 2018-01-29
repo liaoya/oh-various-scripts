@@ -168,6 +168,9 @@ def doPython(location):
     if location == "cn":
         config.set("global", "index-url", "http://mirrors.aliyun.com/pypi/simple")
         config.set("global", "trusted-host", "mirrors.aliyun.com")
+    elif location == "jp":
+        config.remove_option("global", "index-url")
+        config.remove_option("global", "trusted-host")
     with open(pip_path, "w") as fp:
         config.write(fp)
     
