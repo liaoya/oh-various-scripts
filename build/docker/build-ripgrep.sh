@@ -10,7 +10,7 @@ fi
 # https://github.com/BurntSushi/ripgrep
 
 if [[ -n ${RIPGREP_VERSION} && -n ${RIPGREP_URL} && -n ${RIPGREP_SRCDIR} ]]; then
-    prepare_build "RIPGREP"
+    prepare_build "ripgrep"
 
     if [ -d $HOME/${RIPGREP_SRCDIR} ]; then
         clear_usrlocal

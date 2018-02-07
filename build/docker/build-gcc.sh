@@ -10,7 +10,7 @@ fi
 # https://gcc.gnu.org/install/index.html
 
 if [[ -n ${GCC_VERSION} && -n ${GCC_URL} && -n ${GCC_SRCDIR} ]]; then
-    prepare_build "GCC"
+    prepare_build "gcc"
 
     if [ -d $HOME/${GCC_SRCDIR} ]; then
         clear_usrlocal

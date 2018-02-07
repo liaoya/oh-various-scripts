@@ -8,7 +8,7 @@ else
 fi
 
 if [[ -n ${ZSH_VERSION} && -n ${ZSH_URL} && -n ${ZSH_SRCDIR} ]]; then
-    prepare_build "ZSH"
+    prepare_build "zsh"
 
     if [ -d $HOME/${ZSH_SRCDIR} ]; then
         clear_usrlocal

@@ -8,7 +8,7 @@ else
 fi
 
 if [[ -n ${GNUPLOT_VERSION} && -n ${GNUPLOT_URL} && -n ${GNUPLOT_SRCDIR} ]]; then
-    prepare_build "GNUPLOT"
+    prepare_build "gnuplot"
 
     if [ -d $HOME/${GNUPLOT_SRCDIR} ]; then
         clear_usrlocal

@@ -8,7 +8,7 @@ else
 fi
 
 if [[ -n ${IPERF3_VERSION} && -n ${IPERF3_URL} && -n ${IPERF3_SRCDIR} ]]; then
-    prepare_build "IPERF3"
+    prepare_build "iperf3"
 
     if [ -d $HOME/${IPERF3_SRCDIR} ]; then
         clear_usrlocal

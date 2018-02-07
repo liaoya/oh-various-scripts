@@ -8,7 +8,7 @@ else
 fi
 
 if [[ -n $TIG_VERSION && -n $TIG_URL && -n $TIG_SRCDIR ]]; then
-    prepare_build "TIG"
+    prepare_build "tig"
 
     if [ -d $HOME/$TIG_SRCDIR ]; then
         clear_usrlocal

@@ -8,7 +8,7 @@ else
 fi
 
 if [[ -n ${GFLAGS_VERSION} && -n ${GFLAGS_URL} && -n ${GFLAGS_SRCDIR} ]]; then
-    prepare_build "GFLAGS"
+    prepare_build "gflags"
 
     if [ -d $HOME/${GFLAGS_SRCDIR} ]; then
         clear_usrlocal

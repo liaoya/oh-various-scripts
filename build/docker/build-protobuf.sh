@@ -8,7 +8,7 @@ else
 fi
 
 if [[ -n ${PROTOBUF_VERSION} && -n ${PROTOBUF_URL} && -n ${PROTOBUF_SRCDIR} ]]; then
-    prepare_build "PROTOBUF"
+    prepare_build "protobuf"
 
     if [ -d $HOME/${PROTOBUF_SRCDIR} ]; then
         clear_usrlocal

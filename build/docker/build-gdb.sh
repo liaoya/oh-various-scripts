@@ -8,7 +8,7 @@ else
 fi
 
 if [[ -n ${GDB_VERSION} && -n ${GDB_URL} && -n ${GDB_SRCDIR} ]]; then
-    prepare_build "GDB"
+    prepare_build "gdb"
 
     if [ -d $HOME/${GDB_SRCDIR} ]; then
         clear_usrlocal

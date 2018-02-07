@@ -2,9 +2,9 @@
 
 export SILENCE=1
 
-export CENTOS_DEPS="wget autoconf automake libtool gcc gcc-c++ make file which pxz pigz lbzip2 unzip bzip2 xz p7zip openssh-clients"
-export FEDORA_DEPS="wget autoconf automake libtool gcc gcc-c++ make file which pxz pigz lbzip2 unzip bzip2 xz p7zip openssh-clients python2-dnf"
-export UBUNTU_DEPS="lsb-release curl wget less file pxz pigz lbzip2 unzip bzip2 xz-utils p7zip-full openssh-client sshpass build-essential fakeroot pkg-config autoconf libtool"
+export CENTOS_DEPS="wget autoconf automake libtool gcc gcc-c++ make file which pxz pigz lbzip2 unzip bzip2 xz p7zip openssh-clients yum-utils"
+export FEDORA_DEPS="wget autoconf automake libtool gcc gcc-c++ make file which pxz pigz lbzip2 unzip bzip2 xz p7zip openssh-clients python2-dnf yum-utils"
+export UBUNTU_DEPS="lsb-release curl wget less file pxz pigz lbzip2 unzip bzip2 xz-utils p7zip-full openssh-client sshpass build-essential fakeroot pkg-config autoconf libtool groff texinfo"
 
 export AG_VERSION=2.1.0
 export AG_URL=https://github.com/ggreer/the_silver_searcher/archive/${AG_VERSION}.tar.gz
@@ -159,12 +159,12 @@ export MC_FEDORA_DEPS="glib2-devel slang-devel"
 export MC_UBUNTU_DEPS="libncurses-dev libglib2.0-dev"
 
 export NANO_MAJOR_VERSION=2.9
-export NANO_MINOR_VERSION=2
+export NANO_MINOR_VERSION=3
 export NANO_VERSION=${NANO_MAJOR_VERSION}.${NANO_MINOR_VERSION}
 export NANO_URL=https://www.nano-editor.org/dist/v${NANO_MAJOR_VERSION}/nano-${NANO_VERSION}.tar.xz
 export NANO_SRCDIR=nano-${NANO_VERSION}
 export NANO_CENTOS_DEPS="ncurses-devel zlib-devel"
-export NANO_UBUNTU_DEPS="libncurses-dev zlib1g-dev"
+export NANO_UBUNTU_DEPS="libncurses-dev zlib1g-dev libmagic-dev groff texinfo"
 
 export NINJA_VERSION=1.8.2
 export NINJA_URL=https://github.com/ninja-build/ninja/archive/v${NINJA_VERSION}.tar.gz
@@ -223,7 +223,7 @@ export SWIG_SRCDIR=swig-${SWIG_VERSION}
 export SWIG_CENTOS_DEPS="pcre2-devel pcre-devel bison byacc zlib-devel"
 export SWIG_UBUNTU_DEPS="libpcre2-dev libpcre3-dev bison byacc zlib1g-dev"
 
-export TIG_VERSION=2.3.2
+export TIG_VERSION=2.3.3
 export TIG_URL=https://github.com/jonas/tig/archive/tig-${TIG_VERSION}.tar.gz
 export TIG_SRCDIR=tig-tig-${TIG_VERSION}
 export TIG_CENTOS_DEPS="ncurses-devel"
@@ -243,7 +243,7 @@ export TMUX_CENTOS_DEPS="ncurses-devel libevent-devel"
 export TMUX_CENTOS6_DEPS="ncurses-devel libevent2-devel"
 export TMUX_UBUNTU_DEPS="libncurses-dev libevent-dev"
 
-export VIM_VERSION=8.0.1358
+export VIM_VERSION=8.0.1451
 export VIM_URL=https://github.com/vim/vim/archive/v${VIM_VERSION}.tar.gz
 export VIM_ARCHIVE_NAME=vim-${VIM_VERSION}.tar.gz
 export VIM_SRCDIR=vim-${VIM_VERSION}
@@ -306,7 +306,8 @@ install_centos_deps() {
 
     if [[ -n $CENTOS_DEPS ]]; then echo "Install CENTOS_DEPS \"$CENTOS_DEPS\""; yum install -y -q $CENTOS_DEPS >/dev/null 2>&1; fi
 
-    deps=$1_CENTOS${releasever}_DEPS
+    yum-builddep -y $1
+    deps=${1^^}_CENTOS${releasever}_DEPS
     if [[ -n ${!deps} ]]; then
         echo Install $deps \"${!deps}\"
         yum install -y -q ${!deps} >/dev/null 2>&1
@@ -323,7 +324,7 @@ install_fedora_deps() {
     # releasever=$(python -c 'import dnf; print(dnf.Base().conf.releasever)' | tail -n 1)
 
     if [[ -n $FEDORA_DEPS ]]; then echo "Install FEDORA_DEPS \"$FEDORA_DEPS\""; dnf install -y -q $FEDORA_DEPS >/dev/null 2>&1; fi
-    deps=$1_FEDORA_DEPS
+    deps=${1^^}_FEDORA_DEPS
     if [[ -n ${!deps} ]]; then
         echo Install $deps \"${!deps}\"
         dnf install -y -q ${!deps} >/dev/null 2>&1
@@ -343,7 +344,8 @@ install_oraclelinux_deps() {
 install_ubuntu_deps() {
     if [[ -n $UBUNTU_DEPS ]]; then echo "Install UBUNTU_DEPS \"$UBUNTU_DEPS\""; apt-get update -qq && apt-get install -y -qq -o "Dpkg::Use-Pty=0" $UBUNTU_DEPS >/dev/null 2>&1; fi
 
-    deps=$1_UBUNTU_$(lsb_release -sc | awk '{print toupper($0)}')_DEPS
+    apt-get -y build-dep $1
+    deps=${1^^}_UBUNTU_$(lsb_release -sc | awk '{print toupper($0)}')_DEPS
     if [[ -n ${!deps} ]]; then
         echo Install $deps \"${!deps}\"
         [ $SILENCE -eq 0 ] && apt-get install -y -qq ${!deps}
@@ -371,9 +373,9 @@ install_deps() {
 prepare_build() {
     install_deps $1
 
-    local url="$1_URL"
-    local srcdir="$1_SRCDIR"
-    local download="$1_ARCHIVE_NAME"
+    local url="${1^^}_URL"
+    local srcdir="${1^^}_SRCDIR"
+    local download="${1^^}_ARCHIVE_NAME"
     if [[ -n ${!download} ]]; then download=${!download}; else download=$(basename ${!url}); fi
 
     download_source ${!url} $HOME/${download}

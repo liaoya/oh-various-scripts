@@ -10,7 +10,7 @@ else
 fi
 
 if [[ -n ${NINJA_VERSION} && -n ${NINJA_URL} && -n ${NINJA_SRCDIR} ]]; then
-    prepare_build "NINJA"
+    prepare_build "ninja"
 
     if [ -d $HOME/${NINJA_SRCDIR} ]; then
         clear_usrlocal

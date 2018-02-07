@@ -8,7 +8,7 @@ else
 fi
 
 if [[ -n ${NMON_VERSION} && -n ${NMON_SOURCE} && -n ${NMON_MAKEFILE} ]]; then
-    install_deps "NMON"
+    install_deps "nmon"
 
     cd ${HOME}
     download_source ${NMON_SOURCE} lmon.c

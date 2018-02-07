@@ -8,7 +8,7 @@ else
 fi
 
 if [[ -n ${LFTP_VERSION} && -n ${LFTP_URL} && -n ${LFTP_SRCDIR} ]]; then
-    prepare_build "LFTP"
+    prepare_build "lftp"
 
     if [ -d $HOME/${LFTP_SRCDIR} ]; then
         clear_usrlocal

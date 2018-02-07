@@ -8,7 +8,7 @@ else
 fi
 
 if [[ -n ${GLOBAL_VERSION} && -n ${GLOBAL_URL} && -n ${GLOBAL_SRCDIR} ]]; then
-    prepare_build "GLOBAL"
+    prepare_build "global"
 
     if [ -d $HOME/${GLOBAL_SRCDIR} ]; then
         clear_usrlocal

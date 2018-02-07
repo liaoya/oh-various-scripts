@@ -8,7 +8,7 @@ else
 fi
 
 if [[ -n ${FISH_VERSION} && -n ${FISH_URL} && -n ${FISH_SRCDIR} ]]; then
-    prepare_build "FISH"
+    prepare_build "fish"
 
     if [ -d $HOME/${FISH_SRCDIR} ]; then
         clear_usrlocal

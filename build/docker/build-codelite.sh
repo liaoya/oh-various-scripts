@@ -8,7 +8,7 @@ else
 fi
 
 if [[ -n ${CODELITE_VERSION} && -n ${CODELITE_URL} && -n ${CODELITE_SRCDIR} ]]; then
-    prepare_build "CODELITE"
+    prepare_build "codelite"
 
     if [ -d $HOME/${CODELITE_SRCDIR} ]; then
         clear_usrlocal

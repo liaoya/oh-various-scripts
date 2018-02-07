@@ -8,7 +8,7 @@ else
 fi
 
 if [[ -n $GIT_VERSION && -n $GIT_URL && -n $GIT_SRCDIR ]]; then
-    prepare_build "GIT"
+    prepare_build "git"
 
     [[ -f /etc/redhat-release && -x /usr/bin/db2x_docbook2texi && ! -h /usr/bin/docbook2x-texi ]] && ln -s /usr/bin/db2x_docbook2texi /usr/bin/docbook2x-texi
 

@@ -8,7 +8,7 @@ else
 fi
 
 if [[ -n $TMUX_VERSION && -n $TMUX_URL && -n $TMUX_SRCDIR ]]; then
-    prepare_build "TMUX"
+    prepare_build "tmux"
 
     if [ -d $HOME/$TMUX_SRCDIR ]; then
         clear_usrlocal

@@ -8,7 +8,7 @@ else
 fi
 
 if [[ -n ${SWIG_VERSION} && -n ${SWIG_URL} && -n ${SWIG_SRCDIR} ]]; then
-    prepare_build "SWIG"
+    prepare_build "swig"
 
     if [ -d $HOME/${SWIG_SRCDIR} ]; then
         clear_usrlocal

@@ -8,7 +8,7 @@ else
 fi
 
 if [[ -n $CURL_VERSION && -n $CURL_URL && -n $CURL_SRCDIR ]]; then
-    prepare_build "CURL"
+    prepare_build "curl"
 
     if [ -d $HOME/$CURL_SRCDIR ]; then
         clear_usrlocal

@@ -8,7 +8,7 @@ else
 fi
 
 if [[ -n $TMATE_VERSION && -n $TMATE_URL && -n $TMATE_SRCDIR ]]; then
-    prepare_build "TMATE"
+    prepare_build "tmate"
 
     if [ -d $HOME/$TMATE_SRCDIR ]; then
         clear_usrlocal

@@ -8,7 +8,7 @@ else
 fi
 
 if [[ -n ${AG_VERSION} && -n ${AG_URL} && -n ${AG_SRCDIR} ]]; then
-    prepare_build "AG"
+    prepare_build "ag"
 
     if [ -d $HOME/${AG_SRCDIR} ]; then
         clear_usrlocal

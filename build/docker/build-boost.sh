@@ -8,7 +8,7 @@ else
 fi
 
 if [[ -n ${BOOST_VERSION} && -n ${BOOST_URL} && -n ${BOOST_SRCDIR} ]]; then
-    prepare_build "BOOST"
+    prepare_build "boost"
 
     if [ -d $HOME/${BOOST_SRCDIR} ]; then
         clear_usrlocal

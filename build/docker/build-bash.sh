@@ -8,7 +8,7 @@ else
 fi
 
 if [[ -n ${BASH_VERSION} && -n ${BASH_URL} && -n ${BASH_SRCDIR} ]]; then
-    prepare_build "BASH"
+    prepare_build "bash"
 
     if [ -d $HOME/${BASH_SRCDIR} ]; then
         clear_usrlocal

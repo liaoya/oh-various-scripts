@@ -8,7 +8,7 @@ else
 fi
 
 if [[ -n $VIM_VERSION && -n $VIM_URL && -n $VIM_SRCDIR ]]; then
-    prepare_build "VIM"
+    prepare_build "vim"
 
     if [ -d $HOME/$VIM_SRCDIR ]; then
         clear_usrlocal

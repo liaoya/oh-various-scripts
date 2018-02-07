@@ -77,7 +77,8 @@ APT_MIRROR_SERVER="http://ftp.jaist.ac.jp"
 APT_MIRROR_PATH="/pub/Linux/ubuntu"
 [ -f /etc/apt/sources.list.origin ] || cp -pr /etc/apt/sources.list /etc/apt/sources.list.origin
 sed -i -e "s%http://.*archive.ubuntu.com%$APT_MIRROR_SERVER$APT_MIRROR_PATH%" -e "s%http://security.ubuntu.com%$APT_MIRROR_SERVER$APT_MIRROR_PATH%" /etc/apt/sources.list
-sed -i -e 's/^deb-src/#deb-src/' /etc/apt/sources.list
+sed -i -e 's/^# deb-src/deb-src/' /etc/apt/sources.list
+#sed -i -e 's/^deb-src/#deb-src/' /etc/apt/sources.list
 
 apt-get update -qq
 ```

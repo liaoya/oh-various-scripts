@@ -10,7 +10,7 @@ else
 fi
 
 if [[ -n ${MC_VERSION} && -n ${MC_URL} && -n ${MC_SRCDIR} ]]; then
-    prepare_build "MC"
+    prepare_build "mc"
 
     if [ -d $HOME/${MC_SRCDIR} ]; then
         clear_usrlocal

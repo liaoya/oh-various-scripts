@@ -8,7 +8,7 @@ else
 fi
 
 if [[ -n ${SSHPASS_VERSION} && -n ${SSHPASS_URL} && -n ${SSHPASS_SRCDIR} ]]; then
-    prepare_build "SSHPASS"
+    prepare_build "sshpass"
 
     if [ -d $HOME/${SSHPASS_SRCDIR} ]; then
         clear_usrlocal

@@ -8,7 +8,7 @@ else
 fi
 
 if [[ -n ${HIGHLIGHT_VERSION} && -n ${HIGHLIGHT_URL} && -n ${HIGHLIGHT_SRCDIR} ]]; then
-    prepare_build "HIGHLIGHT"
+    prepare_build "highlight"
 
     if [ -d $HOME/${HIGHLIGHT_SRCDIR} ]; then
         clear_usrlocal

@@ -8,7 +8,7 @@ else
 fi
 
 if [[ -n $AXEL_VERSION && -n $AXEL_URL && -n $AXEL_SRCDIR ]]; then
-    prepare_build "AXEL"
+    prepare_build "axel"
 
     if [ -d $HOME/$AXEL_SRCDIR ]; then
         clear_usrlocal

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# https://devtidbits.com/2015/11/26/update-the-nano-text-editor-on-ubuntu/
+
 if [ -f ../env.sh ]; then
     source ../env.sh
 else
@@ -8,12 +10,12 @@ else
 fi
 
 if [[ -n ${NANO_VERSION} && -n ${NANO_URL} && -n ${NANO_SRCDIR} ]]; then
-    prepare_build "NANO"
+    prepare_build "nano"
 
     if [ -d $HOME/${NANO_SRCDIR} ]; then
         clear_usrlocal
         cd $HOME/${NANO_SRCDIR}
-        ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
+        ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux --enable-utf8 --enable-libmagic
         make -s -j $(nproc) install-strip
         cat <<'EOF' >/usr/local/bin/install-nano.sh
 #!/bin/sh

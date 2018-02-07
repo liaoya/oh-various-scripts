@@ -8,7 +8,7 @@ else
 fi
 
 if [[ -n $UCG_VERSION && -n $UCG_URL && -n $UCG_SRCDIR ]]; then
-    prepare_build "UCG"
+    prepare_build "ucg"
 
     if [ -d $HOME/$UCG_SRCDIR ]; then
         clear_usrlocal
