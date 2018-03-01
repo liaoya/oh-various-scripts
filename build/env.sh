@@ -54,13 +54,13 @@ export EMACS_CENTOS_DEPS="GConf2-devel dbus-devel giflib-devel gnutls-devel gtk3
     openjpeg-devel openjpeg2-devel turbojpeg-devel wxGTK-devel wxGTK3-devel"
 export EMACS_UBUNTU_DEPS="libncurses-dev libevent-dev"
 
-export FISH_VERSION=2.7.0
+export FISH_VERSION=2.7.1
 export FISH_URL=https://github.com/fish-shell/fish-shell/releases/download/${FISH_VERSION}/fish-${FISH_VERSION}.tar.gz
 export FISH_SRCDIR=fish-${FISH_VERSION}
 export FISH_CENTOS_DEPS="ncurses-devel pcre2-devel"
 export FISH_UBUNTU_DEPS="libncurses-dev libpcre2-dev"
 
-export GCC_VERSION=7.2.0
+export GCC_VERSION=7.3.0
 export GCC_URL=http://ftpmirror.gnu.org/gnu/gcc/gcc-${GCC_VERSION}/gcc-${GCC_VERSION}.tar.xz
 export GCC_SRCDIR=gcc-${GCC_VERSION}
 export GCC_CENTOS_DEPS="gmp-devel libmpc-devel"
@@ -72,7 +72,7 @@ export GDB_SRCDIR=gdb-${GDB_VERSION}
 export GDB_CENTOS_DEPS="bison flex expect texinfo"
 export GDB_UBUNTU_DEPS=""
 
-export GIT_VERSION=2.16.1
+export GIT_VERSION=2.16.2
 export GIT_URL=https://www.kernel.org/pub/software/scm/git/git-${GIT_VERSION}.tar.xz
 export GIT_SRCDIR=git-${GIT_VERSION}
 export GIT_CENTOS_DEPS="curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel asciidoc xmlto docbook2X"
@@ -200,7 +200,7 @@ export PYTHON3_SRCDIR=Python-${PYTHON3_VERSION}
 export PYTHON3_CENTOS_DEPS="zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel expat-devel"
 export PYTHON3_UBUNTU_DEPS=""
 
-export RIPGREP_VERSION=0.7.1
+export RIPGREP_VERSION=0.8.1
 export RIPGREP_URL=https://github.com/BurntSushi/ripgrep/archive/${RIPGREP_VERSION}.tar.gz
 export RIPGREP_ARCHIVE_NAME=ripgrep-${RIPGREP_VERSION}.tar.gz
 export RIPGREP_SRCDIR=ripgrep-${RIPGREP_VERSION}

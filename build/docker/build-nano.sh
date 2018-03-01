@@ -27,8 +27,8 @@ else
 fi
 
 [ -f $CONF ] || touch $CONF
-sed -i "/\/usr\/local\/share\/nano/d" $SYSCONFDIR/nanorc || true
-for item in $(ls -1 /usr/local/share/nano/*.nanorc); do echo "include $item" >> $SYSCONFDIR/nanorc; done
+sed -i "/\/usr\/local\/share\/nano/d" $CONF || true
+for item in $(ls -1 /usr/local/share/nano/*.nanorc); do echo "include $item" >> $CONF; done
 EOF
         chmod a+x /usr/local/bin/install-nano.sh
 
