@@ -3,10 +3,10 @@ import subprocess
 
 from util import getHttpProxy, ProxyHandler
 
-class GitHandler(ProxyHandler):
+class GitHandler(LocationHandler):
     def __init__(self, location):
         super(GitHandler, self).__init__(location)
-    
+
     def handle(self):
         proxy = getHttpProxy()
         old_proxy = subprocess.check_output(shlex.split("git config --global http.proxy")).strip()

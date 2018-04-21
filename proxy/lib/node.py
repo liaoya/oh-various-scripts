@@ -18,7 +18,7 @@ class NodeHandler(LocationHandler):
         node_tmp = os.path.join(os.path.expanduser("~"), ".node-tmp")
         os.makedirs(node_tmp, exist_ok=True)
         subprocess.call(shlex.split("npm config set tmp %s" % (node_tmp, )))
-        subprocess.call(shlex.split("npm config set registry %s" % (mirrorMap[self._localtion], )))
+        subprocess.call(shlex.split("npm config set registry %s" % (mirrorMap[self._location], )))
 
     def handleWindows(self):
-        subprocess.call(shlex.split("npm.cmd config set registry %s" % (mirrorMap[self._localtion], )))
+        subprocess.call(shlex.split("npm.cmd config set registry %s" % (mirrorMap[self._location], )))

@@ -2,7 +2,7 @@ import os
 import platform
 
 from abc import ABCMeta, abstractmethod
-from enum import Enum
+from enum import auto, Enum
 
 def load_properties(filepath, sep='=', comment_char='#'):
     """
@@ -78,8 +78,8 @@ def javaNoProxy():
 
 
 class Location(Enum):
-    China = 1
-    Office = 2
+    China = auto()
+    Office = auto()
 
 
 class ProxyHandler(metaclass = ABCMeta):

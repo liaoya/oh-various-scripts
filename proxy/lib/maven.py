@@ -48,11 +48,11 @@ class MavenHandler(LocationHandler):
         settings = os.path.join(os.path.expanduser("~"), ".m2", "settings.xml")
         makeParent(settings)
         proxy = getHttpProxy()
-        if self._localtion == Location.China:
+        if self._location == Location.China:
             with open(settings, "w") as fp:
                 print(maven_ali, file=fp)
-        elif self._localtion == Location.Office:
-            assert proxy, "Proxy must be set for %s" % (self._localtion.name, )
+        elif self._location == Location.Office:
+            assert proxy, "Proxy must be set for %s" % (self._location.name, )
             _, server, port = parseProxy(proxy)
             mm = {"server": server, "port":port, "noproxy":javaNoProxy()}
             with open(settings, "w") as fp:
