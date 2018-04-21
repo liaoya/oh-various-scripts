@@ -32,7 +32,7 @@ export BOOST_SRCDIR=boost_$(echo $BOOST_VERSION | sed -e 's%\.%_%g')
 export BOOST_CENTOS_DEPS="zlib-devel bzip2-devel libicu-devel python-devel openmpi-devel xz-devel"
 export BOOST_UBUNTU_DEPS="libz-dev libbz2-dev libicu-dev python3-dev python-dev"
 
-export CODELITE_VERSION=11.0
+export CODELITE_VERSION=12.0
 export CODELITE_URL=https://github.com/eranif/codelite/archive/${CODELITE_VERSION}.tar.gz
 export CODELITE_ARCHIVE_NAME=codelite-${CODELITE_VERSION}.tar.gz
 export CODELITE_SRCDIR=codelite-${CODELITE_VERSION}
@@ -72,7 +72,7 @@ export GDB_SRCDIR=gdb-${GDB_VERSION}
 export GDB_CENTOS_DEPS="bison flex expect texinfo"
 export GDB_UBUNTU_DEPS=""
 
-export GIT_VERSION=2.16.2
+export GIT_VERSION=2.7.0
 export GIT_URL=https://www.kernel.org/pub/software/scm/git/git-${GIT_VERSION}.tar.xz
 export GIT_SRCDIR=git-${GIT_VERSION}
 export GIT_CENTOS_DEPS="curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel asciidoc xmlto docbook2X"
@@ -194,7 +194,7 @@ export PROTOBUF_URL=https://github.com/google/protobuf/archive/v${PROTOBUF_VERSI
 export PROTOBUF_ARCHIVE_NAME=protobuf-${PROTOBUF_VERSION}.tar.gz
 export PROTOBUF_SRCDIR=protobuf-${PROTOBUF_VERSION}
 
-export PYTHON3_VERSION=3.6.4
+export PYTHON3_VERSION=3.6.5
 export PYTHON3_URL=https://www.python.org/ftp/python/${PYTHON3_VERSION}/Python-${PYTHON3_VERSION}.tgz
 export PYTHON3_SRCDIR=Python-${PYTHON3_VERSION}
 export PYTHON3_CENTOS_DEPS="zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel expat-devel"

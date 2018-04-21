@@ -20,7 +20,7 @@ sed -i "/^installonly_limit/i deltarpm=0" /etc/yum.conf
 [[ -f /etc/yum.conf && -n $YUM_PROXY ]] && sed -i "/^installonly_limit/i proxy=$YUM_PROXY" /etc/yum.conf
 
 for elem in $(ls -1 /etc/yum.repos.d/CentOS*.repo); do [ -f ${elem}.origin ] || cp ${elem} ${elem}.origin; done
-for elem in $(ls -1 /etc/yum.repos.d/CentOS*.repo); do 
+for elem in $(ls -1 /etc/yum.repos.d/CentOS*.repo); do
     grep -s -q -e "^mirrorlist=" ${elem} && sed -i -e "s/^mirrorlist=/#mirrorlist=/g" ${elem}
     grep -s -q -e "^#baseurl=" ${elem} && grep -s -q -e "^baseurl=" ${elem} && sed -i -e "/^baseurl=/d" ${elem}
     grep -s -q -e "^#baseurl=" ${elem} && sed -i -e "s/^#baseurl=/baseurl=/g" ${elem}

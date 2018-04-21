@@ -79,7 +79,7 @@ def doDocker(location):
         with open("/etc/docker/daemon.json") as fp:
             data = json.load(fp)
             if location == "cn":
-                mirror = ["472pok68.mirror.aliyuncs.com", "aad0405c.m.daocloud.io"]
+                mirror = ["https://registry.docker-cn.com"]
             if mirror:
                 data["registry-mirrors"] = mirror
 
