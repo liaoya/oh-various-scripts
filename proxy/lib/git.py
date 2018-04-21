@@ -1,7 +1,7 @@
 import shlex
 import subprocess
 
-from util import getHttpProxy, ProxyHandler
+from util import getHttpProxy, LocationHandler
 
 class GitHandler(LocationHandler):
     def __init__(self, location):
@@ -9,16 +9,17 @@ class GitHandler(LocationHandler):
 
     def handle(self):
         proxy = getHttpProxy()
-        old_proxy = subprocess.check_output(shlex.split("git config --global http.proxy")).strip()
+        old_proxy = subprocess.run(shlex.split("git config --global http.proxy")).stdout
         if proxy:
-            if proxy != old_proxy:
+            if old_proxy is None or proxy != old_proxy:
                 for cmd in ["git config --global http.proxy " + proxy,
                             "git config --global credential.github.com.httpProxy " + proxy]:
                     subprocess.call(shlex.split(cmd))
         else:
-            for cmd in ["git config --global http.proxy " + proxy,
-                        "git config --global credential.github.com.httpProxy " + proxy]:
-                subprocess.call(shlex.split(cmd))
+            if old_proxy is not None:
+                for cmd in ["git config --global --unset http.proxy",
+                            "git config --global --unset credential.github.com.httpProxy"]:
+                    subprocess.call(shlex.split(cmd))
     
     def handleLinux(self):
         pass

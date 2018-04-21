@@ -39,4 +39,4 @@ class DockerHandler(LocationHandler):
                 config.pop("registry-mirrors")
 
         with open("/etc/docker/daemon.json", "w") as fp:
-            json.dump(fp, config)
+            json.dump(fp, config, sort_keys=True, indent=4)

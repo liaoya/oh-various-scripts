@@ -22,11 +22,11 @@ class VSCodeHandler(LocationHandler):
             changed = True
         if changed:
             with open(conf_file, "w") as fp:
-                json.dump(config, fp)
+                json.dump(config, fp, sort_keys=True, indent=4)
 
 
     def handleLinux(self):
-        self._handle(os.path.join(os.path.expandvars("%APPDATA%"), "Code", "User", "settings.json"))
+        self._handle(os.path.expandvars("$HOME/.config/Code/User/settings.json"))
 
     def handleWindows(self):
-        self._handle(os.path.expandvars("$HOME/.config/Code/User/settings.json"))
+        self._handle(os.path.join(os.path.expandvars("%APPDATA%"), "Code", "User", "settings.json"))
