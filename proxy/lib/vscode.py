@@ -1,6 +1,6 @@
-from util import getHttpProxy, LocationHandler
+from util import getHttpProxy, ProxyHandler
 
-class VSCodeHandler(LocationHandler):
+class VSCodeHandler(ProxyHandler):
     def __init__(self, location):
         super(VSCodeHandler, self).__init__(location)
     

@@ -82,6 +82,24 @@ class Location(Enum):
     Office = 2
 
 
+class ProxyHandler(metaclass = ABCMeta):
+    @abstractmethod
+    def handleWindows(self):
+        """Handle Tool's configuration according to location"""
+        pass
+
+    @abstractmethod
+    def handleLinux(self):
+        """Handle Tool's configuration according to location"""
+        pass
+
+    def handle(self):
+        if isWindows():
+            self.handleWindows()
+        else:
+            self.handleLinux()  
+
+
 class LocationHandler(metaclass = ABCMeta):
     def __init__(self, location):
         self._location = location

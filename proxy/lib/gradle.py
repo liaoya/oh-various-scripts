@@ -45,10 +45,10 @@ class GradleHandler(LocationHandler):
         props = {}
         if os.path.exists(prop_file):
             props = load_properties(prop_file)
-        if "systemProp.location" in props and props["systemProp.location"] == self._localtion.name:
+        if "systemProp.location" in props and props["systemProp.location"] == self._location.name:
             logging.info("The same location")
             return
-        props["systemProp.location"] = self._localtion.name
+        props["systemProp.location"] = self._location.name
         for key in ("systemProp.http.proxyHost", "systemProp.http.proxyPort", "systemProp.http.nonProxyHosts",
                     "systemProp.https.proxyHost", "systemProp.https.proxyPort", "systemProp.https.nonProxyHosts"):
             props.pop(key, "")
@@ -67,10 +67,10 @@ class GradleHandler(LocationHandler):
         
         nexus_gradle = os.path.join(os.path.expanduser("~"), ".gradle", "init.d", "nexus.gradle")
         makeParent(nexus_gradle)
-        if self._localtion == Location.China:
+        if self._location == Location.China:
             with open(nexus_gradle, "w") as fp:
                 print(init_script_ali, file=fp)
-        elif self._localtion == Location.Office:
+        elif self._location == Location.Office:
             with open(nexus_gradle, "w") as fp:
                 print(init_script_office, file=fp)            
 
