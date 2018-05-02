@@ -37,9 +37,10 @@ OUTPUT=/var/www/html/saas/binary/ubuntu-$CODENAME
 docker run -it --rm -h $CODENAME --name $CODENAME -v $OUTPUT:/root/output -v $PWD:/root/script -e "OUTPUT=/root/output" -e "SCRIPT=/root/script" -e "http_proxy=$http_proxy"  -e "https_proxy=$http_proxy" -e "ftp_proxy=$http_proxy" -e "no_proxy=$no_proxy" -e 'PKG_CONFIG_PATH=/usr/local/lib/pkgconfig' -e 'LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib64' ubuntu:$CODENAME
 ```
 
-### Artful (17.10)
+### Bionic (18.04)
 
 ```shell
-CODENAME=artful
+CODENAME=bionic
+OUTPUT=/var/www/html/saas/binary/ubuntu-$CODENAME
 docker run -it --rm -h $CODENAME --name $CODENAME -v $OUTPUT:/root/output -v $PWD:/root/script -e "OUTPUT=/root/output" -e "SCRIPT=/root/script" -e "http_proxy=$http_proxy"  -e "https_proxy=$http_proxy" -e "ftp_proxy=$http_proxy" -e "no_proxy=$no_proxy" -e 'PKG_CONFIG_PATH=/usr/local/lib/pkgconfig' -e 'LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib64' ubuntu:$CODENAME
 ```

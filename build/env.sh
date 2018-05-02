@@ -159,7 +159,7 @@ export MC_FEDORA_DEPS="glib2-devel slang-devel"
 export MC_UBUNTU_DEPS="libncurses-dev libglib2.0-dev"
 
 export NANO_MAJOR_VERSION=2.9
-export NANO_MINOR_VERSION=3
+export NANO_MINOR_VERSION=5
 export NANO_VERSION=${NANO_MAJOR_VERSION}.${NANO_MINOR_VERSION}
 export NANO_URL=https://www.nano-editor.org/dist/v${NANO_MAJOR_VERSION}/nano-${NANO_VERSION}.tar.xz
 export NANO_SRCDIR=nano-${NANO_VERSION}

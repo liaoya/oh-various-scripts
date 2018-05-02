@@ -6,15 +6,15 @@ from util import getHttpProxy, javaNoProxy, parseProxy, load_properties, makePar
 init_script_ali = """allprojects {
     buildscript {
         repositories {
+            maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
             maven { url 'http://maven.aliyun.com/nexus/content/repositories/central' }
             maven { url 'http://maven.aliyun.com/nexus/content/repositories/gradle-plugin' }
-            mavenLocal()
         }
     }
     repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
         maven { url 'http://maven.aliyun.com/nexus/content/repositories/central' }
         maven { url 'http://maven.aliyun.com/nexus/content/repositories/gradle-plugin' }
-        mavenLocal()
     }
 }
 """
@@ -22,15 +22,15 @@ init_script_ali = """allprojects {
 init_script_office = """allprojects {
     buildscript {
         repositories {
+            maven { url 'http://cnnan-nexus.cn.oracle.com/nexus/content/repositories/jcenter' }
             maven { url 'http://cnnan-nexus.cn.oracle.com/nexus/content/repositories/central' }
             maven { url 'http://cnnan-nexus.cn.oracle.com/nexus/content/repositories/gradle-plugin' }
-            mavenLocal()
         }
     }
     repositories {
+        maven { url 'http://cnnan-nexus.cn.oracle.com/nexus/content/repositories/jcenter' }
         maven { url 'http://cnnan-nexus.cn.oracle.com/nexus/content/repositories/central' }
         maven { url 'http://cnnan-nexus.cn.oracle.com/nexus/content/repositories/gradle-plugin' }
-        mavenLocal()
     }
 }
 """

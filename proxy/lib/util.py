@@ -73,7 +73,7 @@ def parseProxy(proxy):
 def javaNoProxy():
     noproxy = getNoProxy()
     if noproxy is not None:
-        noproxy = ".".join([item if item[0] != '.' else "*"+item for item in getNoProxy().split(",")])
+        noproxy = "|".join([item if item[0] != '.' else "*"+item for item in getNoProxy().split(",")])
         return noproxy
 
 
