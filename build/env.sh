@@ -72,10 +72,10 @@ export GDB_SRCDIR=gdb-${GDB_VERSION}
 export GDB_CENTOS_DEPS="bison flex expect texinfo"
 export GDB_UBUNTU_DEPS=""
 
-export GIT_VERSION=2.7.0
+export GIT_VERSION=2.17.0
 export GIT_URL=https://www.kernel.org/pub/software/scm/git/git-${GIT_VERSION}.tar.xz
 export GIT_SRCDIR=git-${GIT_VERSION}
-export GIT_CENTOS_DEPS="curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel asciidoc xmlto docbook2X"
+export GIT_CENTOS_DEPS="curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel asciidoc xmlto docbook2X git"
 export GIT_UBUNTU_DEPS="dh-autoreconf libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev docbook2x asciidoc"
 
 export GFLAGS_VERSION=2.2.1
@@ -179,7 +179,7 @@ export NMON_MAKEFILE=https://sourceforge.net/projects/nmon/files/makefile
 export NMON_CENTOS_DEPS="ncurses-devel"
 export NMON_UBUNTU_DEPS="libncurses-dev"
 
-export OVS_VERSION=2.8.1
+export OVS_VERSION=2.9.1
 export OVS_URL=http://openvswitch.org/releases/openvswitch-${OVS_VERSION}.tar.gz
 export OVS_SRCDIR=openvswitch-${OVS_VERSION}
 export OVS_CENTOS_DEPS="rpm-build systemd-units openssl openssl-devel \
@@ -236,7 +236,7 @@ export TMATE_SRCDIR=tmate-${TMATE_VERSION}
 export TMATE_CENTOS_DEPS="ncurses-devel libevent-devel msgpack-devel libssh-devel libssh2-devel"
 export TMATE_UBUNTU_DEPS="libncurses-dev libevent-dev"
 
-export TMUX_VERSION=2.6
+export TMUX_VERSION=2.7
 export TMUX_URL=https://github.com/tmux/tmux/releases/download/2.6/tmux-${TMUX_VERSION}.tar.gz
 export TMUX_SRCDIR=tmux-${TMUX_VERSION}
 export TMUX_CENTOS_DEPS="ncurses-devel libevent-devel"
