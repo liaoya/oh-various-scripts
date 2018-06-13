@@ -7,19 +7,22 @@ Build with Software with Docker container so that I can use up-to-date software.
 
 ```shell
 OUTPUT=/var/www/html/saas/binary/rhel6
+[[ -d ${OUTPUT} ]] || mkdir -p ${OUTPUT}
 docker run -it --rm -h centos6 --name centos6 -v $OUTPUT:/root/output -v $PWD:/root/script -e "OUTPUT=/root/output" -e "SCRIPT=/root/script" -e "http_proxy=$http_proxy" -e "https_proxy=$https_proxy" -e "ftp_proxy=$ftp_proxy" -e "no_proxy=$no_proxy" -e 'PKG_CONFIG_PATH=/usr/local/lib/pkgconfig' -e 'LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib64' centos:6
 ```
 
 ```shell
 OUTPUT=/var/www/html/saas/binary/rhel7
+[[ -d ${OUTPUT} ]] || mkdir -p ${OUTPUT}
 docker run -it --rm -h centos7 --name centos7 -v $OUTPUT:/root/output -v $PWD:/root/script -e "OUTPUT=/root/output" -e "SCRIPT=/root/script" -e "http_proxy=$http_proxy" -e "https_proxy=$https_proxy" -e "ftp_proxy=$ftp_proxy" -e "no_proxy=$no_proxy" -e 'PKG_CONFIG_PATH=/usr/local/lib/pkgconfig' -e 'LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib64' centos:7
 ```
 
 ## Fedora
 
 ```shell
-OUTPUT=/var/www/html/saas/binary/fedora26
-docker run -it --rm -h fedora26 --name fedora26 -v $OUTPUT:/root/output -v $PWD:/root/script -e "OUTPUT=/root/output" -e "SCRIPT=/root/script" -e "http_proxy=$http_proxy" -e "https_proxy=$http_proxy" -e "ftp_proxy=$http_proxy" -e "no_proxy=$no_proxy" -e 'PKG_CONFIG_PATH=/usr/local/lib/pkgconfig' -e 'LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib64' fedora:26 /bin/bash
+OUTPUT=/var/www/html/saas/binary/fedora28
+[[ -d ${OUTPUT} ]] || mkdir -p ${OUTPUT}
+docker run -it --rm -h fedora28 --name fedora26 -v $OUTPUT:/root/output -v $PWD:/root/script -e "OUTPUT=/root/output" -e "SCRIPT=/root/script" -e "http_proxy=$http_proxy" -e "https_proxy=$http_proxy" -e "ftp_proxy=$http_proxy" -e "no_proxy=$no_proxy" -e 'PKG_CONFIG_PATH=/usr/local/lib/pkgconfig' -e 'LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib64' fedora:28 /bin/bash
 ```
 
 ```shell

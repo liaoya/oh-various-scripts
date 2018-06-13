@@ -2,8 +2,8 @@
 
 export SILENCE=1
 
-export CENTOS_DEPS="wget autoconf automake libtool gcc gcc-c++ make file which pxz pigz lbzip2 unzip bzip2 xz p7zip openssh-clients yum-utils"
-export FEDORA_DEPS="wget autoconf automake libtool gcc gcc-c++ make file which pxz pigz lbzip2 unzip bzip2 xz p7zip openssh-clients python2-dnf yum-utils"
+export CENTOS_DEPS="file wget autoconf automake libtool gcc gcc-c++ make file which pxz pigz lbzip2 unzip bzip2 xz p7zip openssh-clients yum-utils"
+export FEDORA_DEPS="file wget autoconf automake libtool gcc gcc-c++ make file which pxz pigz lbzip2 unzip bzip2 xz p7zip openssh-clients python2-dnf yum-utils"
 export UBUNTU_DEPS="lsb-release curl wget less file pxz pigz lbzip2 unzip bzip2 xz-utils p7zip-full openssh-client sshpass build-essential fakeroot pkg-config autoconf libtool groff texinfo"
 
 export AG_VERSION=2.1.0
@@ -20,13 +20,13 @@ export AXEL_SRCDIR=axel-${AXEL_VERSION}
 export AXEL_CENTOS_DEPS="openssl-devel gettext-devel"
 export AXEL_UBUNTU_DEPS="libssl-dev gettext"
 
-export BASH_VERSION=4.4.12
+export BASH_VERSION=4.4.18
 export BASH_URL=http://ftpmirror.gnu.org/gnu/bash/bash-${BASH_VERSION}.tar.gz
 export BASH_SRCDIR=bash-${BASH_VERSION}
 export BASH_CENTOS_DEPS="ncurses-devel"
 export BASH_UBUNTU_DEPS="libncurses-dev"
 
-export BOOST_VERSION=1.66
+export BOOST_VERSION=1.67
 export BOOST_URL=https://dl.bintray.com/boostorg/release/${BOOST_VERSION}/source/boost_$(echo $BOOST_VERSION | sed -e 's%\.%_%g').7z
 export BOOST_SRCDIR=boost_$(echo $BOOST_VERSION | sed -e 's%\.%_%g')
 export BOOST_CENTOS_DEPS="zlib-devel bzip2-devel libicu-devel python-devel openmpi-devel xz-devel"
@@ -39,13 +39,13 @@ export CODELITE_SRCDIR=codelite-${CODELITE_VERSION}
 export CODELITE_CENTOS_DEPS="wxGTK3-devel cmake sqlite-devel libssh-devel clang-devel hunspell-devel lldb-devel flex-devel"
 export CODELITE_UBUNTU_DEPS=""
 
-export CURL_VERSION=7.58.0
+export CURL_VERSION=7.60.0
 export CURL_URL=https://curl.haxx.se/download/curl-${CURL_VERSION}.tar.bz2
 export CURL_SRCDIR=curl-${CURL_VERSION}
 export CURL_CENTOS_DEPS="openssl-devel gnutls-devel nss-devel libssh2-devel zlib-devel c-ares-devel libidn2-devel libnghttp2-devel libpsl-devel libmetalink-devel openldap-devel"
 export CURL_UBUNTU_DEPS="libssl-dev libgnutls28-dev libssh2-1-dev libz-dev libc-ares-dev libidn2-dev libnghttp2-dev libpsl-dev libldap2-dev"
 
-export EMACS_VERSION=25.3
+export EMACS_VERSION=26.1
 export EMACS_URL=http://ftpmirror.gnu.org/gnu/emacs/emacs-${EMACS_VERSION}.tar.xz
 export EMACS_SRCDIR=emacs-${EMACS_VERSION}
 export EMACS_CENTOS_DEPS="GConf2-devel dbus-devel giflib-devel gnutls-devel gtk3-devel gpm-devel \
@@ -60,38 +60,39 @@ export FISH_SRCDIR=fish-${FISH_VERSION}
 export FISH_CENTOS_DEPS="ncurses-devel pcre2-devel"
 export FISH_UBUNTU_DEPS="libncurses-dev libpcre2-dev"
 
-export GCC_VERSION=7.3.0
+export GCC_VERSION=8.1.0
 export GCC_URL=http://ftpmirror.gnu.org/gnu/gcc/gcc-${GCC_VERSION}/gcc-${GCC_VERSION}.tar.xz
 export GCC_SRCDIR=gcc-${GCC_VERSION}
 export GCC_CENTOS_DEPS="gmp-devel libmpc-devel"
 export GCC_UBUNTU_DEPS=""
 
-export GDB_VERSION=8.0.1
+export GDB_VERSION=8.1
 export GDB_URL=http://ftpmirror.gnu.org/gdb/gdb-${GDB_VERSION}.tar.xz
 export GDB_SRCDIR=gdb-${GDB_VERSION}
 export GDB_CENTOS_DEPS="bison flex expect texinfo"
 export GDB_UBUNTU_DEPS=""
 
-export GIT_VERSION=2.17.0
+export GIT_VERSION=2.17.1
 export GIT_URL=https://www.kernel.org/pub/software/scm/git/git-${GIT_VERSION}.tar.xz
 export GIT_SRCDIR=git-${GIT_VERSION}
 export GIT_CENTOS_DEPS="curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel asciidoc xmlto docbook2X git"
 export GIT_UBUNTU_DEPS="dh-autoreconf libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev docbook2x asciidoc"
 
-export GFLAGS_VERSION=2.2.1
+GFLAGS_VERSION=$(curl -s "https://api.github.com/repos/gflags/gflags/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+export GFLAGS_VERSION=${GFLAGS_VERSION:1}
 export GFLAGS_URL=https://github.com/gflags/gflags/archive/v${GFLAGS_VERSION}.tar.gz
 export GFLAGS_ARCHIVE_NAME=gflags-${GFLAGS_VERSION}.tar.gz
 export GFLAGS_SRCDIR=gflags-${GFLAGS_VERSION}
 export GFLAGS_CENTOS_DEPS="cmake3"
 export GFLAGS_UBUNTU_DEPS=""
 
-export GLOBAL_VERSION=6.5.7
+export GLOBAL_VERSION=6.6.2
 export GLOBAL_URL=http://ftpmirror.gnu.org/gnu/global/global-${GLOBAL_VERSION}.tar.gz
 export GLOBAL_SRCDIR=global-${GLOBAL_VERSION}
 export GLOBAL_CENTOS_DEPS="ncurses-devel"
 export GLOBAL_UBUNTU_DEPS="libncurses-dev"
 
-export GNUPLOT_VERSION=5.2.0
+export GNUPLOT_VERSION=5.2.4
 export GNUPLOT_URL=https://sourceforge.net/projects/gnuplot/files/gnuplot/${GNUPLOT_VERSION}/gnuplot-${GNUPLOT_VERSION}.tar.gz
 export GNUPLOT_SRCDIR=gnuplot-${GNUPLOT_VERSION}
 export GNUPLOT_CENTOS_DEPS="atk-devel cairo-devel expat-devel gtk2-devel \
@@ -109,7 +110,8 @@ export GOOGLETEST_CENTOS_DEPS="cmake3"
 export GOOGLETEST_UBUNTU_DEPS=""
 
 # grpc can't be build
-export GRPC_VERSION=1.6.7
+GRPC_VERSION=$(curl -s "https://api.github.com/repos/grpc/grpc/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+export GRPC_VERSION=${GRPC_VERSION:1}
 export GRPC_URL=https://github.com/grpc/grpc/archive/v${GRPC_VERSION}.tar.gz
 export GRPC_ARCHIVE_NAME=grpc-${GRPC_VERSION}.tar.gz
 export GRPC_SRCDIR=grpc-${GRPC_VERSION}
@@ -151,7 +153,7 @@ export LLVM_CENTOS_DEPS="cmake3"
 export LLVM_FEDORA_DEPS="cmake"
 export LLVM_UBUNTU_DEPS="cmake"
 
-export MC_VERSION=4.8.20
+export MC_VERSION=4.8.21
 export MC_URL=http://ftp.midnight-commander.org/mc-${MC_VERSION}.tar.xz
 export MC_SRCDIR=mc-${MC_VERSION}
 export MC_CENTOS_DEPS="ncurses-devel glib2-devel slang-devel gpm-devel libssh2-devel openssl-libs-devel zlib-devel krb5-libs-devel libcom_err-devel keyutils-libs-devel pcre-devel libselinux-devel doxygen"
@@ -159,14 +161,15 @@ export MC_FEDORA_DEPS="glib2-devel slang-devel"
 export MC_UBUNTU_DEPS="libncurses-dev libglib2.0-dev"
 
 export NANO_MAJOR_VERSION=2.9
-export NANO_MINOR_VERSION=5
+export NANO_MINOR_VERSION=8
 export NANO_VERSION=${NANO_MAJOR_VERSION}.${NANO_MINOR_VERSION}
 export NANO_URL=https://www.nano-editor.org/dist/v${NANO_MAJOR_VERSION}/nano-${NANO_VERSION}.tar.xz
 export NANO_SRCDIR=nano-${NANO_VERSION}
 export NANO_CENTOS_DEPS="ncurses-devel zlib-devel"
 export NANO_UBUNTU_DEPS="libncurses-dev zlib1g-dev libmagic-dev groff texinfo"
 
-export NINJA_VERSION=1.8.2
+NINJA_VERSION=$(curl -s "https://api.github.com/repos/ninja-build/ninja/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+export NINJA_VERSION=${NINJA_VERSION:1}
 export NINJA_URL=https://github.com/ninja-build/ninja/archive/v${NINJA_VERSION}.tar.gz
 export NINJA_ARCHIVE_NAME=ninja-${NINJA_VERSION}.tar.gz
 export NINJA_SRCDIR=ninja-${NINJA_VERSION}
@@ -189,7 +192,8 @@ export OVS_CENTOS_DEPS="rpm-build systemd-units openssl openssl-devel \
 export OVS_UBUNTU_DEPS="module-assistant debhelper dh-autoreconf libssl-dev libtool openssl procps \
     python-all python-qt4 python-twisted-conch python-zopeinterface python-six libcap-ng-dev"
 
-export PROTOBUF_VERSION=3.4.1
+PROTOBUF_VERSION=$(curl -s "https://api.github.com/repos/google/protobuf/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+export PROTOBUF_VERSION=${PROTOBUF_VERSION:1}
 export PROTOBUF_URL=https://github.com/google/protobuf/archive/v${PROTOBUF_VERSION}.tar.gz
 export PROTOBUF_ARCHIVE_NAME=protobuf-${PROTOBUF_VERSION}.tar.gz
 export PROTOBUF_SRCDIR=protobuf-${PROTOBUF_VERSION}
@@ -200,7 +204,7 @@ export PYTHON3_SRCDIR=Python-${PYTHON3_VERSION}
 export PYTHON3_CENTOS_DEPS="zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel expat-devel"
 export PYTHON3_UBUNTU_DEPS=""
 
-export RIPGREP_VERSION=0.8.1
+export RIPGREP_VERSION=$(curl -s "https://api.github.com/repos/BurntSushi/ripgrep/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
 export RIPGREP_URL=https://github.com/BurntSushi/ripgrep/archive/${RIPGREP_VERSION}.tar.gz
 export RIPGREP_ARCHIVE_NAME=ripgrep-${RIPGREP_VERSION}.tar.gz
 export RIPGREP_SRCDIR=ripgrep-${RIPGREP_VERSION}
@@ -223,27 +227,27 @@ export SWIG_SRCDIR=swig-${SWIG_VERSION}
 export SWIG_CENTOS_DEPS="pcre2-devel pcre-devel bison byacc zlib-devel"
 export SWIG_UBUNTU_DEPS="libpcre2-dev libpcre3-dev bison byacc zlib1g-dev"
 
-export TIG_VERSION=2.3.3
-export TIG_URL=https://github.com/jonas/tig/archive/tig-${TIG_VERSION}.tar.gz
-export TIG_SRCDIR=tig-tig-${TIG_VERSION}
+export TIG_VERSION=$(curl -s "https://api.github.com/repos/jonas/tig/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+export TIG_URL=https://github.com/jonas/tig/archive/${TIG_VERSION}.tar.gz
+export TIG_SRCDIR=tig-${TIG_VERSION}
 export TIG_CENTOS_DEPS="ncurses-devel"
 export TIG_UBUNTU_DEPS="libncurses-dev"
 
-export TMATE_VERSION=2.2.1
+export TMATE_VERSION=$(curl -s "https://api.github.com/repos/tmate-io/tmate/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
 export TMATE_URL=https://github.com/tmate-io/tmate/archive/${TMATE_VERSION}.tar.gz
 export TMATE_ARCHIVE_NAME=tmate-${TMATE_VERSION}.tar.gz
 export TMATE_SRCDIR=tmate-${TMATE_VERSION}
 export TMATE_CENTOS_DEPS="ncurses-devel libevent-devel msgpack-devel libssh-devel libssh2-devel"
 export TMATE_UBUNTU_DEPS="libncurses-dev libevent-dev"
 
-export TMUX_VERSION=2.7
-export TMUX_URL=https://github.com/tmux/tmux/releases/download/2.6/tmux-${TMUX_VERSION}.tar.gz
+export TMUX_VERSION=$(curl -s "https://api.github.com/repos/tmux/tmux/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+export TMUX_URL=https://github.com/tmux/tmux/releases/download/2.7/tmux-${TMUX_VERSION}.tar.gz
 export TMUX_SRCDIR=tmux-${TMUX_VERSION}
 export TMUX_CENTOS_DEPS="ncurses-devel libevent-devel"
 export TMUX_CENTOS6_DEPS="ncurses-devel libevent2-devel"
 export TMUX_UBUNTU_DEPS="libncurses-dev libevent-dev"
 
-export VIM_VERSION=8.0.1451
+export VIM_VERSION=8.1.0055
 export VIM_URL=https://github.com/vim/vim/archive/v${VIM_VERSION}.tar.gz
 export VIM_ARCHIVE_NAME=vim-${VIM_VERSION}.tar.gz
 export VIM_SRCDIR=vim-${VIM_VERSION}
@@ -256,13 +260,13 @@ export VIM_UBUNTU_DEPS="libncurses-dev exuberant-ctags git libacl1-dev cscope \
     libgtk2.0-dev"
 
 # Fail to build on Ubuntu 17.04 with gcc 7.2
-export UCG_VERSION=0.3.3
+export UCG_VERSION=$(curl -s "https://api.github.com/repos/gvansickle/ucg/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
 export UCG_URL=https://github.com/gvansickle/ucg/releases/download/${UCG_VERSION}/universalcodegrep-${UCG_VERSION}.tar.gz
 export UCG_SRCDIR=universalcodegrep-${UCG_VERSION}
 export UCG_CENTOS_DEPS="pcre2-devel pcre-devel jemalloc-devel"
 export UCG_UBUNTU_DEPS="libpcre2-dev libpcre3-dev libjemalloc-dev"
 
-export ZSH_VERSION=5.4.2
+export ZSH_VERSION=5.5.1
 export ZSH_URL=https://sourceforge.net/projects/zsh/files/zsh/${ZSH_VERSION}/zsh-${ZSH_VERSION}.tar.xz
 export ZSH_SRCDIR=zsh-${ZSH_VERSION}
 export ZSH_CENTOS_DEPS="ncurses-devel bison"
@@ -306,13 +310,13 @@ install_centos_deps() {
 
     if [[ -n $CENTOS_DEPS ]]; then echo "Install CENTOS_DEPS \"$CENTOS_DEPS\""; yum install -y -q $CENTOS_DEPS >/dev/null 2>&1; fi
 
-    yum-builddep -y $1
+    # yum-builddep -y $1
     deps=${1^^}_CENTOS${releasever}_DEPS
     if [[ -n ${!deps} ]]; then
         echo Install $deps \"${!deps}\"
         yum install -y -q ${!deps} >/dev/null 2>&1
     else
-        deps=$1_CENTOS_DEPS
+        deps=${1^^}_CENTOS_DEPS
         if [[ -n ${!deps} ]]; then
             echo Install $deps \"${!deps}\"
             yum install -y -q ${!deps} >/dev/null 2>&1
@@ -329,7 +333,7 @@ install_fedora_deps() {
         echo Install $deps \"${!deps}\"
         dnf install -y -q ${!deps} >/dev/null 2>&1
     else
-        deps=$1_CENTOS_DEPS
+        deps=${1^^}_CENTOS_DEPS
         if [[ -n ${!deps} ]]; then
             echo Install $deps \"${!deps}\"
             dnf install -y -q ${!deps} >/dev/null 2>&1
@@ -338,7 +342,23 @@ install_fedora_deps() {
 }
 
 install_oraclelinux_deps() {
+    releasever=$(python -c 'import yum; yb = yum.YumBase(); print yb.conf.yumvar["releasever"]' | tail -n 1)
+    releasever=${releasever:0:1}
     if [[ -n $ORACLE_DEPS ]]; then yum install -y -q $ORACLE_DEPS; fi
+        if [[ -n $CENTOS_DEPS ]]; then echo "Install CENTOS_DEPS \"$CENTOS_DEPS\""; yum install -y -q $CENTOS_DEPS >/dev/null 2>&1; fi
+
+    # yum-builddep -y $1
+    deps=${1^^}_CENTOS${releasever}_DEPS
+    if [[ -n ${!deps} ]]; then
+        echo Install $deps \"${!deps}\"
+        yum install -y -q ${!deps} >/dev/null 2>&1
+    else
+        deps=${1^^}_CENTOS_DEPS
+        if [[ -n ${!deps} ]]; then
+            echo Install $deps \"${!deps}\"
+            yum install -y -q ${!deps} >/dev/null 2>&1
+        fi
+    fi
 }
 
 install_ubuntu_deps() {

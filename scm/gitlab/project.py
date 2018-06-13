@@ -18,9 +18,6 @@ def main():
                 "git clone %s" % project["ssh_url_to_repo"],
                 "cd ../..",
                 sep="; ")
-            
-        
-
 
 if __name__ == "__main__":
     main()
