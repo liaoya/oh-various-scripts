@@ -148,7 +148,7 @@ export LFTP_SRCDIR=lftp-${LFTP_VERSION}
 export LFTP_CENTOS_DEPS="ncurses-devel readline-devel gnutls-devel zlib-devel libidn2-devel"
 export LFTP_UBUNTU_DEPS="libncurses-dev libreadline-dev libgnutls28-dev zlib1g-dev libidn2-dev"
 
-export LLVM_VERSION=5.0.0
+export LLVM_VERSION=6.0.0
 export LLVM_CENTOS_DEPS="cmake3"
 export LLVM_FEDORA_DEPS="cmake"
 export LLVM_UBUNTU_DEPS="cmake"
@@ -300,7 +300,7 @@ compress_binary() {
 download_source() {
     local output=$HOME/$(basename $1)
     [[ $# -eq 2 ]] && output=$2
-    [[ ! -f $output ]] && echo "Download $1 as $output " && curl -L -o $output $1
+    [[ ! -f $output ]] && echo "Download $1 as $output " && curl -s -L -o $output $1
 }
 
 # We must support two CentOS version at the same time

@@ -2,9 +2,6 @@
 
 # https://github.com/docker/docker/issues/22801
 # echo 0 > /proc/sys/kernel/randomize_va_space
-
-# https://github.com/docker/docker/issues/22801
-# echo 0 > /proc/sys/kernel/randomize_va_space
 # So build in vm
 
 if [ -f ../env.sh ]; then
