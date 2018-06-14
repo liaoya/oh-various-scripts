@@ -1,11 +1,11 @@
 #!/bin/bash
 
-if [ -f ../env.sh ]; then
-    source ../env.sh
-else
-    echo "Can't import common functions and variables"
-    exit 1
-fi
+[[ -f ../env.sh ]] && source ../env.sh
+
+export TMATE_VERSION=$(curl -s "https://api.github.com/repos/tmate-io/tmate/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+export TMATE_URL=https://github.com/tmate-io/tmate/archive/${TMATE_VERSION}.tar.gz
+export TMATE_ARCHIVE_NAME=tmate-${TMATE_VERSION}.tar.gz
+export TMATE_SRCDIR=tmate-${TMATE_VERSION}
 
 if [[ -n $TMATE_VERSION && -n $TMATE_URL && -n $TMATE_SRCDIR ]]; then
     prepare_build "tmate"

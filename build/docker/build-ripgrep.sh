@@ -1,13 +1,12 @@
 #!/bin/sh
 
-if [ -f ../env.sh ]; then
-    source ../env.sh
-else
-    echo "Can't import common functions and variables"
-    exit 1
-fi
+[[ -f ../env.sh ]] && source ../env.sh
 
 # https://github.com/BurntSushi/ripgrep
+export RIPGREP_VERSION=$(curl -s "https://api.github.com/repos/BurntSushi/ripgrep/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+export RIPGREP_URL=https://github.com/BurntSushi/ripgrep/archive/${RIPGREP_VERSION}.tar.gz
+export RIPGREP_ARCHIVE_NAME=ripgrep-${RIPGREP_VERSION}.tar.gz
+export RIPGREP_SRCDIR=ripgrep-${RIPGREP_VERSION}
 
 if [[ -n ${RIPGREP_VERSION} && -n ${RIPGREP_URL} && -n ${RIPGREP_SRCDIR} ]]; then
     prepare_build "ripgrep"

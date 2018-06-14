@@ -1,11 +1,10 @@
 #!/bin/sh
 
-if [ -f ../env.sh ]; then
-    source ../env.sh
-else
-    echo "Can't import common functions and variables"
-    exit 1
-fi
+[[ -f ../env.sh ]] && source ../env.sh
+
+export UCG_VERSION=$(curl -s "https://api.github.com/repos/gvansickle/ucg/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+export UCG_URL=https://github.com/gvansickle/ucg/releases/download/${UCG_VERSION}/universalcodegrep-${UCG_VERSION}.tar.gz
+export UCG_SRCDIR=universalcodegrep-${UCG_VERSION}
 
 if [[ -n $UCG_VERSION && -n $UCG_URL && -n $UCG_SRCDIR ]]; then
     prepare_build "ucg"

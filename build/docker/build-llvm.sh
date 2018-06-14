@@ -3,12 +3,7 @@
 # https://www.hiroom2.com/2016/05/28/centos-7-build-llvm-clang-from-svn-repository/
 # https://clang.llvm.org/get_started.html
 
-if [ -f ../env.sh ]; then
-    source ../env.sh
-else
-    echo "Can't import common functions and variables"
-    exit 1
-fi
+[[ -f ../env.sh ]] && source ../env.sh
 
 install_deps "LLVM"
 

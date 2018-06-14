@@ -1,11 +1,6 @@
 #!/bin/bash
 
-if [ -f ../env.sh ]; then
-    source ../env.sh
-else
-    echo "Can't import common functions and variables"
-    exit 1
-fi
+[[ -f ../env.sh ]] && source ../env.sh
 
 if [[ -n ${GLOBAL_VERSION} && -n ${GLOBAL_URL} && -n ${GLOBAL_SRCDIR} ]]; then
     prepare_build "global"

@@ -1,11 +1,10 @@
 #!/bin/sh
 
-if [ -f ../env.sh ]; then
-    source ../env.sh
-else
-    echo "Can't import common functions and variables"
-    exit 1
-fi
+[[ -f ../env.sh ]] && source ../env.sh
+
+export TIG_VERSION=$(curl -s "https://api.github.com/repos/jonas/tig/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+export TIG_URL=https://github.com/jonas/tig/archive/${TIG_VERSION}.tar.gz
+export TIG_SRCDIR=tig-${TIG_VERSION}
 
 if [[ -n $TIG_VERSION && -n $TIG_URL && -n $TIG_SRCDIR ]]; then
     prepare_build "tig"

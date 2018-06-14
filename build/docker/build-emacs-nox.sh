@@ -4,12 +4,7 @@
 # echo 0 > /proc/sys/kernel/randomize_va_space
 # So build in vm
 
-if [ -f ../env.sh ]; then
-    source ../env.sh
-else
-    echo "Can't import common functions and variables"
-    exit 1
-fi
+[[ -f ../env.sh ]] && source ../env.sh
 
 if [[ -n ${EMACS_VERSION} && -n ${EMACS_URL} && -n ${EMACS_SRCDIR} ]]; then
     prepare_build "EMACS"

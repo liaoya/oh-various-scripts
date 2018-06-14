@@ -1,11 +1,10 @@
 #!/bin/bash
 
-if [ -f ../env.sh ]; then
-    source ../env.sh
-else
-    echo "Can't import common functions and variables"
-    exit 1
-fi
+[[ -f ../env.sh ]] && source ../env.sh
+
+export TMUX_VERSION=$(curl -s "https://api.github.com/repos/tmux/tmux/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+export TMUX_URL=https://github.com/tmux/tmux/releases/download/2.7/tmux-${TMUX_VERSION}.tar.gz
+export TMUX_SRCDIR=tmux-${TMUX_VERSION}
 
 if [[ -n $TMUX_VERSION && -n $TMUX_URL && -n $TMUX_SRCDIR ]]; then
     prepare_build "tmux"

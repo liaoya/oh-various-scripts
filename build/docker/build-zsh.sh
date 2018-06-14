@@ -1,11 +1,6 @@
 #!/bin/sh
 
-if [ -f ../env.sh ]; then
-    source ../env.sh
-else
-    echo "Can't import common functions and variables"
-    exit 1
-fi
+[[ -f ../env.sh ]] && source ../env.sh
 
 if [[ -n ${ZSH_VERSION} && -n ${ZSH_URL} && -n ${ZSH_SRCDIR} ]]; then
     prepare_build "zsh"

@@ -1,11 +1,6 @@
 #!/bin/bash
 
-if [ -f ../env.sh ]; then
-    source ../env.sh
-else
-    echo "Can't import common functions and variables"
-    exit 1
-fi
+[[ -f ../env.sh ]] && source ../env.sh
 
 if [[ -n ${NMON_VERSION} && -n ${NMON_SOURCE} && -n ${NMON_MAKEFILE} ]]; then
     install_deps "nmon"

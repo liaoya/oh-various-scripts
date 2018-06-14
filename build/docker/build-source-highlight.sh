@@ -1,13 +1,6 @@
 #!/bin/sh
 
-#!/bin/sh
-
-if [ -f ../env.sh ]; then
-    source ../env.sh
-else
-    echo "Can't import common functions and variables"
-    exit 1
-fi
+[[ -f ../env.sh ]] && source ../env.sh
 
 if [[ -n $SOURCE_HIGHLIGHT_VERSION && -n $SOURCE_HIGHLIGHT_URL && -n $SOURCE_HIGHLIGHT_SRCDIR ]]; then
     prepare_build "SOURCE_HIGHLIGHT"

@@ -1,11 +1,10 @@
 #!/bin/sh
 
-if [ -f ../env.sh ]; then
-    source ../env.sh
-else
-    echo "Can't import common functions and variables"
-    exit 1
-fi
+[[ -f ../env.sh ]] && source ../env.sh
+
+PROTOBUF_VERSION=$(curl -s "https://api.github.com/repos/google/protobuf/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+export PROTOBUF_VERSION=${PROTOBUF_VERSION:1}
+export PROTOBUF_URL=https://github.com/google/protobuf/archive/v${PROTOBUF_VERSION}.tar.gz
 
 if [[ -n ${PROTOBUF_VERSION} && -n ${PROTOBUF_URL} && -n ${PROTOBUF_SRCDIR} ]]; then
     prepare_build "protobuf"

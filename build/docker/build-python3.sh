@@ -1,11 +1,6 @@
 #!/bin/sh
 
-if [ -f ../env.sh ]; then
-    source ../env.sh
-else
-    echo "Can't import common functions and variables"
-    exit 1
-fi
+[[ -f ../env.sh ]] && source ../env.sh
 
 if [[ -n ${PYTHON3_VERSION} && -n ${PYTHON3_URL} && -n ${PYTHON3_SRCDIR} ]]; then
     prepare_build "python3"

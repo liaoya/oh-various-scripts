@@ -1,11 +1,6 @@
 #!/bin/sh
 
-if [ -f ../env.sh ]; then
-    source ../env.sh
-else
-    echo "Can't import common functions and variables"
-    exit 1
-fi
+[[ -f ../env.sh ]] && source ../env.sh
 
 if [[ -n ${IPERF3_VERSION} && -n ${IPERF3_URL} && -n ${IPERF3_SRCDIR} ]]; then
     prepare_build "iperf3"

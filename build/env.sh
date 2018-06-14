@@ -78,11 +78,6 @@ export GIT_SRCDIR=git-${GIT_VERSION}
 export GIT_CENTOS_DEPS="curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel asciidoc xmlto docbook2X git"
 export GIT_UBUNTU_DEPS="dh-autoreconf libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev docbook2x asciidoc"
 
-GFLAGS_VERSION=$(curl -s "https://api.github.com/repos/gflags/gflags/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-export GFLAGS_VERSION=${GFLAGS_VERSION:1}
-export GFLAGS_URL=https://github.com/gflags/gflags/archive/v${GFLAGS_VERSION}.tar.gz
-export GFLAGS_ARCHIVE_NAME=gflags-${GFLAGS_VERSION}.tar.gz
-export GFLAGS_SRCDIR=gflags-${GFLAGS_VERSION}
 export GFLAGS_CENTOS_DEPS="cmake3"
 export GFLAGS_UBUNTU_DEPS=""
 
@@ -168,11 +163,6 @@ export NANO_SRCDIR=nano-${NANO_VERSION}
 export NANO_CENTOS_DEPS="ncurses-devel zlib-devel"
 export NANO_UBUNTU_DEPS="libncurses-dev zlib1g-dev libmagic-dev groff texinfo"
 
-NINJA_VERSION=$(curl -s "https://api.github.com/repos/ninja-build/ninja/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-export NINJA_VERSION=${NINJA_VERSION:1}
-export NINJA_URL=https://github.com/ninja-build/ninja/archive/v${NINJA_VERSION}.tar.gz
-export NINJA_ARCHIVE_NAME=ninja-${NINJA_VERSION}.tar.gz
-export NINJA_SRCDIR=ninja-${NINJA_VERSION}
 export NINJA_CENTOS_DEPS="re2c"
 export NINJA_UBUNTU_DEPS="python"
 
@@ -192,9 +182,6 @@ export OVS_CENTOS_DEPS="rpm-build systemd-units openssl openssl-devel \
 export OVS_UBUNTU_DEPS="module-assistant debhelper dh-autoreconf libssl-dev libtool openssl procps \
     python-all python-qt4 python-twisted-conch python-zopeinterface python-six libcap-ng-dev"
 
-PROTOBUF_VERSION=$(curl -s "https://api.github.com/repos/google/protobuf/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-export PROTOBUF_VERSION=${PROTOBUF_VERSION:1}
-export PROTOBUF_URL=https://github.com/google/protobuf/archive/v${PROTOBUF_VERSION}.tar.gz
 export PROTOBUF_ARCHIVE_NAME=protobuf-${PROTOBUF_VERSION}.tar.gz
 export PROTOBUF_SRCDIR=protobuf-${PROTOBUF_VERSION}
 
@@ -204,10 +191,6 @@ export PYTHON3_SRCDIR=Python-${PYTHON3_VERSION}
 export PYTHON3_CENTOS_DEPS="zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel expat-devel"
 export PYTHON3_UBUNTU_DEPS=""
 
-export RIPGREP_VERSION=$(curl -s "https://api.github.com/repos/BurntSushi/ripgrep/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-export RIPGREP_URL=https://github.com/BurntSushi/ripgrep/archive/${RIPGREP_VERSION}.tar.gz
-export RIPGREP_ARCHIVE_NAME=ripgrep-${RIPGREP_VERSION}.tar.gz
-export RIPGREP_SRCDIR=ripgrep-${RIPGREP_VERSION}
 export RIPGREP_CENTOS_DEPS="rust cargo"
 export RIPGREP_UBUNTU_DEPS="rustc cargo"
 
@@ -227,22 +210,12 @@ export SWIG_SRCDIR=swig-${SWIG_VERSION}
 export SWIG_CENTOS_DEPS="pcre2-devel pcre-devel bison byacc zlib-devel"
 export SWIG_UBUNTU_DEPS="libpcre2-dev libpcre3-dev bison byacc zlib1g-dev"
 
-export TIG_VERSION=$(curl -s "https://api.github.com/repos/jonas/tig/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-export TIG_URL=https://github.com/jonas/tig/archive/${TIG_VERSION}.tar.gz
-export TIG_SRCDIR=tig-${TIG_VERSION}
 export TIG_CENTOS_DEPS="ncurses-devel"
 export TIG_UBUNTU_DEPS="libncurses-dev"
 
-export TMATE_VERSION=$(curl -s "https://api.github.com/repos/tmate-io/tmate/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-export TMATE_URL=https://github.com/tmate-io/tmate/archive/${TMATE_VERSION}.tar.gz
-export TMATE_ARCHIVE_NAME=tmate-${TMATE_VERSION}.tar.gz
-export TMATE_SRCDIR=tmate-${TMATE_VERSION}
 export TMATE_CENTOS_DEPS="ncurses-devel libevent-devel msgpack-devel libssh-devel libssh2-devel"
 export TMATE_UBUNTU_DEPS="libncurses-dev libevent-dev"
 
-export TMUX_VERSION=$(curl -s "https://api.github.com/repos/tmux/tmux/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-export TMUX_URL=https://github.com/tmux/tmux/releases/download/2.7/tmux-${TMUX_VERSION}.tar.gz
-export TMUX_SRCDIR=tmux-${TMUX_VERSION}
 export TMUX_CENTOS_DEPS="ncurses-devel libevent-devel"
 export TMUX_CENTOS6_DEPS="ncurses-devel libevent2-devel"
 export TMUX_UBUNTU_DEPS="libncurses-dev libevent-dev"
@@ -260,9 +233,6 @@ export VIM_UBUNTU_DEPS="libncurses-dev exuberant-ctags git libacl1-dev cscope \
     libgtk2.0-dev"
 
 # Fail to build on Ubuntu 17.04 with gcc 7.2
-export UCG_VERSION=$(curl -s "https://api.github.com/repos/gvansickle/ucg/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-export UCG_URL=https://github.com/gvansickle/ucg/releases/download/${UCG_VERSION}/universalcodegrep-${UCG_VERSION}.tar.gz
-export UCG_SRCDIR=universalcodegrep-${UCG_VERSION}
 export UCG_CENTOS_DEPS="pcre2-devel pcre-devel jemalloc-devel"
 export UCG_UBUNTU_DEPS="libpcre2-dev libpcre3-dev libjemalloc-dev"
 

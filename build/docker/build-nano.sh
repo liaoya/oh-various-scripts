@@ -2,12 +2,7 @@
 
 # https://devtidbits.com/2015/11/26/update-the-nano-text-editor-on-ubuntu/
 
-if [ -f ../env.sh ]; then
-    source ../env.sh
-else
-    echo "Can't import common functions and variables"
-    exit 1
-fi
+[[ -f ../env.sh ]] && source ../env.sh
 
 if [[ -n ${NANO_VERSION} && -n ${NANO_URL} && -n ${NANO_SRCDIR} ]]; then
     prepare_build "nano"
