@@ -52,7 +52,7 @@ export EMACS_CENTOS_DEPS="GConf2-devel dbus-devel giflib-devel gnutls-devel gtk3
     libX11-devel libXpm-devel libacl-devel libjpeg-turbo-devel libotf-devel librsvg2-devel libtiff-devel \
     libselinux-devel libxml2-devel m17n-lib-devel ncurses-devel \
     openjpeg-devel openjpeg2-devel turbojpeg-devel wxGTK-devel wxGTK3-devel"
-export EMACS_UBUNTU_DEPS="libncurses-dev libevent-dev libgnutls28-dev"
+export EMACS_UBUNTU_DEPS="libncurses-dev libevent-dev libgnutls28-dev libacl1-dev"
 
 export FISH_VERSION=2.7.1
 export FISH_URL=https://github.com/fish-shell/fish-shell/releases/download/${FISH_VERSION}/fish-${FISH_VERSION}.tar.gz
@@ -185,7 +185,7 @@ export OVS_UBUNTU_DEPS="module-assistant debhelper dh-autoreconf libssl-dev libt
 export PROTOBUF_ARCHIVE_NAME=protobuf-${PROTOBUF_VERSION}.tar.gz
 export PROTOBUF_SRCDIR=protobuf-${PROTOBUF_VERSION}
 
-export PYTHON3_VERSION=3.6.5
+export PYTHON3_VERSION=3.7.0
 export PYTHON3_URL=https://www.python.org/ftp/python/${PYTHON3_VERSION}/Python-${PYTHON3_VERSION}.tgz
 export PYTHON3_SRCDIR=Python-${PYTHON3_VERSION}
 export PYTHON3_CENTOS_DEPS="zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel expat-devel"
@@ -341,7 +341,7 @@ install_ubuntu_deps() {
         [ $SILENCE -eq 0 ] && apt-get install -y -qq ${!deps}
         [ $SILENCE -ne 0 ] && apt-get install -y -qq -o "Dpkg::Use-Pty=0" ${!deps} >/dev/null 2>&1
     else
-        deps=$1_UBUNTU_DEPS
+        deps=${1^^}_UBUNTU_DEPS
         if [[ -n ${!deps} ]]; then
             echo Install $deps \"${!deps}\"
             [ $SILENCE -eq 0 ] && apt-get install -y -qq ${!deps}

@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# https://stackoverflow.com/questions/37544423/how-to-build-emacs-from-source-in-docker-hub-gap-between-bss-and-heap
 # https://github.com/docker/docker/issues/22801
 # echo 0 > /proc/sys/kernel/randomize_va_space
 # So build in vm
