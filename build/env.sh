@@ -52,7 +52,7 @@ export EMACS_CENTOS_DEPS="GConf2-devel dbus-devel giflib-devel gnutls-devel gtk3
     libX11-devel libXpm-devel libacl-devel libjpeg-turbo-devel libotf-devel librsvg2-devel libtiff-devel \
     libselinux-devel libxml2-devel m17n-lib-devel ncurses-devel \
     openjpeg-devel openjpeg2-devel turbojpeg-devel wxGTK-devel wxGTK3-devel"
-export EMACS_UBUNTU_DEPS="libncurses-dev libevent-dev"
+export EMACS_UBUNTU_DEPS="libncurses-dev libevent-dev libgnutls28-dev"
 
 export FISH_VERSION=2.7.1
 export FISH_URL=https://github.com/fish-shell/fish-shell/releases/download/${FISH_VERSION}/fish-${FISH_VERSION}.tar.gz
@@ -72,7 +72,7 @@ export GDB_SRCDIR=gdb-${GDB_VERSION}
 export GDB_CENTOS_DEPS="bison flex expect texinfo"
 export GDB_UBUNTU_DEPS=""
 
-export GIT_VERSION=2.17.1
+export GIT_VERSION=2.18.0
 export GIT_URL=https://www.kernel.org/pub/software/scm/git/git-${GIT_VERSION}.tar.xz
 export GIT_SRCDIR=git-${GIT_VERSION}
 export GIT_CENTOS_DEPS="curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel asciidoc xmlto docbook2X git"
@@ -172,7 +172,7 @@ export NMON_MAKEFILE=https://sourceforge.net/projects/nmon/files/makefile
 export NMON_CENTOS_DEPS="ncurses-devel"
 export NMON_UBUNTU_DEPS="libncurses-dev"
 
-export OVS_VERSION=2.9.1
+export OVS_VERSION=2.9.2
 export OVS_URL=http://openvswitch.org/releases/openvswitch-${OVS_VERSION}.tar.gz
 export OVS_SRCDIR=openvswitch-${OVS_VERSION}
 export OVS_CENTOS_DEPS="rpm-build systemd-units openssl openssl-devel \

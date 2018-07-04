@@ -7,10 +7,10 @@ superssh() {
     local OPTIND server="localhost" port=22 user="root" password debug=0 action="login" noop=0
     while getopts "o:s:p:P:u:dh" o; do
         case "${o}" in
-            o)
+            o):
                 action="${OPTARG}"
                 ;;
-            s)
+            s):
                 server="${OPTARG}"
                 ;;
             p):

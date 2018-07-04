@@ -7,7 +7,7 @@
 [[ -f ../env.sh ]] && source ../env.sh
 
 if [[ -n ${EMACS_VERSION} && -n ${EMACS_URL} && -n ${EMACS_SRCDIR} ]]; then
-    prepare_build "EMACS"
+    prepare_build "emacs"
 
     if [ -d $HOME/${EMACS_SRCDIR} ]; then
         clear_usrlocal
@@ -16,7 +16,7 @@ if [[ -n ${EMACS_VERSION} && -n ${EMACS_URL} && -n ${EMACS_SRCDIR} ]]; then
         make -s -j $(nprocs) all
         make -s install-strip
 
-        compress_binary emacs-${EMACS_VERSION}.txz /usr/local/bin/emacs
+        compress_binary emacs-${EMACS_VERSION} /usr/local/bin/emacs
     else
         echo "Fail to download emacs"
     fi
