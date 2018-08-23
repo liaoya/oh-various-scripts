@@ -43,7 +43,7 @@ done
 ### Fedora
 
 ```shell
-YUM_PROXY=http://10.113.69.101:3128
+YUM_PROXY=http://10.113.69.101:5900
 DNF_MIRROR_SERVER="http://ftp.jaist.ac.jp"
 DNF_MIRROR_PATH="/pub/Linux/Fedora"
 
@@ -64,7 +64,7 @@ done
 ### Ubuntu
 
 ```shell
-APT_PROXY=http://10.113.69.101:3128
+APT_PROXY=http://10.113.69.101:5900
 
 [ -f /etc/apt/apt.conf ] && sed -i "/::proxy/Id" /etc/apt/apt.conf
 [ -f /etc/apt/apt.conf.d/01proxy ] && rm -f /etc/apt/apt.conf.d/01proxy
@@ -81,4 +81,5 @@ sed -i -e 's/^# deb-src/deb-src/' /etc/apt/sources.list
 #sed -i -e 's/^deb-src/#deb-src/' /etc/apt/sources.list
 
 apt-get update -qq
+apt install -y -qq curl
 ```

@@ -246,6 +246,12 @@ clear_usrlocal() {
     rm -fr /usr/local/*
 }
 
+check_uptodate() {
+    local output=$HOME/$1
+    [[ -n $OUTPUT ]] && output=$OUTPUT/$1
+    [[ -f $output.txz || -f $output.tbz || -f $output.tgz ]] && { echo "$output exist"; exit 0; }
+}
+
 compress_binary() {
     [[ $# -lt 2 ]] && { echo "compress_binary <compress file name> <check file>"; exit 1; }
     local output=$HOME/$1

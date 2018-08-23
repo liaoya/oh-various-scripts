@@ -6,6 +6,7 @@ export TIG_VERSION=$(curl -s "https://api.github.com/repos/jonas/tig/releases/la
 export TIG_URL=https://github.com/jonas/tig/archive/${TIG_VERSION}.tar.gz
 export TIG_SRCDIR=tig-${TIG_VERSION}
 
+check_uptodate ${TIG_VERSION}
 if [[ -n $TIG_VERSION && -n $TIG_URL && -n $TIG_SRCDIR ]]; then
     prepare_build "tig"
 
@@ -17,7 +18,7 @@ if [[ -n $TIG_VERSION && -n $TIG_URL && -n $TIG_SRCDIR ]]; then
         make -s -j $(nproc) all
         make -s -j $(nproc) strip
         make -s -j $(nproc) install
-        compress_binary tig-${TIG_VERSION} /usr/local/bin/tig
+        compress_binary ${TIG_VERSION} /usr/local/bin/tig
     else
         echo "Fail to download tig"
     fi
