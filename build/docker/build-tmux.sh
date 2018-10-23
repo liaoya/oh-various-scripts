@@ -1,10 +1,13 @@
 #!/bin/bash
+#shellcheck disable=SC1090
 
-[[ -f ../env.sh ]] && source ../env.sh
+THIS_FILE=$(readlink -f "${BASH_SOURCE[0]}")
+THIS_DIR=$(dirname "${THIS_FILE}")
+[[ -f ${THIS_DIR}/../env.sh ]] && source ${THIS_DIR}/../env.sh
 
-export TMUX_VERSION=$(curl -s "https://api.github.com/repos/tmux/tmux/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-export TMUX_URL=https://github.com/tmux/tmux/releases/download/2.7/tmux-${TMUX_VERSION}.tar.gz
-export TMUX_SRCDIR=tmux-${TMUX_VERSION}
+TMUX_VERSION=$(curl -s "https://api.github.com/repos/tmux/tmux/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+TMUX_URL=https://github.com/tmux/tmux/releases/download/${TMUX_VERSION}/tmux-${TMUX_VERSION}.tar.gz
+TMUX_SRCDIR=tmux-${TMUX_VERSION}
 
 if [[ -n $TMUX_VERSION && -n $TMUX_URL && -n $TMUX_SRCDIR ]]; then
     prepare_build "tmux"

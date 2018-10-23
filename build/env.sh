@@ -72,7 +72,7 @@ export GDB_SRCDIR=gdb-${GDB_VERSION}
 export GDB_CENTOS_DEPS="bison flex expect texinfo"
 export GDB_UBUNTU_DEPS=""
 
-export GIT_VERSION=2.18.0
+export GIT_VERSION=2.19.1
 export GIT_URL=https://www.kernel.org/pub/software/scm/git/git-${GIT_VERSION}.tar.xz
 export GIT_SRCDIR=git-${GIT_VERSION}
 export GIT_CENTOS_DEPS="curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel asciidoc xmlto docbook2X git"
@@ -155,8 +155,8 @@ export MC_CENTOS_DEPS="ncurses-devel glib2-devel slang-devel gpm-devel libssh2-d
 export MC_FEDORA_DEPS="glib2-devel slang-devel"
 export MC_UBUNTU_DEPS="libncurses-dev libglib2.0-dev"
 
-export NANO_MAJOR_VERSION=2.9
-export NANO_MINOR_VERSION=8
+export NANO_MAJOR_VERSION=3
+export NANO_MINOR_VERSION=1
 export NANO_VERSION=${NANO_MAJOR_VERSION}.${NANO_MINOR_VERSION}
 export NANO_URL=https://www.nano-editor.org/dist/v${NANO_MAJOR_VERSION}/nano-${NANO_VERSION}.tar.xz
 export NANO_SRCDIR=nano-${NANO_VERSION}

@@ -10,7 +10,7 @@ Docker is used to build most of the softwares, but some software need virtual ma
 ### CentOS
 
 ```shell
-YUM_PROXY=http://10.113.69.101:3128
+YUM_PROXY=http://10.113.69.101:5900
 YUM_MIRROR_SERVER="http://ftp.jaist.ac.jp"
 YUM_MIRROR_EPEL_PATH="/pub/Linux/Fedora"
 YUM_MIRROR_PATH="/pub/Linux/CentOS"
@@ -78,7 +78,6 @@ APT_MIRROR_PATH="/pub/Linux/ubuntu"
 [ -f /etc/apt/sources.list.origin ] || cp -pr /etc/apt/sources.list /etc/apt/sources.list.origin
 sed -i -e "s%http://.*archive.ubuntu.com%$APT_MIRROR_SERVER$APT_MIRROR_PATH%" -e "s%http://security.ubuntu.com%$APT_MIRROR_SERVER$APT_MIRROR_PATH%" /etc/apt/sources.list
 sed -i -e 's/^# deb-src/deb-src/' /etc/apt/sources.list
-#sed -i -e 's/^deb-src/#deb-src/' /etc/apt/sources.list
 
 apt-get update -qq
 apt install -y -qq curl
