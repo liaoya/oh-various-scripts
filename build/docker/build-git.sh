@@ -15,9 +15,9 @@ if [[ -n $GIT_VERSION && -n $GIT_URL && -n $GIT_SRCDIR ]]; then
         cd $HOME/$GIT_SRCDIR
         make configure
         ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
-        make -s -j $(nproc) all info
-        make -s -j $(nproc) strip
-        make -s -j $(nproc) install install-man
+        make -s -j "$(nproc)" all info
+        make -s -j "$(nproc)" strip
+        make -s -j "$(nproc)" install install-man
 
         compress_binary git-${GIT_VERSION} /usr/local/bin/git
     else

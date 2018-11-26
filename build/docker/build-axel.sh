@@ -1,4 +1,5 @@
 #!/bin/bash
+#shellcheck disable=SC1090,SC2164
 
 THIS_FILE=$(readlink -f "${BASH_SOURCE[0]}")
 THIS_DIR=$(dirname "${THIS_FILE}")
@@ -12,7 +13,7 @@ if [[ -n $AXEL_VERSION && -n $AXEL_URL && -n $AXEL_SRCDIR ]]; then
         cd $HOME/$AXEL_SRCDIR
         ./autogen.sh
         ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
-        make -s -j $(nproc)
+        make -s -j "$(nproc)"
         make -s install-strip
 
         compress_binary axel-${AXEL_VERSION} /usr/local/bin/axel

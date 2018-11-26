@@ -1,4 +1,5 @@
 #!/bin/bash
+#shellcheck disable=SC1090,SC2164
 
 # https://stackoverflow.com/questions/37544423/how-to-build-emacs-from-source-in-docker-hub-gap-between-bss-and-heap
 # https://github.com/docker/docker/issues/22801

@@ -1,6 +1,9 @@
-#!/bin/sh
+#!/bin/bash
+#shellcheck disable=SC1090,SC2164
 
-[[ -f ../env.sh ]] && source ../env.sh
+THIS_FILE=$(readlink -f "${BASH_SOURCE[0]}")
+THIS_DIR=$(dirname "${THIS_FILE}")
+[[ -f ${THIS_DIR}/../env.sh ]] && source "${THIS_DIR}/../env.sh"
 
 GFLAGS_VERSION=$(curl -s "https://api.github.com/repos/gflags/gflags/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
 export GFLAGS_VERSION=${GFLAGS_VERSION:1}

@@ -1,6 +1,9 @@
-#!/bin/sh
+#!/bin/bash
+#shellcheck disable=SC1090,SC2164
 
-[[ -f ../env.sh ]] && source ../env.sh
+THIS_FILE=$(readlink -f "${BASH_SOURCE[0]}")
+THIS_DIR=$(dirname "${THIS_FILE}")
+[[ -f ${THIS_DIR}/../env.sh ]] && source "${THIS_DIR}/../env.sh"
 
 if [[ -n ${HIGHLIGHT_VERSION} && -n ${HIGHLIGHT_URL} && -n ${HIGHLIGHT_SRCDIR} ]]; then
     prepare_build "highlight"

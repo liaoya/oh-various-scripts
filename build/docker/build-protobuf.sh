@@ -1,6 +1,9 @@
-#!/bin/sh
+#!/bin/bash
+#shellcheck disable=SC1090,SC2164
 
-[[ -f ../env.sh ]] && source ../env.sh
+THIS_FILE=$(readlink -f "${BASH_SOURCE[0]}")
+THIS_DIR=$(dirname "${THIS_FILE}")
+[[ -f ${THIS_DIR}/../env.sh ]] && source "${THIS_DIR}/../env.sh"
 
 PROTOBUF_VERSION=$(curl -s "https://api.github.com/repos/google/protobuf/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
 export PROTOBUF_VERSION=${PROTOBUF_VERSION:1}
@@ -14,7 +17,7 @@ if [[ -n ${PROTOBUF_VERSION} && -n ${PROTOBUF_URL} && -n ${PROTOBUF_SRCDIR} ]]; 
         cd $HOME/${PROTOBUF_SRCDIR}
         ./autogen.sh
         ./configure -q
-        make -s -j $(nproc) install-strip
+        make -s -j "$(nproc)" install-strip
 
         compress_binary protobuf-${PROTOBUF_VERSION} /usr/local/bin/protoc
     else

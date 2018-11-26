@@ -1,6 +1,9 @@
 #!/bin/bash
+#shellcheck disable=SC1090,SC2164
 
-[[ -f ../env.sh ]] && source ../env.sh
+THIS_FILE=$(readlink -f "${BASH_SOURCE[0]}")
+THIS_DIR=$(dirname "${THIS_FILE}")
+[[ -f ${THIS_DIR}/../env.sh ]] && source "${THIS_DIR}/../env.sh"
 
 if [[ -n ${NMON_VERSION} && -n ${NMON_SOURCE} && -n ${NMON_MAKEFILE} ]]; then
     install_deps "nmon"

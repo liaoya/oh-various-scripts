@@ -13,9 +13,9 @@ if [[ -n ${NANO_VERSION} && -n ${NANO_URL} && -n ${NANO_SRCDIR} ]]; then
         clear_usrlocal
         cd $HOME/${NANO_SRCDIR}
         ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux --enable-utf8 --enable-libmagic
-        make -s -j $(nproc) install-strip
+        make -s -j "$(nproc)" install-strip
         cat <<'EOF' >/usr/local/bin/install-nano.sh
-#!/bin/sh
+#!/bin/bash
 if [ $UID -eq 0 ]; then
     [[ -n $SYSCONFDIR ]] || SYSCONFDIR="/etc"
     CONF=$SYSCONFDIR/nanorc

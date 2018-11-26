@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ -f ../env.sh ]; then
     source ../env.sh
@@ -19,12 +19,12 @@ if [[ -n $GRPC_VERSION && -n $GRPC_URL && -n $GRPC_SRCDIR ]]; then
         cd $HOME/$GRPC_PROTOBUF_SRCDIR
         ./autogen.sh
         ./configure -q
-        make -s -j $(nproc) install-strip
+        make -s -j "$(nproc)" install-strip
 
         [ -d $HOME/${GRPC_CARES_SRCDIR} ] && cp -fpr ~/${GRPC_CARES_SRCDIR}/* ~/${GRPC_SRCDIR}/third_party/cares/cares/
         cd $HOME/${GRPC_SRCDIR}
         make -s -j $(nproc)
-        make -s -j $(nproc) strip install
+        make -s -j "$(nproc)" strip install
         for item in $(ls -1 /usr/local/bin/grpc*plugin); do file $item | grep -q -s "not stripped" && strip -S $item; done
 
         cd $HOME/${GRPC_JAVA_SRCDIR}

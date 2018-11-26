@@ -1,5 +1,5 @@
 #!/bin/bash
-#shellcheck disable=SC1090
+#shellcheck disable=SC1090,SC2164
 
 THIS_FILE=$(readlink -f "${BASH_SOURCE[0]}")
 THIS_DIR=$(dirname "${THIS_FILE}")
@@ -24,17 +24,17 @@ if [[ -n $TMUX_VERSION && -n $TMUX_URL && -n $TMUX_SRCDIR ]]; then
                 tar -C $HOME -xf $HOME/libevent-${LIBEVENT_VERSION}-stable.tar.gz
                 cd $HOME/libevent-${LIBEVENT_VERSION}-stable
                 ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
-                make -s -j $(nproc) all
+                make -s -j "$(nproc)" all
                 make install-strip
             fi
         fi
 
         cd $HOME/$TMUX_SRCDIR
         ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
-        make -s -j $(nproc) install-strip
+        make -s -j "$(nproc)" install-strip
 # https://stackoverflow.com/questions/27920806/how-to-avoid-heredoc-expanding-variables
         cat <<'EOF' > /usr/local/bin/install-tmux.sh
-#!/bin/sh
+#!/bin/bash
 if [ $UID -eq 0 ]; then
     [ -f /etc/ld.so.conf.d/usr-local.conf ] || touch /etc/ld.so.conf.d/usr-local.conf
     grep -s -q -w "/usr/local/lib" /etc/ld.so.conf.d/usr-local.conf || echo "/usr/local/lib" >> /etc/ld.so.conf.d/usr-local.conf

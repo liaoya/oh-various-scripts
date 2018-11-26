@@ -1,4 +1,5 @@
 #!/bin/bash
+#shellcheck disable=SC1090,SC2164
 
 THIS_FILE=$(readlink -f "${BASH_SOURCE[0]}")
 THIS_DIR=$(dirname "${THIS_FILE}")
@@ -12,7 +13,7 @@ if [[ -n ${AG_VERSION} && -n ${AG_URL} && -n ${AG_SRCDIR} ]]; then
         cd $HOME/${AG_SRCDIR}
         ./autogen.sh
         ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
-        make -s -j $(nproc) install-strip
+        make -s -j "$(nproc)" install-strip
 
         compress_binary ag-${AG_VERSION} /usr/local/bin/ag
     else

@@ -1,9 +1,13 @@
 #!/bin/bash
+#shellcheck disable=SC1090,SC2164
 
 # https://www.hiroom2.com/2016/05/28/centos-7-build-llvm-clang-from-svn-repository/
 # https://clang.llvm.org/get_started.html
 
-[[ -f ../env.sh ]] && source ../env.sh
+THIS_FILE=$(readlink -f "${BASH_SOURCE[0]}")
+THIS_DIR=$(dirname "${THIS_FILE}")
+[[ -f ${THIS_DIR}/../env.sh ]] && source "${THIS_DIR}/../env.sh"
+
 
 install_deps "LLVM"
 

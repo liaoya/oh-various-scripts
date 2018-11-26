@@ -1,6 +1,9 @@
 #!/bin/bash
+#shellcheck disable=SC1090,SC2164
 
-[[ -f ../env.sh ]] && source ../env.sh
+THIS_FILE=$(readlink -f "${BASH_SOURCE[0]}")
+THIS_DIR=$(dirname "${THIS_FILE}")
+[[ -f ${THIS_DIR}/../env.sh ]] && source "${THIS_DIR}/../env.sh"
 
 if [[ -n ${GNUPLOT_VERSION} && -n ${GNUPLOT_URL} && -n ${GNUPLOT_SRCDIR} ]]; then
     prepare_build "gnuplot"
@@ -9,7 +12,7 @@ if [[ -n ${GNUPLOT_VERSION} && -n ${GNUPLOT_URL} && -n ${GNUPLOT_SRCDIR} ]]; the
         clear_usrlocal
         cd $HOME/${GNUPLOT_SRCDIR}
         ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
-        make -s -j $(nproc) install-strip
+        make -s -j "$(nproc)" install-strip
 
         compress_binary gnuplot-${GNUPLOT_VERSION} /usr/local/bin/gnuplot
     else

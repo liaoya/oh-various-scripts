@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash
+#shellcheck disable=SC1090,SC2164
 
 THIS_FILE=$(readlink -f "${BASH_SOURCE[0]}")
 THIS_DIR=$(dirname "${THIS_FILE}")
@@ -13,7 +14,7 @@ if [[ -n ${CODELITE_VERSION} && -n ${CODELITE_URL} && -n ${CODELITE_SRCDIR} ]]; 
         [ -f /usr/bin/wx-config ] && mv /usr/bin/wx-config /usr/bin/wx-config.origin
         ln -s /usr/bin/wx-config-3.0 /usr/bin/wx-config
         cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCL_PREFIX=/usr/local
-        make -s -j $(nproc) all
+        make -s -j "$(nproc)" all
         make -s install/strip
 
         [ -f /usr/bin/wx-config.origin ] && mv -f /usr/bin/wx-config.origin /usr/bin/wx-config

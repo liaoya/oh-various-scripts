@@ -1,6 +1,9 @@
-#!/bin/sh
+#!/bin/bash
+#shellcheck disable=SC1090,SC2164
 
-[[ -f ../env.sh ]] && source ../env.sh
+THIS_FILE=$(readlink -f "${BASH_SOURCE[0]}")
+THIS_DIR=$(dirname "${THIS_FILE}")
+[[ -f ${THIS_DIR}/../env.sh ]] && source "${THIS_DIR}/../env.sh"
 
 export TIG_VERSION=$(curl -s "https://api.github.com/repos/jonas/tig/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
 export TIG_URL=https://github.com/jonas/tig/archive/${TIG_VERSION}.tar.gz
@@ -15,9 +18,9 @@ if [[ -n $TIG_VERSION && -n $TIG_URL && -n $TIG_SRCDIR ]]; then
         cd $HOME/$TIG_SRCDIR
         ./autogen.sh
         ./configure -q --build=x86_64-pc-linux --host=x86_64-pc-linux --target=x86_64-pc-linux
-        make -s -j $(nproc) all
-        make -s -j $(nproc) strip
-        make -s -j $(nproc) install
+        make -s -j "$(nproc)" all
+        make -s -j "$(nproc)" strip
+        make -s -j "$(nproc)" install
         compress_binary ${TIG_VERSION} /usr/local/bin/tig
     else
         echo "Fail to download tig"
