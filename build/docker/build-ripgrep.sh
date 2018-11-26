@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash
+#shellcheck disable=SC1090,SC2155
 
 THIS_FILE=$(readlink -f "${BASH_SOURCE[0]}")
 THIS_DIR=$(dirname "${THIS_FILE}")

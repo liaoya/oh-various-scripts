@@ -1,4 +1,5 @@
 #!/bin/bash
+#shellcheck=SC2155
 
 export SILENCE=1
 
@@ -6,14 +7,14 @@ export CENTOS_DEPS="file wget autoconf automake libtool gcc gcc-c++ make file wh
 export FEDORA_DEPS="file wget autoconf automake libtool gcc gcc-c++ make file which pxz pigz lbzip2 unzip bzip2 xz p7zip openssh-clients python2-dnf yum-utils"
 export UBUNTU_DEPS="lsb-release curl wget less file pxz pigz lbzip2 unzip bzip2 xz-utils p7zip-full openssh-client sshpass build-essential fakeroot pkg-config autoconf libtool groff texinfo"
 
-export AG_VERSION=2.1.0
+export AG_VERSION=2.2.0
 export AG_URL=https://github.com/ggreer/the_silver_searcher/archive/${AG_VERSION}.tar.gz
 export AG_ARCHIVE_NAME=ag-${AG_VERSION}.tar.gz
 export AG_SRCDIR=the_silver_searcher-${AG_VERSION}
 export AG_CENTOS_DEPS="pcre-devel xz-devel zlib-devel"
 export AG_UBUNTU_DEPS="libpcre3-dev liblzma-dev zlib1g-dev"
 
-export AXEL_VERSION=2.15
+export AXEL_VERSION=2.16.1
 export AXEL_URL=https://github.com/eribertomota/axel/archive/v${AXEL_VERSION}.tar.gz
 export AXEL_ARCHIVE_NAME=axel-${AXEL_VERSION}.tar.gz
 export AXEL_SRCDIR=axel-${AXEL_VERSION}
@@ -26,7 +27,7 @@ export BASH_SRCDIR=bash-${BASH_VERSION}
 export BASH_CENTOS_DEPS="ncurses-devel"
 export BASH_UBUNTU_DEPS="libncurses-dev"
 
-export BOOST_VERSION=1.67
+export BOOST_VERSION=1.69
 export BOOST_URL=https://dl.bintray.com/boostorg/release/${BOOST_VERSION}/source/boost_$(echo $BOOST_VERSION | sed -e 's%\.%_%g').7z
 export BOOST_SRCDIR=boost_$(echo $BOOST_VERSION | sed -e 's%\.%_%g')
 export BOOST_CENTOS_DEPS="zlib-devel bzip2-devel libicu-devel python-devel openmpi-devel xz-devel"
@@ -39,7 +40,7 @@ export CODELITE_SRCDIR=codelite-${CODELITE_VERSION}
 export CODELITE_CENTOS_DEPS="wxGTK3-devel cmake sqlite-devel libssh-devel clang-devel hunspell-devel lldb-devel flex-devel"
 export CODELITE_UBUNTU_DEPS=""
 
-export CURL_VERSION=7.60.0
+export CURL_VERSION=7.60.2
 export CURL_URL=https://curl.haxx.se/download/curl-${CURL_VERSION}.tar.bz2
 export CURL_SRCDIR=curl-${CURL_VERSION}
 export CURL_CENTOS_DEPS="openssl-devel gnutls-devel nss-devel libssh2-devel zlib-devel c-ares-devel libidn2-devel libnghttp2-devel libpsl-devel libmetalink-devel openldap-devel"
@@ -60,7 +61,7 @@ export FISH_SRCDIR=fish-${FISH_VERSION}
 export FISH_CENTOS_DEPS="ncurses-devel pcre2-devel"
 export FISH_UBUNTU_DEPS="libncurses-dev libpcre2-dev"
 
-export GCC_VERSION=8.1.0
+export GCC_VERSION=8.2.0
 export GCC_URL=http://ftpmirror.gnu.org/gnu/gcc/gcc-${GCC_VERSION}/gcc-${GCC_VERSION}.tar.xz
 export GCC_SRCDIR=gcc-${GCC_VERSION}
 export GCC_CENTOS_DEPS="gmp-devel libmpc-devel"
@@ -72,7 +73,7 @@ export GDB_SRCDIR=gdb-${GDB_VERSION}
 export GDB_CENTOS_DEPS="bison flex expect texinfo"
 export GDB_UBUNTU_DEPS=""
 
-export GIT_VERSION=2.19.1
+export GIT_VERSION=2.19.2
 export GIT_URL=https://www.kernel.org/pub/software/scm/git/git-${GIT_VERSION}.tar.xz
 export GIT_SRCDIR=git-${GIT_VERSION}
 export GIT_CENTOS_DEPS="curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel asciidoc xmlto docbook2X git"
@@ -87,7 +88,7 @@ export GLOBAL_SRCDIR=global-${GLOBAL_VERSION}
 export GLOBAL_CENTOS_DEPS="ncurses-devel"
 export GLOBAL_UBUNTU_DEPS="libncurses-dev"
 
-export GNUPLOT_VERSION=5.2.4
+export GNUPLOT_VERSION=5.2.5
 export GNUPLOT_URL=https://sourceforge.net/projects/gnuplot/files/gnuplot/${GNUPLOT_VERSION}/gnuplot-${GNUPLOT_VERSION}.tar.gz
 export GNUPLOT_SRCDIR=gnuplot-${GNUPLOT_VERSION}
 export GNUPLOT_CENTOS_DEPS="atk-devel cairo-devel expat-devel gtk2-devel \
@@ -124,7 +125,7 @@ export GRPC_JAVA_SRCDIR=grpc-java-${GRPC_JAVA_VERSION}
 export GRPC_CENTOS_DEPS="zlib-devel openssl-devel gnutls-devel"
 export GRPC_UBUNTU_DEPS="libncurses-dev libevent-dev"
 
-export HIGHLIGHT_VERSION=3.42
+export HIGHLIGHT_VERSION=3.47
 export HIGHLIGHT_URL=http://www.andre-simon.de/zip/highlight-${HIGHLIGHT_VERSION}.tar.bz2
 export HIGHLIGHT_SRCDIR=highlight-${HIGHLIGHT_VERSION}
 export HIGHLIGHT_CENTOS_DEPS="lua-devel boost-devel"
@@ -137,7 +138,7 @@ export IPERF3_SRCDIR=iperf-${IPERF3_VERSION}
 export IPERF3_CENTOS_DEPS="openssl-devel file"
 export IPERF3_UBUNTU_DEPS="libssl-dev file"
 
-export LFTP_VERSION=4.8.3
+export LFTP_VERSION=4.8.4
 export LFTP_URL=http://lftp.yar.ru/ftp/lftp-${LFTP_VERSION}.tar.xz
 export LFTP_SRCDIR=lftp-${LFTP_VERSION}
 export LFTP_CENTOS_DEPS="ncurses-devel readline-devel gnutls-devel zlib-devel libidn2-devel"
@@ -156,7 +157,7 @@ export MC_FEDORA_DEPS="glib2-devel slang-devel"
 export MC_UBUNTU_DEPS="libncurses-dev libglib2.0-dev"
 
 export NANO_MAJOR_VERSION=3
-export NANO_MINOR_VERSION=1
+export NANO_MINOR_VERSION=2
 export NANO_VERSION=${NANO_MAJOR_VERSION}.${NANO_MINOR_VERSION}
 export NANO_URL=https://www.nano-editor.org/dist/v${NANO_MAJOR_VERSION}/nano-${NANO_VERSION}.tar.xz
 export NANO_SRCDIR=nano-${NANO_VERSION}
@@ -185,7 +186,7 @@ export OVS_UBUNTU_DEPS="module-assistant debhelper dh-autoreconf libssl-dev libt
 export PROTOBUF_ARCHIVE_NAME=protobuf-${PROTOBUF_VERSION}.tar.gz
 export PROTOBUF_SRCDIR=protobuf-${PROTOBUF_VERSION}
 
-export PYTHON3_VERSION=3.7.0
+export PYTHON3_VERSION=3.7.1
 export PYTHON3_URL=https://www.python.org/ftp/python/${PYTHON3_VERSION}/Python-${PYTHON3_VERSION}.tgz
 export PYTHON3_SRCDIR=Python-${PYTHON3_VERSION}
 export PYTHON3_CENTOS_DEPS="zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel expat-devel"
@@ -220,7 +221,7 @@ export TMUX_CENTOS_DEPS="ncurses-devel libevent-devel"
 export TMUX_CENTOS6_DEPS="ncurses-devel libevent2-devel"
 export TMUX_UBUNTU_DEPS="libncurses-dev libevent-dev"
 
-export VIM_VERSION=8.1.0055
+export VIM_VERSION=8.1.0547
 export VIM_URL=https://github.com/vim/vim/archive/v${VIM_VERSION}.tar.gz
 export VIM_ARCHIVE_NAME=vim-${VIM_VERSION}.tar.gz
 export VIM_SRCDIR=vim-${VIM_VERSION}
@@ -236,7 +237,7 @@ export VIM_UBUNTU_DEPS="libncurses-dev exuberant-ctags git libacl1-dev cscope \
 export UCG_CENTOS_DEPS="pcre2-devel pcre-devel jemalloc-devel"
 export UCG_UBUNTU_DEPS="libpcre2-dev libpcre3-dev libjemalloc-dev"
 
-export ZSH_VERSION=5.5.1
+export ZSH_VERSION=5.6.2
 export ZSH_URL=https://sourceforge.net/projects/zsh/files/zsh/${ZSH_VERSION}/zsh-${ZSH_VERSION}.tar.xz
 export ZSH_SRCDIR=zsh-${ZSH_VERSION}
 export ZSH_CENTOS_DEPS="ncurses-devel bison"

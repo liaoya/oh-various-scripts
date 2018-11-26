@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 usage="Usage: -v (child stream) -V (parent stream)"
 parent=""

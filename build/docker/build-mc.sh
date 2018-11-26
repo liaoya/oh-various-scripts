@@ -1,7 +1,5 @@
 #!/bin/sh
 
-#!/bin/sh
-
 [[ -f ../env.sh ]] && source ../env.sh
 
 if [[ -n ${MC_VERSION} && -n ${MC_URL} && -n ${MC_SRCDIR} ]]; then

@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash
+#shellcheck disable=SC1090
 
 [[ -f ../env.sh ]] && source ../env.sh
 
