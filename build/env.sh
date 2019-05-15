@@ -167,7 +167,7 @@ export NANO_UBUNTU_DEPS="libncurses-dev zlib1g-dev libmagic-dev groff texinfo"
 export NINJA_CENTOS_DEPS="re2c"
 export NINJA_UBUNTU_DEPS="python"
 
-export NMON_VERSION=16g
+export NMON_VERSION=16i
 export NMON_SOURCE=https://sourceforge.net/projects/nmon/files/lmon${NMON_VERSION}.c
 export NMON_MAKEFILE=https://sourceforge.net/projects/nmon/files/makefile
 export NMON_CENTOS_DEPS="ncurses-devel"

@@ -8,9 +8,9 @@ THIS_DIR=$(dirname "${THIS_FILE}")
 if [[ -n ${NMON_VERSION} && -n ${NMON_SOURCE} && -n ${NMON_MAKEFILE} ]]; then
     install_deps "nmon"
 
-    cd ${HOME}
-    download_source ${NMON_SOURCE} lmon.c
-    download_source ${NMON_MAKEFILE} Makefile
+    cd "${HOME}"
+    download_source "${NMON_SOURCE}" lmon.c
+    download_source "${NMON_MAKEFILE}" Makefile
 
     if [ -f /etc/redhat-release ]; then
         if [[ -f /etc/fedora-release ]]; then
@@ -24,7 +24,7 @@ if [[ -n ${NMON_VERSION} && -n ${NMON_SOURCE} && -n ${NMON_MAKEFILE} ]]; then
 
     [ -f /etc/lsb-release ] && grep -w -s -q Ubuntu /etc/lsb-release && { make nmon_x86_ubuntu1604; mkdir -p /usr/local/bin; cp -pr nmon_x86_ubuntu1604 /usr/local/bin/nmon; }
 
-    compress_binary nmon-${NMON_VERSION} /usr/local/bin/nmon
+    compress_binary nmon-"${NMON_VERSION}" /usr/local/bin/nmon
 else
     echo "Don't define variable nmon"
 fi
